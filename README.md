@@ -11,7 +11,7 @@
 
 ## Descrição
 
-Este desafio tem como objetivo avaliar as habilidades técnicas do canditado a vaga de desenvolvedor backend no Clubpetro.
+Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
 
 #### O Desafio
 
@@ -36,6 +36,7 @@ Os dados a ser considerados são:
 - Apenas o Local e a Meta poderão ser editados;
 - O mesmo local em determinado país não poderá ser adicionado de forma duplicada;
 - A listagem dos dados deverá ser ordenada de forma crescente pela meta.
+- O candidato deverá adicionar ao projeto uma explicação de como executar a aplicação.
 
 #### Bônus
 
@@ -50,6 +51,7 @@ Os dados a ser considerados são:
 
 ### Submissão e Prazo de entrega
 
-- O canditado deverá realizar um fork deste repositório e submeter o código no mesmo.
+- O candidato deverá realizar um fork deste repositório e submeter o código no mesmo.
 - Em caso do deploy realizado, a url deverá ser adicionada no README;
 - O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o canditado recebeu o email com o link do repositório.
+- Ao finalizar o desafio, o candidato deverá responder ao email enviado pelo clubpetro com o link seu repositório ou PR.
