@@ -1,6 +1,6 @@
 # Desafio de Backend
 
-<img src="./img/logo-clubpetro.png" style="margin-left: 100px"
+<img src="./.github/img/logo-clubpetro.png" style="margin-left: 100px"
      alt="Clubpetro" width="300">
 
 - [Descrição](#descrição)
@@ -8,6 +8,7 @@
   - [Requisitos Obrigatórios](#requisitos-obrigatórios)
   - [Bônus](#bônus)
 - [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
+- [Instruções de execução](#instruções-de-execução)
 
 ## Descrição
 
@@ -17,7 +18,7 @@ Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a v
 
 O desafio consiste em desenvolver uma API rest que permita o CRUD de lugares para se conhecer ao redor do mundo para alimentar o frontend que pode ser visto na imagem a seguir:
 
-<img src="./img/challenge.png" alt="Desafio" >
+<img src="./.github/img/challenge.png" alt="Desafio" >
 
 Os dados a ser considerados são:
 
@@ -55,3 +56,35 @@ Os dados a ser considerados são:
 - Em caso do deploy realizado, a url deverá ser adicionada no README;
 - O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o canditado recebeu o email com o link do repositório;
 - Ao finalizar o desafio, o candidato deverá enviar um email para jobs@clubpetro.com.br contendo o link do seu PR.
+
+
+# Instruções de execução
+
+> Instalação das dependências
+
+```bash
+$ yarn
+```
+
+> Executando a aplicação
+
+```bash
+# development
+$ yarn start
+
+# watch mode
+$ yarn start:dev
+
+# production mode
+$ yarn start:prod
+```
+
+> Testes
+
+```bash
+# unit tests
+$ yarn run test
+
+# test coverage
+$ yarn run test:cov
+```
