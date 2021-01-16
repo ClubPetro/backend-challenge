@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   const config = new DocumentBuilder()
-    .setTitle('Lugares')
-    .setDescription('API de Lugares para visitar')
+    .setTitle('API Backend-Challenge Lugares')
+    .setDescription('Documentação da API de Lugares para visitar')
     .setVersion('1.0')
     .addTag('lugares')
     .build();
