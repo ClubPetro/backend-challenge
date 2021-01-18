@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { CreateLugaresDto } from '../models/DTO/create-lugares.dto';
 import { UpdateLugaresDto } from '../models/DTO/update-lugares.dto';
 import { Lugares } from '../models/lugares.entity';
@@ -26,5 +26,11 @@ export class LugaresController{
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateLugares: UpdateLugaresDto): Promise<Lugares>{
         return this.lugaresService.update(id, updateLugares);
+    }
+
+    @Delete(':id')
+    @HttpCode(204)
+    async delete(@Param('id') id: string){
+        return this.lugaresService.delete(id);
     }
 }

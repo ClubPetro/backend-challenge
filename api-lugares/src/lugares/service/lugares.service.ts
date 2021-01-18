@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateLugaresDto } from '../models/DTO/create-lugares.dto';
@@ -13,11 +13,13 @@ export class LugaresService{
     ){}
 
     async getAll(): Promise<Lugares[]>{
-        return await this.lugaresRepository.find();
+        return await this.lugaresRepository.query("SELECT * FROM public.lugares ORDER BY ano ASC, mes ASC");
     }
 
     async getById(id: string): Promise<Lugares>{
-        return await this.lugaresRepository.findOneOrFail(id);
+        if(!await this.lugaresRepository.findOne(id))
+            throw new NotFoundException("Cadastro com esse ID não existe");
+        return await this.lugaresRepository.findOne(id);
     }
 
     async create(createLugares: CreateLugaresDto): Promise<Lugares>{
@@ -29,6 +31,12 @@ export class LugaresService{
                 throw new BadRequestException("A data requerida está no passado, por favor informe uma data correta!");
             }
         }
+
+        //Verificando se existe já um registro da cidade com o país no BD. UNIQUE seria o ideal em outras situações usar mas pode haver 
+        //cidades com nomes iguais em países diferentes :(
+        const lugarBD = await this.lugaresRepository.findOne({where: {nomePais: createLugares.nomePais, local:createLugares.local}});
+        if(lugarBD)
+            throw new ConflictException("Lugar já cadastrado no Banco de Dados");
 
         const lugarAtualizado = this.lugaresRepository.create({
             nomePais: createLugares.nomePais,
@@ -45,6 +53,9 @@ export class LugaresService{
     }
 
     async update(id: string, updateLugares: UpdateLugaresDto): Promise<Lugares>{
+        if(!await this.lugaresRepository.findOne(id))
+            throw new NotFoundException("Cadastro com esse ID não existe");
+
         const dataAtual = new Date();
 
         await this.lugaresRepository.update(id, {
@@ -55,5 +66,12 @@ export class LugaresService{
         });
 
         return this.getById(id);
+    }
+
+    async delete(id: string): Promise<void>{
+        if(await this.lugaresRepository.findOne(id))
+            await this.lugaresRepository.delete(id);
+        else
+            throw new NotFoundException("Cadastro com esse ID não existe");
     }
 }
