@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity()
-export class Lugares{
+export class Lugares extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -17,10 +17,10 @@ export class Lugares{
     @Column()
     ano: number;
 
-    @Column()
+    @Column({ type: 'timestamp with time zone' })
     created_at: Date;
 
-    @Column()
+    @Column({ type: 'timestamp with time zone' })
     updated_at: Date;
 
     @Column()
