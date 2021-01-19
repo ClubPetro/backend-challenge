@@ -1,10 +1,16 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HttpModule, Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { FilesModule } from './files/files.module';
+import { CountriesModule } from './countries/countries.module';
+import { envConfig } from './config/env.load';
+import * as ormConfig from './config/orm.config';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    HttpModule.register({ baseURL: envConfig.api.baseUrl }),
+    TypeOrmModule.forRoot(ormConfig),
+    FilesModule,
+    CountriesModule,
+  ],
 })
 export class AppModule {}

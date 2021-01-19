@@ -1,0 +1,20 @@
+# docker compose apenas para ambiente de desenvolvimento
+
+version: '3.7'
+
+services:
+  mysql_db:
+    container_name: mysql_db
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    restart: always
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
