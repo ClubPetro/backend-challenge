@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, Min, Max, IsInt } from 'class-validator';
+import { IsString, Min, Max, IsNumber } from 'class-validator';
 const anoAtual = new Date().getFullYear(); //Variável para armazenar o ano atual visto que não é possível se adicionar uma meta para o passado :)
 
 export class UpdateLugaresDto{
@@ -8,13 +8,13 @@ export class UpdateLugaresDto{
     local: string;
 
     @ApiProperty({ example: 10, description: 'Mês da meta', type: Number, minimum: 1, maximum: 12 })
-    @IsInt()
+    @IsNumber()
     @Min(1)
     @Max(12)
     mes: number;
 
     @ApiProperty({ example: 2030, description: 'Ano da meta', type: Number, minimum: anoAtual })
-    @IsInt()
+    @IsNumber()
     @Min(anoAtual)
     ano: number;
 }

@@ -12,7 +12,7 @@ export class LugaresController{
 
     @Post()
     @ApiOperation({summary: 'Cria um Lugar'})
-    @ApiResponse({status: 400, description: 'Data inserida no passado, não autorizada'})
+    @ApiResponse({status: 400, description: 'Data inserida no passado ou formato inválido de dados, não autorizado'})
     @ApiResponse({status: 409, description: 'Registro já inserido no Banco de Dados'})
     @ApiResponse({status: 201, description: 'Registro cadastrado com sucesso'})
     @ApiBody({type: CreateLugaresDto})
@@ -39,6 +39,7 @@ export class LugaresController{
     @ApiOperation({summary: 'Atualiza um Lugar pelo seu id'})
     @ApiResponse({status: 404, description: 'Lugar especificado não existe'})
     @ApiResponse({status: 200, description: 'Lugar atualizado com sucesso'})
+    @ApiResponse({status: 400, description: 'Dado inserido incorretamente'})
     @ApiBody({type: UpdateLugaresDto})
     async update(@Param('id') id: string, @Body() updateLugares: UpdateLugaresDto): Promise<Lugares>{
         return this.lugaresService.update(id, updateLugares);
