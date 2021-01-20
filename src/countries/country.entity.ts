@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 import File from '../files/file.entity';
+import Local from '../locals/local.entity';
 
 @Entity({ name: 'countries' })
 class Country {
@@ -16,7 +18,6 @@ class Country {
   id: number;
 
   @Column({ unique: true })
-  @Column()
   name: string;
 
   @CreateDateColumn()
@@ -31,6 +32,9 @@ class Country {
   })
   @JoinColumn({ name: 'fileId' })
   file: File;
+
+  @OneToMany(() => Local, (local) => local.country)
+  locals: Local[];
 }
 
 export default Country;
