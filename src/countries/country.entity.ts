@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 import File from '../files/file.entity';
-import Local from '../locals/local.entity';
+import Local from './locals/local.entity';
 
 @Entity({ name: 'countries' })
 class Country {

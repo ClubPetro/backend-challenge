@@ -8,7 +8,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-import Country from '../countries/country.entity';
+import Country from '../country.entity';
 
 @Entity({ name: 'locals' })
 class Local {
@@ -27,7 +27,7 @@ class Local {
   @ManyToOne(() => Country, (country) => country.locals, {
     eager: true,
   })
-  @JoinColumn({ name: 'localId' })
+  @JoinColumn({ name: 'countryId' })
   country: Country;
 }
 
