@@ -81,11 +81,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ## 👦 Autor
 
 <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/73564749?s=460&u=dca37f3c329fbfd9342f541e37629f9c2747afd6&v=4" width="100px;" alt="foto perfil"/>
-<br />
+
 <sub><b>Gabriel Mendes</b></sub>
 
-[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabbrieu/)](https://www.linkedin.com/in/gabbrieu/)
-
-[![Gmail Badge](https://img.shields.io/badge/-gabrielhmendes@hotmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielhmendes@gmail.com)](mailto:tgmarinho@gmail.com)
+[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabbrieu/)](https://www.linkedin.com/in/gabbrieu/) [![Gmail Badge](https://img.shields.io/badge/-gabrielhmendes@hotmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielhmendes@gmail.com)](mailto:tgmarinho@gmail.com)
 
 
