@@ -9,13 +9,13 @@ Tabela de conteúdos
    * [Funcionalidades](#-funcionalidades)
    * [Como executar o projeto](#-como-executar-o-projeto)
       * [Pré-requisitos](#pré-requisitos)
-      * [Rodando a API](#rodando-a-api)
+      * [Rodando a API](#rodando-a-API)
    * [Tecnologias](#-tecnologias)
    * [Autor](#-autor)
 <!--te-->
 
 <h4 align="center"> 
-  🚧 Em construção 🚀 etapa final...🚧
+  🚧 Concluído 🚀🚧
 </h4>
 
 ---
@@ -34,23 +34,17 @@ Tabela de conteúdos
 
 ### Pré-requisitos
 
-É preciso ter instalado o [Node.js](https://nodejs.org/en/), o [Nest.js](https://nestjs.com/) e o [PostgreSQL](https://www.postgresql.org/) na sua máquina local. No caso do PostgreSQL poderá ser usado uma instância de graça no [ElephantSQL](https://www.elephantsql.com/).
+É preciso ter instalado o [Node.js](https://nodejs.org/en/), o [Nest.js](https://nestjs.com/) e o [PostgreSQL](https://www.postgresql.org/) na sua máquina local. No caso do PostgreSQL poderá ser usado uma instância de graça no [ElephantSQL](https://www.elephantsql.com/), é recomendado nesse caso usar um Data center o mais perto possível da sua localização. Caso seja local, crie o Banco de Dados e guarde as informações essenciais do mesmo, como: nome de usuário, senha do banco, hostname, porta e nome do banco de dados criado.
 
 ### 🎲 Rodando a API
 
-Crie um Banco de Dados PostgreSQL local ou no ElephantSQL. Após, abra seu prompt de comando e digite os comandos abaixo:
+Abra seu terminal/cmd e digite o comandos abaixo:
 ```bash
 # Clone este repositório
 $ git clone https://github.com/gabbrieu/backend-challenge.git
-
-# Acesse a pasta do projeto no terminal/cmd
-$ cd backend-challenge
-
-# Vá para a pasta api-lugares
-$ cd api-lugares
 ```
 
-Após, crie um arquivo .env dentro da pasta atual (api-lugares) seguindo como modelo o arquivo .env.example. Após, volte para o prompt de comando e digite:
+Após, crie um arquivo chamado .env na raiz da pasta "api-lugares" pelo terminal/cmd ou manualmente. Com isso, preencha-o seguindo como modelo o arquivo .env.example. Se estiver usando uma instância do ElephantSQL é só copiar a URL fornecida pelo mesmo e colar no .env. Após, volte para o terminal/cmd e digite os comandos nessa ordem (levando em consideração que voçê esteja já na raiz da pasta api-lugares, se não estiver a acesse pelo terminal/cmd):
 
 ```bash
 # Instale as dependências
@@ -59,7 +53,8 @@ $ npm install
 # Execute a aplicação
 $ npm run start
 
-# O servidor inciará na porta:3000 - acesse <http://localhost:3000> lá terá a API toda documentada com Swagger
+# O servidor inciará na porta:3000 - acesse <http://localhost:3000> lá terá a API toda documentada e pronta pra uso com o próprio Swagger (recomendado).
+# Mas você ainda pode utilizar o Postman e o Insomnia
 ```
 ---
 
@@ -84,6 +79,14 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <sub><b>Gabriel Mendes</b></sub>
 
-[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabbrieu/)](https://www.linkedin.com/in/gabbrieu/) [![Gmail Badge](https://img.shields.io/badge/-gabrielhmendes@hotmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielhmendes@gmail.com)](mailto:tgmarinho@gmail.com)
+[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabbrieu/)](https://www.linkedin.com/in/gabbrieu/) [![Gmail Badge](https://img.shields.io/badge/-gabrielhmendes@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielhmendes@gmail.com)](mailto:gabrielhmendes@gmail.com)
 
+---
 
+## 📝 Licença
+
+Este projeto está sobe a licença [MIT](../LICENSE).
+
+Feito com ❤️ por Gabriel Mendes 👋🏽 [Entre em contato!](https://www.linkedin.com/in/gabbrieu/)
+
+---
