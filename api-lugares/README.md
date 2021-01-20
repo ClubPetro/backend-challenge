@@ -6,13 +6,14 @@
 Tabela de conteúdos
 =================
 - [API Backend-Challenge Lugares](#api-backend-challenge-lugares)
-  * [⚙️ Funcionalidades](#---funcionalidades)
-  * [🚀 Como Executar o projeto](#---como-executar-o-projeto)
-    + [Pré-requisitos](#pré-requisitos)
-    + [🎲 Rodando a API](#---rodando-a-api)
-  * [🛠 Tecnologias](#---tecnologias)
-  * [👦 Autor](#---autor)
-  * [📝 Licença](#---licença)
+- [Tabela de conteúdos](#tabela-de-conteúdos)
+  - [⚙️ Funcionalidades](#️-funcionalidades)
+  - [🚀 Como Executar o projeto](#-como-executar-o-projeto)
+    - [Pré-requisitos](#pré-requisitos)
+    - [🎲 Rodando a API](#-rodando-a-api)
+  - [🛠 Tecnologias](#-tecnologias)
+  - [👦 Autor](#-autor)
+  - [📝 Licença](#-licença)
 
 <h4 align="center"> 
   🚧 Concluído 🚀🚧
