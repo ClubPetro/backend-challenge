@@ -1,5 +1,3 @@
-# docker compose apenas para ambiente de desenvolvimento
-
 version: '3.7'
 
 services:
@@ -12,9 +10,14 @@ services:
     ports:
       - ${DB_PORT}:${DB_PORT}
     restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
 
   adminer:
       image: adminer
       restart: always
       ports:
         - 8080:8080
+
+volumes:
+  dbdata:
