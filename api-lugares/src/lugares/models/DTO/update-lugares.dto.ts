@@ -13,7 +13,7 @@ export class UpdateLugaresDto{
     @Max(12)
     mes: number;
 
-    @ApiProperty({ example: 2030, description: 'Ano da meta', type: Number, minimum: 2021  })
+    @ApiProperty({ example: 2030, description: 'Ano da meta', type: Number, minimum: anoAtual })
     @IsInt()
     @Min(anoAtual)
     ano: number;
