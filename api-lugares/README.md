@@ -5,14 +5,14 @@
 
 Tabela de conteúdos
 =================
-<!--ts-->
-   * [Funcionalidades](#-funcionalidades)
-   * [Como executar o projeto](#-como-executar-o-projeto)
-      * [Pré-requisitos](#pré-requisitos)
-      * [Rodando a API](#rodando-a-API)
-   * [Tecnologias](#-tecnologias)
-   * [Autor](#-autor)
-<!--te-->
+- [API Backend-Challenge Lugares](#api-backend-challenge-lugares)
+  * [⚙️ Funcionalidades](#---funcionalidades)
+  * [🚀 Como Executar o projeto](#---como-executar-o-projeto)
+    + [Pré-requisitos](#pré-requisitos)
+    + [🎲 Rodando a API](#---rodando-a-api)
+  * [🛠 Tecnologias](#---tecnologias)
+  * [👦 Autor](#---autor)
+  * [📝 Licença](#---licença)
 
 <h4 align="center"> 
   🚧 Concluído 🚀🚧
@@ -23,7 +23,7 @@ Tabela de conteúdos
 ## ⚙️ Funcionalidades
 
 - [x] Cadastro de Lugar
-- [x] Listar todos os Lugares cadastrados
+- [x] Listagem de todos os Lugares cadastrados
 - [x] Consulta de Lugar por ID
 - [x] Atualiza um Lugar pelo seu ID
 - [x] Deleta um Lugar pelo seu ID
@@ -34,11 +34,11 @@ Tabela de conteúdos
 
 ### Pré-requisitos
 
-É preciso ter instalado o [Node.js](https://nodejs.org/en/), o [Nest.js](https://nestjs.com/) e o [PostgreSQL](https://www.postgresql.org/) na sua máquina local. No caso do PostgreSQL poderá ser usado uma instância de graça no [ElephantSQL](https://www.elephantsql.com/), é recomendado nesse caso usar um Data center o mais perto possível da sua localização. Caso seja local, crie o Banco de Dados e guarde as informações essenciais do mesmo, como: nome de usuário, senha do banco, hostname, porta e nome do banco de dados criado.
+É preciso ter instalado o [Node.js](https://nodejs.org/en/), [Nest.js](https://nestjs.com/) e o [PostgreSQL](https://www.postgresql.org/) na sua máquina local. No caso do PostgreSQL poderá ser usado uma instância de graça no [ElephantSQL](https://www.elephantsql.com/), é recomendado nesse caso usar um Data Center o mais perto possível da sua localização. Caso seja escolhido um Banco de Dados local, crie o mesmo e guarde as informações essenciais desse, como: nome de usuário, senha do banco, hostname, porta e nome do banco de dados criado.
 
 ### 🎲 Rodando a API
 
-Abra seu terminal/cmd e digite o comandos abaixo:
+Abra seu terminal/cmd e digite o comando abaixo:
 ```bash
 # Clone este repositório
 $ git clone https://github.com/gabbrieu/backend-challenge.git
