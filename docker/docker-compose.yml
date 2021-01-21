@@ -1,0 +1,12 @@
+version: '3.8'
+# Use: "docker-compose up -d" to run on detatched mode
+services:
+  # POSTGRES DB
+  postgres:
+    container_name: postgresClubPetroTest
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: root
