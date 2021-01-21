@@ -60,7 +60,7 @@ Backend Challenge for ClubPetro.
 
 ## Project Organization (architecture/structure)
 ```bash
-├── .env-example               <- this file is on LastPass account on Shared-Development folder as .env-example-development, you have to copy/paste in a file called .env-example in the root of project.
+├── .env               <- env file.
 ├── node_modules       <- packages of node/third part, only at development time (npm run install create this folder).
 ├── dist               <- the compiled javascript, only at development time (nest compiles typescript to javasctipt).
 ├── test               <- has the entity based folters with the e2e tests.
