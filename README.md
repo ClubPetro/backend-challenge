@@ -46,13 +46,13 @@ Backend Challenge for ClubPetro.
    - create a database called clubpetro-dev (recommended)
    - create a database called clubpetro-test (recommended)
    - you can also run the dockerfile on the folder docker in the root of this project to create a docker container with a postgres image.
-   - PS: fill up the .env-example file with de DB information.
+   - PS: fill up the .env file with de DB information.
 ```
 
 ## Installing dependencies
 ```bash
-- fill up the .env-example file as you like, an .env-example-example can be found in the root of this project.
-- put the content of this file at a file called .env-example at root of project
+- fill up the .env file as you like, an .env-example can be found in the root of this project.
+- put the content of this file at a file called .env at root of project
 - run the following cmd:
   npm i
 - check if after executed the cmd above, generated a folder called node_module at root of project
