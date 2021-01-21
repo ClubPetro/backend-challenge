@@ -13,7 +13,7 @@ async function bootstrap() {
   );
 
   const swaggerOptions = new DocumentBuilder()
-    .setTitle('Engage API')
+    .setTitle('ClubPetro API')
     .setVersion('1.0')
     .build();
 
