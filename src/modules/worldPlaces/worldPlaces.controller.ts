@@ -27,7 +27,6 @@ import { WorldPlacesRepository } from './worldPlaces.repository';
 import { ValidateUpdate } from './pipes/validateUpdate.pipe';
 import { ValidateId } from './pipes/validateId.pipe';
 import { ValidateDuplicate } from './pipes/validateDuplicate.pipe';
-import { ValidateUpdateDuplicate } from './pipes/validateUpdateDuplicate.pipe';
 
 @Controller('worldPlaces')
 export class WorldPlacesController extends BaseController {
@@ -55,7 +54,7 @@ export class WorldPlacesController extends BaseController {
     type: CreateWorldPlaceDto,
     description: 'The event has been successfully updated',
   })
-  @UsePipes(ValidateUpdate, ValidateId, ValidateUpdateDuplicate)
+  @UsePipes(ValidateUpdate, ValidateId)
   @HttpCode(204)
   @Put('/:id')
   async update(
