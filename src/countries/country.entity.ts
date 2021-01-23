@@ -28,7 +28,6 @@ class Country {
 
   @OneToOne(() => File, (file) => file.country, {
     eager: true,
-    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'fileId' })
   file: File;
