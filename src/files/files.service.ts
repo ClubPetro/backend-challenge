@@ -19,8 +19,13 @@ export class FilesService {
   async findOne(id: string): Promise<File> {
     const file = await this.fileRepository.findOne(id);
     if (!file) {
-      throw new NotFoundException(`File whith id ${id} not found`);
+      throw new NotFoundException(`File with id ${id} not found`);
     }
     return file;
+  }
+
+  async remove(id: string): Promise<void> {
+    const file = await this.findOne(id);
+    await this.fileRepository.remove(file);
   }
 }

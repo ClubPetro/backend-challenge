@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CountriesService } from './countries.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 import Country from './country.entity';
+import Local from './locals/local.entity';
 
 @Controller('countries')
 export class CountriesController {
@@ -26,5 +27,10 @@ export class CountriesController {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
     return this.countriesService.remove(id);
+  }
+
+  @Get(':id/locals')
+  findLocalsByCountry(@Param('id') id: string): Promise<Local[]> {
+    return this.countriesService.findAllLocalsInCountry(id);
   }
 }

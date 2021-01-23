@@ -17,6 +17,6 @@ import * as uploadConfig from '../config/upload.config';
   ],
   providers: [FilesService],
   controllers: [FilesController],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, FilesService],
 })
 export class FilesModule {}
