@@ -69,10 +69,7 @@ export class CountriesService {
   }
 
   public async remove(id: string): Promise<void> {
-    const country = await this.countryRepository.findOne(id);
-    if (!country) {
-      throw new NotFoundException(`Country with id ${id} not found`);
-    }
+    const country = await this.findOne(id);
     await this.fileService.remove(String(country.file.id));
     await this.countryRepository.delete(country);
   }
