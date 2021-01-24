@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
+  OneToOne,
 } from 'typeorm';
 
 import Country from '../country.entity';
+import Meta from '../../metas/meta.entity';
 
 @Entity({ name: 'locals' })
 class Local {
@@ -29,6 +31,9 @@ class Local {
   })
   @JoinColumn({ name: 'countryId' })
   country: Country;
+
+  @OneToOne(() => Meta, (meta) => meta.local)
+  meta: Meta;
 }
 
 export default Local;

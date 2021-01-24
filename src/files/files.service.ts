@@ -1,6 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as _ from 'lodash';
 import { CreateFileDto } from './dto/create-files.dto';
 import File from './file.entity';
 
@@ -11,7 +16,14 @@ export class FilesService {
     private fileRepository: Repository<File>,
   ) {}
 
-  async create({ filename }: CreateFileDto): Promise<File> {
+  async create(fileData: CreateFileDto): Promise<File> {
+    if (_.isNil(fileData)) {
+      throw new BadRequestException(
+        'Validation Failed. Please set multipart/form .png, .jpg or .jpeg in file property',
+      );
+    }
+
+    const { filename } = fileData;
     const file = await this.fileRepository.save(new File(filename));
     return file;
   }
