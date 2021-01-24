@@ -55,7 +55,7 @@ export class MetasService {
   }
 
   async findAll(): Promise<Meta[]> {
-    return await this.metaRepository.find();
+    return await this.metaRepository.find({ order: { date: 'ASC' } });
   }
 
   async findOne(id: string): Promise<Meta> {
