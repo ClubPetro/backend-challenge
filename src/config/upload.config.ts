@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { diskStorage } from 'multer';
 import { resolve, extname } from 'path';
 import { envConfig } from './env.load';
@@ -26,7 +27,9 @@ export default {
       cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error('Only .png, .jpg and .jpeg format for files!'));
+      return cb(
+        new BadRequestException('Only .png, .jpg and .jpeg format for files!'),
+      );
     }
   },
 };
