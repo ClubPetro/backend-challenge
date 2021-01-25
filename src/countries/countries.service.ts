@@ -71,7 +71,13 @@ export class CountriesService {
   public async remove(id: string): Promise<void> {
     const country = await this.findOne(id);
     await this.fileService.remove(String(country.file.id));
-    await this.countryRepository.delete(country);
+    try {
+      await this.countryRepository.delete(country);
+    } catch (err) {
+      throw new Error(
+        'Country have children locals. Please remove this locals first before remove this country',
+      );
+    }
   }
 
   public async verifyLocalNameExistsInCountry(
