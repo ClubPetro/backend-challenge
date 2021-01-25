@@ -204,20 +204,20 @@ O objetivo é criar uma meta com todos os seus dados relacionados (bandeira, loc
 
 1) Receber um arquivo (bandeira). Veja mais em [Recursos para Files](#recursos-para-files))
 
-<img src="./.github/example/criar-arquivo.png" style="margin-left: 50px"
-     alt="Requisição POST para receber arquivo" width="300">
+<img src="./.github/example/criar-arquivo.png" style="margin-left: 0px"
+     alt="Requisição POST para receber arquivo" width="700">
 
 2) Criar um novo país. Veja mais em [Recursos para Countries](#recursos-para-countries)
 
-<img src="./.github/example/criar-pais.png" style="margin-left: 50px"
-     alt="Requisição POST para criar país" width="300">
+<img src="./.github/example/criar-pais.png" style="margin-left: 0px"
+     alt="Requisição POST para criar país" width="700">
 
 3) Criar um local "dentro" do país. Veja mais em [Recursos para Locals](#recursos-para-locals)
 
-<img src="./.github/example/criar-local.png" style="margin-left: 50px"
-     alt="Requisição POST para criar um local" width="300">
+<img src="./.github/example/criar-local.png" style="margin-left: 0px"
+     alt="Requisição POST para criar um local" width="700">
 
 4) Criar uma meta associada a um local. Veja mais em [Recursos para Metas](#recursos-para-metas)
 
-<img src="./.github/example/criar-meta.png" style="margin-left: 50px"
-     alt="Requisição POST para criar uma meta associada a um local" width="300">
+<img src="./.github/example/criar-meta.png" style="margin-left: 0px"
+     alt="Requisição POST para criar uma meta associada a um local" width="700">
