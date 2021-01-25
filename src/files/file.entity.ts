@@ -1,4 +1,3 @@
-import Country from 'src/countries/country.entity';
 import {
   Column,
   CreateDateColumn,
@@ -13,6 +12,7 @@ import {
 import { join } from 'path';
 import { promises } from 'fs';
 import { envConfig } from '../config/env.load';
+import Country from '../countries/country.entity';
 import * as uploadConfig from '../config/upload.config';
 
 @Entity({ name: 'files' })

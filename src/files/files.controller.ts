@@ -10,7 +10,7 @@ import File from './file.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
 import { CreateFileDto } from './dto/create-files.dto';
-import uploadConfig from 'src/config/upload.config';
+import uploadConfig from '../config/upload.config';
 
 @Controller('files')
 export class FilesController {

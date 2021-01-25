@@ -61,7 +61,13 @@ export class LocalsService {
 
   public async remove(id: string) {
     const local = await this.findOne(id);
-    await this.localRepository.delete(local);
+    try {
+      await this.localRepository.delete(local);
+    } catch (err) {
+      throw new Error(
+        'Local have children meta. Please remove this meta first before remove this local',
+      );
+    }
   }
 
   public async update(

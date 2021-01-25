@@ -9,7 +9,17 @@
   - [Bônus](#bônus)
 - [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
 - [Instruções de execução](#instruções-de-execução)
-
+  - [Requisitos](#requisitos)
+  - [Instalação das dependências](#instalação-das-dependências)
+  - [Variáveis de ambiente](#variáveis-de-ambiente)
+  - [Container Docker](#container-docker)
+  - [Migrações](#migrações)
+  - [Execução da aplicação](#execução-da-aplicação)
+- [Endpoints disponíveis](endpoints-disponíveis)
+  - [Recursos para Files](#recursos-para-files)
+  - [Recursos para Countries](#recursos-para-countries)
+  - [Recursos para Locals](#recursos-para-locals)
+  - [Recursos para Metas](#recursos-para-metas)
 ## Descrição
 
 Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
@@ -60,31 +70,124 @@ Os dados a ser considerados são:
 
 # Instruções de execução
 
-> Instalação das dependências
+## Requisitos
+
+Para executar a aplicação no ambiente de desenvolvimento, precisamos ter no ambiente:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [yarn](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
+- [nest-cli](https://docs.nestjs.com/cli/overview)
+
+## Instalação das dependências
+
+Dentro do diretório raiz do projeto, podemos executar
 
 ```bash
 $ yarn
 ```
+para instalar as dependências.
 
-> Executando a aplicação
+## Variáveis de ambiente
+
+Duplique o arquivo .env.example presente na raiz do projeto e renomeie uma das cópias para apenas .env
+
+O arquivo .env contém as variáveis de ambiente com informações secretas que serão utilizadas na API.
+
+## Container Docker
+
+Após instalar as dependências, podemor subir o container contendo o serviço MySQL.
+
+O serviço relativo ao banco de dados MySQL está configurado para escutar a porta 3306. Caso essa porta já esteja sendo usada em seu ambiente, deixe ela disponível para o container, por favor.
+
+Após esses detalhes, podemos executar:
 
 ```bash
-# development
+$ docker-compose up
+```
+
+Esse processo pode demorar um pouco caso as imagens Docker não estejam disponíveis em seu ambiente local.
+
+## Migrações
+
+Após o container contendo o MySQL estiver disponível para conexões no container Docker, execute o seguinte comando para executar as migrações no banco de dados:
+
+```bash
+$ yarn typeorm migration:run
+```
+
+## Execução da aplicação
+
+Agora podemos iniciar a aplicação (modo de desenvolvimento) executando:
+
+```bash
+# development mode
 $ yarn start
-
-# watch mode
-$ yarn start:dev
-
-# production mode
-$ yarn start:prod
 ```
 
-> Testes
+# Endpoints disponíveis
 
-```bash
-# unit tests
-$ yarn run test
+A URL base no ambiente de desenvolvimento é http://localhost:3000/api/v1/
 
-# test coverage
-$ yarn run test:cov
-```
+***Obs***: As listagens utilizam [eager loading](https://orkhan.gitbook.io/typeorm/docs/eager-and-lazy-relations) para carregar os dados das relações.
+
+## Recursos para Files
+
+***Obs***: Files é o arquivo relativo a bandeira de um país.
+
+- `POST /files`: Cria um novo arquivo enviado como multipart/form a chave `file`. O arquivo deve ser uma imagem com extensão `.png`, `.jpg` ou `.jpeg`
+
+- `GET /files/:id`: O arquivo com `id` presente no parâmetro da rota deve ter seus dados retornados.
+
+## Recursos para Countries
+
+- `POST /countries`: 
+O endpoint deve receber `name` e `fileId` no corpo da requisição e registrar um novo país.
+
+- `GET /countries`: 
+Rota que lista todos os países presentes no repositório.
+
+- `GET /countries/:id`: 
+O país com `id` presente no parâmetro da rota deve ter seus dados retornados.
+
+- `DELETE /countries/:id`: 
+O País com `id` presente no parâmetro da rota deve ser excluído.
+
+- `GET /countries/:id/locals`:
+Retorna os locais relacionados ao `id` do País presente no parâmetro da rota.
+
+
+## Recursos para Locals
+
+- `POST /locals`: 
+O endpoint deve receber `name` e `countryId` no corpo da requisição e registrar um novo local.
+
+- `GET /locals`: 
+Rota que lista todos os locais presentes no repositório.
+
+- `GET /locals/:id`: 
+O local com `id` presente no parâmetro da rota deve ter seus dados retornados.
+
+- `DELETE /locals/:id`: 
+O local com `id` presente no parâmetro da rota deve ser excluído.
+
+- `PUT /locals/:id`: 
+O endpoint pode receber `name` e `countryId` no corpo da requisição e alterar o local relativo ao `id` presente no parâmetro da rota.
+
+
+## Recursos para Metas
+
+- `POST /metas`: 
+O endpoint deve receber `date` (ISO-8601) e `localId` no corpo da requisição para registrar uma nova meta.
+
+- `GET /metas`: 
+Rota que lista todas as metas presentes no repositório.
+
+- `GET /metas/:id`: 
+A meta com `id` presente no parâmetro da rota deve ter seus dados retornados.
+
+- `DELETE /metas/:id`: 
+A meta com `id` presente no parâmetro da rota deve ser excluída.
+
+- `PUT /metas/:id`:
+O endpoint pode receber `date` e `localId` no corpo da requisição e alterar a meta relativa ao `id` presente no parâmetro da rota.
