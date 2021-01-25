@@ -9,7 +9,7 @@
   - [Bônus](#bônus)
 - [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
 - [Instruções de execução](#instruções-de-execução)
-  - [Requisitos](#requisitos)
+  - [Requisitos para execução](#requisitos-para-execução)
   - [Instalação das dependências](#instalação-das-dependências)
   - [Variáveis de ambiente](#variáveis-de-ambiente)
   - [Container Docker](#container-docker)
@@ -20,6 +20,10 @@
   - [Recursos para Countries](#recursos-para-countries)
   - [Recursos para Locals](#recursos-para-locals)
   - [Recursos para Metas](#recursos-para-metas)
+- [Jornada de criações POST do cliente da API](#jornada-de-criações-post-do-cliente-da-api)
+
+
+
 ## Descrição
 
 Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
@@ -70,7 +74,7 @@ Os dados a ser considerados são:
 
 # Instruções de execução
 
-## Requisitos
+## Requisitos para execução
 
 Para executar a aplicação no ambiente de desenvolvimento, precisamos ter no ambiente:
 
@@ -110,7 +114,7 @@ Esse processo pode demorar um pouco caso as imagens Docker não estejam disponí
 
 ## Migrações
 
-Após o container contendo o MySQL estiver disponível para conexões no container Docker, execute o seguinte comando para executar as migrações no banco de dados:
+Após o container contendo o MySQL estiver disponível para conexões, execute o seguinte comando para executar as migrações no banco de dados:
 
 ```bash
 $ yarn typeorm migration:run
@@ -191,3 +195,29 @@ A meta com `id` presente no parâmetro da rota deve ser excluída.
 
 - `PUT /metas/:id`:
 O endpoint pode receber `date` e `localId` no corpo da requisição e alterar a meta relativa ao `id` presente no parâmetro da rota.
+
+
+# Jornada de criações POST do cliente da API
+
+Nesta seção temos um exemplo com requisições POST nos principais endpoints da API usando o [Insomnia](https://insomnia.rest/).
+O objetivo é criar uma meta com todos os seus dados relacionados (bandeira, local e país)
+
+1) Receber um arquivo (bandeira). Veja mais em [Recursos para Files](#recursos-para-files))
+
+<img src="./.github/example/criar-arquivo.png" style="margin-left: 50px"
+     alt="Requisição POST para receber arquivo" width="300">
+
+2) Criar um novo país. Veja mais em [Recursos para Countries](#recursos-para-countries)
+
+<img src="./.github/example/criar-pais.png" style="margin-left: 50px"
+     alt="Requisição POST para criar país" width="300">
+
+3) Criar um local "dentro" do país. Veja mais em [Recursos para Locals](#recursos-para-locals)
+
+<img src="./.github/example/criar-local.png" style="margin-left: 50px"
+     alt="Requisição POST para criar um local" width="300">
+
+4) Criar uma meta associada a um local. Veja mais em [Recursos para Metas](#recursos-para-metas)
+
+<img src="./.github/example/criar-meta.png" style="margin-left: 50px"
+     alt="Requisição POST para criar uma meta associada a um local" width="300">
