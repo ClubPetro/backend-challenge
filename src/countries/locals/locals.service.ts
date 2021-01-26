@@ -3,6 +3,7 @@ import {
   forwardRef,
   Inject,
   Injectable,
+  NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,6 +12,7 @@ import { CreateLocalDto } from './dto/create-local.dto';
 import Local from './local.entity';
 import { CountriesService } from '../countries.service';
 import { UpdateLocalDto } from './dto/update-local.dto';
+import { MetasService } from 'src/metas/metas.service';
 
 @Injectable()
 export class LocalsService {
@@ -19,6 +21,8 @@ export class LocalsService {
     private localRepository: Repository<Local>,
     @Inject(forwardRef(() => CountriesService))
     private countryService: CountriesService,
+    @Inject(forwardRef(() => MetasService))
+    private metaService: MetasService,
   ) {}
 
   async create(createLocalDto: CreateLocalDto): Promise<Local> {
@@ -61,13 +65,15 @@ export class LocalsService {
 
   public async remove(id: string) {
     const local = await this.findOne(id);
-    try {
-      await this.localRepository.delete(local);
-    } catch (err) {
-      throw new Error(
-        'Local have children meta. Please remove this meta first before remove this local',
+    /*verificação para ver se existe uma meta associada. se existir, impedir a remoção*/
+    const exists = await this.existsMetaAssociatedLocal(String(local.id));
+    console.log(exists);
+    if (exists) {
+      throw new NotAcceptableException(
+        'Local have children meta. Please remove this meta first before remove the present local',
       );
     }
+    await this.localRepository.delete(local);
   }
 
   public async update(
@@ -102,5 +108,16 @@ export class LocalsService {
 
     await this.localRepository.save(local);
     return this.localRepository.findOne(local.id);
+  }
+
+  public async existsMetaAssociatedLocal(localId: string): Promise<boolean> {
+    await this.findOne(localId);
+    const metas = await this.metaService.findAll();
+    /*Se existir, o array vai ter 1 elemento*/
+    const arrayAssociatedMetas = metas.filter(
+      (meta) => meta.local.id === Number(localId),
+    );
+    const exists = arrayAssociatedMetas.length === 0 ? false : true;
+    return exists;
   }
 }
