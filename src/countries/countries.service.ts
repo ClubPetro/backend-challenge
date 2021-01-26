@@ -3,6 +3,7 @@ import {
   forwardRef,
   Inject,
   Injectable,
+  NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -70,14 +71,17 @@ export class CountriesService {
 
   public async remove(id: string): Promise<void> {
     const country = await this.findOne(id);
-    await this.fileService.remove(String(country.file.id));
-    try {
-      await this.countryRepository.delete(country);
-    } catch (err) {
-      throw new Error(
+
+    /*Verificar se o país possui locais. Impedir remoção caso tenha (sem  onDelete CASCADE)*/
+    const locals = await this.findAllLocalsInCountry(String(country.id));
+    if (locals.length !== 0) {
+      throw new NotAcceptableException(
         'Country have children locals. Please remove this locals first before remove this country',
       );
     }
+
+    await this.fileService.remove(String(country.file.id));
+    await this.countryRepository.delete(country);
   }
 
   public async verifyLocalNameExistsInCountry(
