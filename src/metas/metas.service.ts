@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  forwardRef,
   Inject,
   Injectable,
   NotFoundException,
@@ -18,7 +19,7 @@ export class MetasService {
   constructor(
     @InjectRepository(Meta)
     private metaRepository: Repository<Meta>,
-    @Inject(LocalsService)
+    @Inject(forwardRef(() => LocalsService))
     private localService: LocalsService,
   ) {}
 
@@ -72,30 +73,11 @@ export class MetasService {
   }
 
   public async update(id: string, updateMetaDto: UpdateMetaDto): Promise<Meta> {
-    const { date, localId } = updateMetaDto;
+    const { date } = updateMetaDto;
 
     /*Verificar se existe meta com id enviado na request, retornando a meta*/
     const meta = await this.findOne(id);
-
-    /*Validacao para garantir que + de uma meta nao esteja associado a um mesmo local*/
-    if (!(!!localId && meta.local.id === Number(localId))) {
-      const existsLocalAssociatedMeta = await this.metaRepository.findOne({
-        where: [{ local: meta.local }],
-      });
-      if (existsLocalAssociatedMeta) {
-        throw new BadRequestException(
-          'One meta must be associated with only one local',
-        );
-      }
-    }
-
-    if (!!localId) {
-      const updatedLocal = await this.localService.findOne(String(localId));
-      meta.date = date || meta.date;
-      meta.local = updatedLocal;
-    } else {
-      meta.date = date || meta.date;
-    }
+    meta.date = date || meta.date;
 
     /* Se verdadeiro, a primeira data é menor(antes) que a segunda,
      sendo uma meta passada inválida */
