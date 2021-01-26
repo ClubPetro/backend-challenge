@@ -194,7 +194,7 @@ A meta com `id` presente no parâmetro da rota deve ter seus dados retornados.
 A meta com `id` presente no parâmetro da rota deve ser excluída.
 
 - `PUT /metas/:id`:
-O endpoint pode receber `date` e `localId` no corpo da requisição e alterar a meta relativa ao `id` presente no parâmetro da rota.
+O endpoint pode receber `date` no corpo da requisição e alterar a meta relativa ao `id` presente no parâmetro da rota.
 
 
 # Jornada de criações POST do cliente da API
