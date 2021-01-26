@@ -67,7 +67,6 @@ export class LocalsService {
     const local = await this.findOne(id);
     /*verificação para ver se existe uma meta associada. se existir, impedir a remoção*/
     const exists = await this.existsMetaAssociatedLocal(String(local.id));
-    console.log(exists);
     if (exists) {
       throw new NotAcceptableException(
         'Local have children meta. Please remove this meta first before remove the present local',
@@ -93,8 +92,6 @@ export class LocalsService {
     } else {
       local.name = name || local.name;
     }
-
-    console.log(local.country.id);
 
     const exists = await this.countryService.verifyLocalNameExistsInCountry(
       name,
