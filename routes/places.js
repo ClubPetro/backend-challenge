@@ -19,6 +19,17 @@ router.get('/', function (req, res) {
 
 });
 
+router.get('/:id', function (req, res) {
+    id = req.params.id
+    db.findOne(id, (err, places) =>  {
+        if (err) {
+            console.log(err);
+        }
+        res.json(places)
+    })
+
+});
+
 router.post('/', async function (req, res) {
 
     var country_id = req.body.country_id
