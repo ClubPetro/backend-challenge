@@ -2,10 +2,21 @@ var env = require('dotenv').config()
 var mongoClient = require("mongodb").MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
+ConnectDB()
 
-mongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
-    .then(conn => global.conn = conn.db(process.env.MONGODB_DB))
-    .catch(err => console.log(err))
+console.log("Aguarde...")
+console.log("Buscando Banco de dados")
+
+function ConnectDB(){mongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
+    .then(conn => {global.conn = conn.db(process.env.MONGODB_DB)
+                    console.log("Conectado ao banco de dados")})
+    .catch(err => {
+        setTimeout(function(){ 
+            console.log("Tentando novamente")
+            ConnectDB()
+        }, 3000);
+        
+        console.log(err)})}
 
 function add(item, callback) {
     global.conn.collection("places").insertOne(item, callback);
