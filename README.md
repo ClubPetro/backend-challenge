@@ -3,7 +3,7 @@
 <img src="./img/logo-clubpetro.png" style="margin-left: 100px"
      alt="Clubpetro" width="300">
 
-- .[Instalação].(#instalação)
+- [Instalação](#instalação)
 
 
 ## Instruções de Execução
