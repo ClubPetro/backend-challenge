@@ -5,7 +5,17 @@
 
 - [Instalação](#instalação)
 - [EndPoints](#endpoints)
-  - [Adicionar novo Pais](#1-adicionar-novo-pais)
+  - [Países](#countrys)  
+    - [Adicionar novo país](#1-adicionar-novo-país--post-apiv1countrys)
+    - [Buscar todos os países](#2-ver-todos-os-países--get-apiv1countrys)
+    - [Buscar país pelo ID](#3-buscar-um-país-pelo-id--get-apiv1countrysid)
+    - [Excluir um país](#4-excluir-um-país--delete-apiv1countrysid)
+  - [Places](#places)
+    - [Adicionar novo local](#1-adicionar-novo-local--post-apiv1places)
+    - [Ver todos os locais](#2-ver-todos-os-locais--get-apiv1places)
+    - [Buscar um local pelo ID](#3-buscar-um-local-pelo-id--get-apiv1countrysid)
+    - [Excluir um local](#4-excluir-um-local--delete-apiv1placesid)
+    - [Editar um local](#5-editar-um-local--put-apiv1placesid)
 
 
 ## Instruções de Execução
@@ -176,7 +186,7 @@ Cadastro com erro: **STATUS: 400 Bad Request**
 
 - Local já cadastrado
 
-####2. Ver Todos os Locais:  **GET** `/api/v1/places` 
+#### 2. Ver Todos os Locais:  **GET** `/api/v1/places` 
 
 
 Consulta realizada com sucesso: **STATUS: 200 OK**
