@@ -20,11 +20,14 @@
 
 ## Instruções de Execução
 ### Instalação
-Clonar esse projeto:
+Clonar esse repositório:
 `$ git clone https://github.com/inovaprog/backend-challenge.git`
 
 Instalar as Dependências:
 `$ npm install`
+
+Rodar Projeto:
+`$ npm start`
 
 ### Endpoints:
 ### Countrys:
