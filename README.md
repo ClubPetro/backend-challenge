@@ -3,17 +3,17 @@
 <img src="./img/logo-clubpetro.png" style="margin-left: 100px"
      alt="Clubpetro" width="300">
 
-##Instruções de Execução
-###Instalação
+## Instruções de Execução
+### Instalação
 Clonar esse projeto:
 `$ git clone https://github.com/inovaprog/backend-challenge.git`
 
 Instalar as Dependências:
 `$ npm install`
 
-###Endpoints:
-###Countrys:
-####1. Adicionar novo País:  **POST** `/api/v1/countrys` 
+### Endpoints:
+### Countrys:
+#### 1. Adicionar novo País:  **POST** `/api/v1/countrys` 
 Corpo da requisição:
 ```json
 {
@@ -35,7 +35,7 @@ Cadastro com sucesso: **STATUS: 200 OK**
 Cadastro com erro: **STATUS: 400 Bad Request**
 - País já cadastrado
 
-####2. Ver Todos os países:  **GET** `/api/v1/countrys` 
+#### 2. Ver Todos os países:  **GET** `/api/v1/countrys` 
 
 
 Consulta realizada com sucesso: **STATUS: 200 OK**
@@ -63,7 +63,7 @@ Consulta realizada com sucesso: **STATUS: 200 OK**
   }
 ]
 ```
-####3. Buscar um país pelo ID:  **GET** `/api/v1/countrys/:id` 
+#### 3. Buscar um país pelo ID:  **GET** `/api/v1/countrys/:id` 
 
 
 Consulta realizada com sucesso: **STATUS: 200 OK**
@@ -79,7 +79,7 @@ Consulta realizada com sucesso: **STATUS: 200 OK**
   },
  ]
  ```
-####4. Excluir um país:  **DELETE** `/api/v1/countrys/:id` 
+#### 4. Excluir um país:  **DELETE** `/api/v1/countrys/:id` 
 
 
 Exclusão realizada com sucesso: **STATUS: 200 OK**
@@ -141,8 +141,8 @@ Exclusão realizada com sucesso: **STATUS: 200 OK**
 
 
 
-###Places:
-####1. Adicionar novo Local:  **POST** `/api/v1/places` 
+### Places:
+#### 1. Adicionar novo Local:  **POST** `/api/v1/places` 
 Corpo da requisição:
 ```json
 {
@@ -199,7 +199,7 @@ Consulta realizada com sucesso: **STATUS: 200 OK**
   }
 ]
 ```
-####3. Buscar um local pelo ID:  **GET** `/api/v1/countrys/:id` 
+#### 3. Buscar um local pelo ID:  **GET** `/api/v1/countrys/:id` 
 
 
 Consulta realizada com sucesso: **STATUS: 200 OK**
@@ -220,7 +220,7 @@ Consulta realizada com sucesso: **STATUS: 200 OK**
   }
 ]
  ```
-####4. Excluir um local:  **DELETE** `/api/v1/places/:id` 
+#### 4. Excluir um local:  **DELETE** `/api/v1/places/:id` 
 
 
 Exclusão realizada com sucesso: **STATUS: 200 OK**
@@ -276,7 +276,7 @@ Exclusão realizada com sucesso: **STATUS: 200 OK**
   "operationTime": "6923646233596657665"
 }
 ```
-####5. Editar um local:  **PUT** `/api/v1/places/:id`
+#### 5. Editar um local:  **PUT** `/api/v1/places/:id`
 Corpo da requisição:
 ```javascript
 {
