@@ -4,6 +4,8 @@
      alt="Clubpetro" width="300">
 
 - [Instalação](#instalação)
+- [EndPoints](#endpoints)
+  - [Adicionar novo Pais](#1.adicionar novo pais)
 
 
 ## Instruções de Execução
