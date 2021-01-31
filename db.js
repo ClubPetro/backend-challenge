@@ -6,10 +6,12 @@ ConnectDB()
 
 console.log("Aguarde...")
 console.log("Buscando Banco de dados")
-
+console.log("Aguarde...")
 function ConnectDB(){mongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
     .then(conn => {global.conn = conn.db(process.env.MONGODB_DB)
-                    console.log("Conectado ao banco de dados")})
+                    console.log("Conectado ao banco de dados")
+                    console.log("Pronto ;)")
+                    console.log("API Disponível em: http://localhost:3000/api/v1")})
     .catch(err => {
         setTimeout(function(){ 
             console.log("Tentando novamente")
