@@ -39,6 +39,9 @@
 4. Rodar Projeto:
 `$ npm start`
 
+**Será executado em** `localhost:3000`
+*Exemplo:* : `localhost:3000/api/v1/countrys`
+
 ### Endpoints:
 ### Countrys:
 #### 1. Adicionar novo País:  **POST** `/api/v1/countrys` 
