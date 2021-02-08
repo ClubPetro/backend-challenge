@@ -7,7 +7,7 @@ router.get('/', function (req, res) {
     if (err) {
       return console.log(err)
     }
-    res.json(countrys)
+    res.status(200).json(countrys)
   })
 });
 
