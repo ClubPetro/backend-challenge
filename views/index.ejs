@@ -1,0 +1,224 @@
+<h1 id="desafio-de-backend">Desafio de Backend</h1>
+
+<ul>
+<h3 id="endpoints">Endpoints:</h3>
+<h3 id="countrys">Countrys:</h3>
+<h4 id="adicionar-novo-pais-post-apiv1countrys">1. Adicionar novo País: <strong>POST</strong> <code>/api/v1/countrys</code></h4>
+<p>Corpo da requisição:</p>
+<pre class="sourceCode json"><code class="sourceCode json">{
+<span class="dt">&quot;nome&quot;</span> : <span class="st">&quot;Uruguai&quot;</span>,
+<span class="dt">&quot;url_bandeira&quot;</span> : <span class="st">&quot;https://restcountries.eu/data/ury.svg&quot;</span>
+}</code></pre>
+<p>Cadastro com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode json"><code class="sourceCode json">[
+  {
+    <span class="dt">&quot;nome&quot;</span>: <span class="st">&quot;Uruguai&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;https://restcountries.eu/data/ury.svg&quot;</span>,
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;6015bc27885d7a59783b5e30&quot;</span>
+  }
+]</code></pre>
+<p>Cadastro com erro: <strong>STATUS: 400 Bad Request</strong></p>
+<ul>
+<li>País já cadastrado</li>
+</ul>
+<h4 id="ver-todos-os-paises-get-apiv1countrys">2. Ver Todos os países: <strong>GET</strong> <code>/api/v1/countrys</code></h4>
+<p>Consulta realizada com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode json"><code class="sourceCode json">[
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+    <span class="dt">&quot;nome&quot;</span>: <span class="st">&quot;Brasil&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;url-da-bandeira-do-pais&quot;</span>
+  },
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;601594163e4a3f31ecd2af98&quot;</span>,
+    <span class="dt">&quot;nome&quot;</span>: <span class="st">&quot;China&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;url-da-bandeira-do-pais&quot;</span>
+  },
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;6015943c3e4a3f31ecd2af9c&quot;</span>,
+    <span class="dt">&quot;nome&quot;</span>: <span class="st">&quot;Japao&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;url-da-bandeira-do-pais&quot;</span>
+  },
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;601594263e4a3f31ecd2af9a&quot;</span>,
+    <span class="dt">&quot;nome&quot;</span>: <span class="st">&quot;Paraguai&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;url-da-bandeira-do-pais&quot;</span>
+  }
+]</code></pre>
+<h4 id="buscar-um-pais-pelo-id-get-apiv1countrysid">3. Buscar um país pelo ID: <strong>GET</strong> <code>/api/v1/countrys/:id</code></h4>
+<p>Consulta realizada com sucesso: <strong>STATUS: 200 OK</strong><br />```javascript</p>
+<p>//api/v1/countrys/601594203e4a3f31ecd2af99</p>
+<p>[<br /> {<br /> &quot;<em>id&quot;: &quot;601594203e4a3f31ecd2af99&quot;,<br /> &quot;nome&quot;: &quot;Brasil&quot;,<br /> &quot;url</em>bandeira&quot;: &quot;url-da-bandeira-do-pais&quot;<br /> },<br /> ]<br /> ``<code>#### 4. Excluir um país:  **DELETE**</code>/api/v1/countrys/:id`</p>
+<p>Exclusão realizada com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">{
+  <span class="st">&quot;result&quot;</span>: {
+    <span class="st">&quot;n&quot;</span>: <span class="dv">1</span>,
+    <span class="st">&quot;opTime&quot;</span>: {
+      <span class="st">&quot;ts&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>,
+      <span class="st">&quot;t&quot;</span>: <span class="dv">4</span>
+    },
+    <span class="st">&quot;electionId&quot;</span>: <span class="st">&quot;7fffffff0000000000000004&quot;</span>,
+    <span class="st">&quot;ok&quot;</span>: <span class="dv">1</span>,
+    <span class="st">&quot;$clusterTime&quot;</span>: {
+      <span class="st">&quot;clusterTime&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>,
+      <span class="st">&quot;signature&quot;</span>: {
+        <span class="st">&quot;hash&quot;</span>: <span class="st">&quot;loPoma41DgQZyvBjuAw9VKDgRBg=&quot;</span>,
+        <span class="st">&quot;keyId&quot;</span>: <span class="st">&quot;6918846762262200323&quot;</span>
+      }
+    },
+    <span class="st">&quot;operationTime&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>
+  },
+  <span class="st">&quot;connection&quot;</span>: {
+    <span class="st">&quot;_events&quot;</span>: {},
+    <span class="st">&quot;_eventsCount&quot;</span>: <span class="dv">4</span>,
+    <span class="st">&quot;id&quot;</span>: <span class="dv">1</span>,
+    <span class="st">&quot;address&quot;</span>: <span class="st">&quot;35.247.244.88:27017&quot;</span>,
+    <span class="st">&quot;bson&quot;</span>: {},
+    <span class="st">&quot;socketTimeout&quot;</span>: <span class="dv">0</span>,
+    <span class="st">&quot;host&quot;</span>: <span class="st">&quot;cluster0-shard-00-02.d4gur.mongodb.net&quot;</span>,
+    <span class="st">&quot;port&quot;</span>: <span class="dv">27017</span>,
+    <span class="st">&quot;monitorCommands&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;closed&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;destroyed&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;lastIsMasterMS&quot;</span>: <span class="dv">28</span>
+  },
+  <span class="st">&quot;deletedCount&quot;</span>: <span class="dv">1</span>,
+  <span class="st">&quot;n&quot;</span>: <span class="dv">1</span>,
+  <span class="st">&quot;opTime&quot;</span>: {
+    <span class="st">&quot;ts&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>,
+    <span class="st">&quot;t&quot;</span>: <span class="dv">4</span>
+  },
+  <span class="st">&quot;electionId&quot;</span>: <span class="st">&quot;7fffffff0000000000000004&quot;</span>,
+  <span class="st">&quot;ok&quot;</span>: <span class="dv">1</span>,
+  <span class="st">&quot;$clusterTime&quot;</span>: {
+    <span class="st">&quot;clusterTime&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>,
+    <span class="st">&quot;signature&quot;</span>: {
+      <span class="st">&quot;hash&quot;</span>: <span class="st">&quot;loPoma41DgQZyvBjuAw9VKDgRBg=&quot;</span>,
+      <span class="st">&quot;keyId&quot;</span>: <span class="st">&quot;6918846762262200323&quot;</span>
+    }
+  },
+  <span class="st">&quot;operationTime&quot;</span>: <span class="st">&quot;6923646843482013697&quot;</span>
+}</code></pre>
+<hr />
+<h3 id="places">Places:</h3>
+<h4 id="adicionar-novo-local-post-apiv1places">1. Adicionar novo Local: <strong>POST</strong> <code>/api/v1/places</code></h4>
+<p>Corpo da requisição:</p>
+<pre class="sourceCode json"><code class="sourceCode json">{
+<span class="dt">&quot;country_id&quot;</span> : <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+<span class="dt">&quot;place&quot;</span> : <span class="st">&quot;Praia de Guarapari&quot;</span>,
+<span class="dt">&quot;meta&quot;</span> : <span class="st">&quot;01/2022&quot;</span>
+}</code></pre>
+<p>Cadastro com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode json"><code class="sourceCode json">[
+  {
+    <span class="dt">&quot;country_id&quot;</span>: <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+    <span class="dt">&quot;pais&quot;</span>: <span class="st">&quot;Brasil&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;url-da-bandeira-do-pais&quot;</span>,
+    <span class="dt">&quot;place&quot;</span>: <span class="st">&quot;Praia de Guarapari&quot;</span>,
+    <span class="dt">&quot;meta&quot;</span>: <span class="st">&quot;2022-01-01T00:00:00.000Z&quot;</span>,
+    <span class="dt">&quot;data_criacao&quot;</span>: <span class="st">&quot;2021-01-30T20:13:35.515Z&quot;</span>,
+    <span class="dt">&quot;data_edicao&quot;</span>: <span class="st">&quot;2021-01-30T20:13:35.515Z&quot;</span>,
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;6015bdef136d165b7eb0a1c6&quot;</span>
+  }
+]</code></pre>
+<p>Cadastro com erro: <strong>STATUS: 400 Bad Request</strong></p>
+<ul>
+<li>Local já cadastrado</li>
+</ul>
+<h4 id="ver-todos-os-locais-get-apiv1places">2. Ver Todos os Locais: <strong>GET</strong> <code>/api/v1/places</code></h4>
+<p>Consulta realizada com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode json"><code class="sourceCode json">[
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;6015bdef136d165b7eb0a1c6&quot;</span>,
+    <span class="dt">&quot;country_id&quot;</span>: <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+    <span class="dt">&quot;pais&quot;</span>: <span class="st">&quot;Brasil&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;urldabandeira&quot;</span>,
+    <span class="dt">&quot;place&quot;</span>: <span class="st">&quot;Praia de Guarapari&quot;</span>,
+    <span class="dt">&quot;meta&quot;</span>: <span class="st">&quot;2022-01-01T00:00:00.000Z&quot;</span>,
+    <span class="dt">&quot;data_criacao&quot;</span>: <span class="st">&quot;2021-01-30T20:13:35.515Z&quot;</span>,
+    <span class="dt">&quot;data_edicao&quot;</span>: <span class="st">&quot;2021-01-30T20:13:35.515Z&quot;</span>
+  },
+  {
+    <span class="dt">&quot;_id&quot;</span>: <span class="st">&quot;6015bbaa885d7a59783b5e2d&quot;</span>,
+    <span class="dt">&quot;country_id&quot;</span>: <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+    <span class="dt">&quot;pais&quot;</span>: <span class="st">&quot;Brasil&quot;</span>,
+    <span class="dt">&quot;url_bandeira&quot;</span>: <span class="st">&quot;urldabandeira&quot;</span>,
+    <span class="dt">&quot;place&quot;</span>: <span class="st">&quot;Local no brasil&quot;</span>,
+    <span class="dt">&quot;meta&quot;</span>: <span class="st">&quot;2030-12-01T00:00:00.000Z&quot;</span>,
+    <span class="dt">&quot;data_criacao&quot;</span>: <span class="st">&quot;2021-01-30T20:03:54.566Z&quot;</span>,
+    <span class="dt">&quot;data_edicao&quot;</span>: <span class="st">&quot;2021-01-30T20:04:19.471Z&quot;</span>
+  }
+]</code></pre>
+<h4 id="buscar-um-local-pelo-id-get-apiv1countrysid">3. Buscar um local pelo ID: <strong>GET</strong> <code>/api/v1/countrys/:id</code></h4>
+<p>Consulta realizada com sucesso: <strong>STATUS: 200 OK</strong><br />```javascript</p>
+<p>//api/v1/places/6015bdef136d165b7eb0a1c6</p>
+<p>[<br /> {<br /> &quot;<em>id&quot;: &quot;6015bdef136d165b7eb0a1c6&quot;,<br /> &quot;country</em>id&quot;: &quot;601594203e4a3f31ecd2af99&quot;,<br /> &quot;pais&quot;: &quot;Brasil&quot;,<br /> &quot;url_bandeira&quot;: &quot;urldabandeira&quot;,<br /> &quot;place&quot;: &quot;Praia de Guarapari&quot;,<br /> &quot;meta&quot;: &quot;2022-01-01T00:00:00.000Z&quot;,<br /> &quot;data_criacao&quot;: &quot;2021-01-30T20:13:35.515Z&quot;,<br /> &quot;data_edicao&quot;: &quot;2021-01-30T20:13:35.515Z&quot;<br /> }<br />]<br /> ``<code>#### 4. Excluir um local:  **DELETE**</code>/api/v1/places/:id`</p>
+<p>Exclusão realizada com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">{
+  <span class="st">&quot;result&quot;</span>: {
+    <span class="st">&quot;n&quot;</span>: <span class="dv">0</span>,
+    <span class="st">&quot;opTime&quot;</span>: {
+      <span class="st">&quot;ts&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>,
+      <span class="st">&quot;t&quot;</span>: <span class="dv">4</span>
+    },
+    <span class="st">&quot;electionId&quot;</span>: <span class="st">&quot;7fffffff0000000000000004&quot;</span>,
+    <span class="st">&quot;ok&quot;</span>: <span class="dv">1</span>,
+    <span class="st">&quot;$clusterTime&quot;</span>: {
+      <span class="st">&quot;clusterTime&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>,
+      <span class="st">&quot;signature&quot;</span>: {
+        <span class="st">&quot;hash&quot;</span>: <span class="st">&quot;IiZM/0Huzcu14d8FsMVrcGdKDeA=&quot;</span>,
+        <span class="st">&quot;keyId&quot;</span>: <span class="st">&quot;6918846762262200323&quot;</span>
+      }
+    },
+    <span class="st">&quot;operationTime&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>
+  },
+  <span class="st">&quot;connection&quot;</span>: {
+    <span class="st">&quot;_events&quot;</span>: {},
+    <span class="st">&quot;_eventsCount&quot;</span>: <span class="dv">4</span>,
+    <span class="st">&quot;id&quot;</span>: <span class="dv">1</span>,
+    <span class="st">&quot;address&quot;</span>: <span class="st">&quot;35.247.244.88:27017&quot;</span>,
+    <span class="st">&quot;bson&quot;</span>: {},
+    <span class="st">&quot;socketTimeout&quot;</span>: <span class="dv">0</span>,
+    <span class="st">&quot;host&quot;</span>: <span class="st">&quot;cluster0-shard-00-02.d4gur.mongodb.net&quot;</span>,
+    <span class="st">&quot;port&quot;</span>: <span class="dv">27017</span>,
+    <span class="st">&quot;monitorCommands&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;closed&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;destroyed&quot;</span>: <span class="kw">false</span>,
+    <span class="st">&quot;lastIsMasterMS&quot;</span>: <span class="dv">28</span>
+  },
+  <span class="st">&quot;deletedCount&quot;</span>: <span class="dv">0</span>,
+  <span class="st">&quot;n&quot;</span>: <span class="dv">0</span>,
+  <span class="st">&quot;opTime&quot;</span>: {
+    <span class="st">&quot;ts&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>,
+    <span class="st">&quot;t&quot;</span>: <span class="dv">4</span>
+  },
+  <span class="st">&quot;electionId&quot;</span>: <span class="st">&quot;7fffffff0000000000000004&quot;</span>,
+  <span class="st">&quot;ok&quot;</span>: <span class="dv">1</span>,
+  <span class="st">&quot;$clusterTime&quot;</span>: {
+    <span class="st">&quot;clusterTime&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>,
+    <span class="st">&quot;signature&quot;</span>: {
+      <span class="st">&quot;hash&quot;</span>: <span class="st">&quot;IiZM/0Huzcu14d8FsMVrcGdKDeA=&quot;</span>,
+      <span class="st">&quot;keyId&quot;</span>: <span class="st">&quot;6918846762262200323&quot;</span>
+    }
+  },
+  <span class="st">&quot;operationTime&quot;</span>: <span class="st">&quot;6923646233596657665&quot;</span>
+}</code></pre>
+<h4 id="editar-um-local-put-apiv1placesid">5. Editar um local: <strong>PUT</strong> <code>/api/v1/places/:id</code></h4>
+<p>Corpo da requisição:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">{
+<span class="st">&quot;place&quot;</span> : <span class="st">&quot;Novo Local&quot;</span>,
+<span class="st">&quot;meta&quot;</span> : <span class="st">&quot;12/2030&quot;</span>
+}</code></pre>
+<p>Edição realizada com sucesso: <strong>STATUS: 200 OK</strong></p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">[
+  {
+    <span class="st">&quot;_id&quot;</span>: <span class="st">&quot;6015bbaa885d7a59783b5e2d&quot;</span>,
+    <span class="st">&quot;country_id&quot;</span>: <span class="st">&quot;601594203e4a3f31ecd2af99&quot;</span>,
+    <span class="st">&quot;pais&quot;</span>: <span class="st">&quot;Brasil&quot;</span>,
+    <span class="st">&quot;url_bandeira&quot;</span>: <span class="st">&quot;urldabandeira&quot;</span>,
+    <span class="st">&quot;place&quot;</span>: <span class="st">&quot;Novo Local&quot;</span>,
+    <span class="st">&quot;meta&quot;</span>: <span class="st">&quot;2030-12-01T00:00:00.000Z&quot;</span>,
+    <span class="st">&quot;data_criacao&quot;</span>: <span class="st">&quot;2021-01-30T20:03:54.566Z&quot;</span>,
+    <span class="st">&quot;data_edicao&quot;</span>: <span class="st">&quot;2021-01-30T20:04:19.471Z&quot;</span>
+  }
+]</code></pre>
