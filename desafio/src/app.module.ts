@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import * as env from 'dotenv';
+import { PlaceModule } from './modules/place.module';
+import config from './ormconfig';
 
+env.config();
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot(config),
+    ConfigModule.forRoot({ isGlobal: true }),
+    PlaceModule,
+  ],
 })
 export class AppModule {}
