@@ -2,7 +2,7 @@
   "name": "desafio",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "brayan",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -19,9 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n migration -d src/migrations --config src/ormconfig.ts",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/ormconfig.ts",
-    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --config src/ormconfig.ts"
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n migration -d src/migrations --config ormconfig.ts",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --config ormconfig.ts",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --config ormconfig.ts"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
@@ -29,6 +29,8 @@
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/typeorm": "^7.1.5",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "dotenv": "^9.0.2",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",

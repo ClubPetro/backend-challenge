@@ -21,7 +21,7 @@ export class Place {
   location: string;
 
   @Column()
-  meta: Date;
+  meta: string;
 
   @CreateDateColumn()
   created_at: Date;
