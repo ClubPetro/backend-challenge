@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  HttpException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Place } from 'src/place/places.entity';
 import { Repository } from 'typeorm';
@@ -13,19 +19,32 @@ export class PlaceService {
   ) {}
 
   async create(data: PlaceCreateDto): Promise<Place> {
-    //cria um objeto com os atributos de place, e salva no banco de dados
-
     const place = new Place();
+    const date = new Date();
     const meta = data.meta.split('-');
     const metaMonth = Number(meta[1]);
     const metaYear = Number(meta[0]);
+    const location = await this.placeRepository.find({
+      where: { location: data.location },
+    });
+
+    if (date.getFullYear() > metaYear || date.getMonth() + 1 > metaMonth) {
+      throw new HttpException('A data é inválida', 422);
+    }
+
+    location.forEach((l) => {
+      if (l.country == data.country) {
+        throw new ConflictException(
+          'A meta para esta localidade para este país já existe',
+        );
+      }
+    });
 
     place.country = data.country;
     place.url = data.url;
     place.location = data.location;
     place.meta = data.meta;
 
-    //retorna o que foi salvo no banco de dados
     return this.placeRepository.save(place);
   }
 
@@ -34,20 +53,31 @@ export class PlaceService {
   }
 
   async getById(id: string): Promise<Place> {
-    return await this.placeRepository.findOne(id);
+    const place = await this.placeRepository.findOne(id);
+    if (!place) {
+      throw new NotFoundException('Lugar não encontrado');
+    }
+    return place;
   }
 
   async update(id: string, data: PlaceUpdateDto): Promise<Place> {
-    const place = await this.placeRepository.findOne(id);
+    const place = await this.getById(id);
     if (place) {
       if (data.location) {
         place.location = data.location;
       }
       if (data.meta) {
+        const date = new Date();
         const meta = data.meta.split('-');
-        const metaMonth = Number(meta[1]);
         const metaYear = Number(meta[0]);
-        place.meta = `${metaMonth}-${metaYear}`;
+        const metaMonth = Number(meta[1]);
+
+        if (date.getFullYear() > metaYear || date.getMonth() + 1 > metaMonth) {
+          throw new BadRequestException('A data é inválida');
+        }
+
+        place.meta = place.meta;
+        //place.meta = `${metaMonth}-${metaYear}`;
       }
       return await this.placeRepository.save(place);
     } else {
