@@ -1,7 +1,7 @@
 import {
-  BadRequestException,
   ConflictException,
   HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -29,7 +29,10 @@ export class PlaceService {
     });
 
     if (date.getFullYear() > metaYear || date.getMonth() + 1 > metaMonth) {
-      throw new HttpException('A data é inválida', 422);
+      throw new HttpException(
+        'A data é inválida',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
     }
 
     location.forEach((l) => {
@@ -55,7 +58,7 @@ export class PlaceService {
   async getById(id: string): Promise<Place> {
     const place = await this.placeRepository.findOne(id);
     if (!place) {
-      throw new NotFoundException('Lugar não encontrado');
+      throw new NotFoundException('Meta não encontrado');
     }
     return place;
   }
@@ -72,18 +75,31 @@ export class PlaceService {
         const metaYear = Number(meta[0]);
         const metaMonth = Number(meta[1]);
 
-        if (date.getFullYear() > metaYear || date.getMonth() + 1 > metaMonth) {
-          throw new BadRequestException('A data é inválida');
+        if (
+          date.getFullYear() > metaYear ||
+          (date.getFullYear() == metaYear && date.getMonth() + 1 >= metaMonth)
+        ) {
+          throw new HttpException(
+            'A data é inválida',
+            HttpStatus.UNPROCESSABLE_ENTITY,
+          );
         }
-
-        place.meta = place.meta;
-        //place.meta = `${metaMonth}-${metaYear}`;
+        place.meta = data.meta;
       }
       return await this.placeRepository.save(place);
     } else {
       throw new NotFoundException(
         'Não foi encontrado o registro no banco de dados',
       );
+    }
+  }
+
+  async delete(id: string): Promise<void> {
+    const place = await this.placeRepository.findOne(id);
+    if (place) {
+      await this.placeRepository.delete(id);
+    } else {
+      throw new NotFoundException('Meta não encontrado');
     }
   }
 }

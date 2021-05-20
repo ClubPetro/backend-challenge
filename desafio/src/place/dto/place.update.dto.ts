@@ -6,7 +6,7 @@ export class PlaceUpdateDto {
   @IsOptional()
   @ApiPropertyOptional({
     example: 'Disney',
-    description: 'Digite aqui a para ser atualizada',
+    description: 'Digite aqui o local para ser atualizado',
   })
   location?: string;
 
