@@ -6,10 +6,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Place } from 'src/place/places.entity';
 import { Repository } from 'typeorm';
 import { PlaceCreateDto } from './dto/place.create.dto';
 import { PlaceUpdateDto } from './dto/place.update.dto';
+import { Place } from './places.entity';
 
 @Injectable()
 export class PlaceService {
@@ -28,20 +28,25 @@ export class PlaceService {
       where: { location: data.location },
     });
 
-    if (date.getFullYear() > metaYear || date.getMonth() + 1 > metaMonth) {
+    if (
+      date.getFullYear() > metaYear ||
+      (date.getFullYear() == metaYear && date.getMonth() + 1 > metaMonth)
+    ) {
       throw new HttpException(
         'A data é inválida',
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
-
-    location.forEach((l) => {
-      if (l.country == data.country) {
-        throw new ConflictException(
-          'A meta para esta localidade para este país já existe',
-        );
-      }
-    });
+    if (location.length != 0) {
+      location.forEach((l) => {
+        /* istanbul ignore else */
+        if (l.country == data.country) {
+          throw new ConflictException(
+            'A meta para esta localidade para este país já existe',
+          );
+        }
+      });
+    }
 
     place.country = data.country;
     place.url = data.url;
@@ -58,17 +63,20 @@ export class PlaceService {
   async getById(id: string): Promise<Place> {
     const place = await this.placeRepository.findOne(id);
     if (!place) {
-      throw new NotFoundException('Meta não encontrado');
+      throw new NotFoundException('Lugar não encontrado');
     }
     return place;
   }
 
   async update(id: string, data: PlaceUpdateDto): Promise<Place> {
     const place = await this.getById(id);
+    /* istanbul ignore else */
     if (place) {
+      /* istanbul ignore else */
       if (data.location) {
         place.location = data.location;
       }
+      /* istanbul ignore else */
       if (data.meta) {
         const date = new Date();
         const meta = data.meta.split('-');
@@ -87,19 +95,14 @@ export class PlaceService {
         place.meta = data.meta;
       }
       return await this.placeRepository.save(place);
-    } else {
-      throw new NotFoundException(
-        'Não foi encontrado o registro no banco de dados',
-      );
     }
   }
 
   async delete(id: string): Promise<void> {
-    const place = await this.placeRepository.findOne(id);
+    const place = await this.getById(id);
+    /* istanbul ignore else */
     if (place) {
       await this.placeRepository.delete(id);
-    } else {
-      throw new NotFoundException('Meta não encontrado');
     }
   }
 }
