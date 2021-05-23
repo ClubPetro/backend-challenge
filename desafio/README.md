@@ -12,7 +12,7 @@
   - [✅ Usando a API](#-usando-a-api)
     - [✅ Clonando repositório](#-clonando-repositório)
     - [✅ Instalando depêndencias e iniciando a API](#-instalando-depêndencias-e-iniciando-a-api)
-- [⚙️ Testes Unitários](#testes-unitários)
+- [⚙️ Testes Unitários](#-testes-unitários)
 - [🛠 Tecnologias](#-tecnologias)
 - [🧑🏽 Autor](#-autor)
 
