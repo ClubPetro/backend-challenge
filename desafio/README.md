@@ -5,8 +5,8 @@
 
 # Tabela de conteúdos
 
-- [📜 Descrição](#-descricao)
-- [Tabela de conteúdos](#tabela-de-conteudos)
+- [📜 Descrição](#-descrição)
+- [Tabela de conteúdos](#tabela-de-conteúdos)
 - [🏃 Como Rodar a API](#-como-rodar-a-api)
   - [✅ Pré Requisitos](#-pré-requisitos)
   - [✅ Usando a API](#-usando-a-api)
