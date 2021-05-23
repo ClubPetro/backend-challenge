@@ -26,9 +26,9 @@
 
 Repositório da [API](https://github.com/BrDSF/backend-challenge) do back-end challenge.
 
----
-
 ## 🔁 Como Rodar a API
+
+---
 
 ### ✅ Pré Requisitos
 
@@ -69,9 +69,9 @@ $ npm run start:dev
 
 Dentro da api existem rotas que podem ser testadas e utilizadas, você pode usar o Swagger, como comentado acima, que já vem com toda a api documentada e prota para uso, ou usar o Postman ou Insomnia.
 
----
-
 ## ⚙️ Testes Unitários
+
+---
 
 Para rodar alguns teste unitários dentro da api, é necessário estar dentro da pasta raiz do projeto, "desafio", e rodar em seu terminal:
 
