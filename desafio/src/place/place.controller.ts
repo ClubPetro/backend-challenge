@@ -18,9 +18,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { PlaceService } from 'src/place/place.service';
 import { PlaceCreateDto } from './dto/place.create.dto';
 import { PlaceUpdateDto } from './dto/place.update.dto';
+import { PlaceService } from './place.service';
 import { Place } from './places.entity';
 
 @ApiTags('lugares')
@@ -29,39 +29,39 @@ export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
   @Post('cadastrar')
-  @ApiOperation({ summary: 'Cadastra uma meta' })
+  @ApiOperation({ summary: 'Cadastra um lugar' })
   @ApiCreatedResponse({
-    description: 'Meta inserida com sucesso',
+    description: 'Lugar inserida com sucesso',
     type: PlaceCreateDto,
   })
   @ApiResponse({ status: 422, description: 'A data está inválida' })
-  @ApiConflictResponse({ description: 'A meta já existe' })
-  @ApiBody({ description: 'Lista de metas', type: PlaceCreateDto })
+  @ApiConflictResponse({ description: 'A Lugar já existe' })
+  @ApiBody({ description: 'Lista de lugares', type: PlaceCreateDto })
   async create(@Body() data: PlaceCreateDto): Promise<Place> {
     return await this.placeService.create(data);
   }
 
   @Get('listar')
-  @ApiOperation({ summary: 'Retorna todas as metas' })
-  @ApiOkResponse({ description: 'Metas retornadas com sucesso' })
+  @ApiOperation({ summary: 'Retorna todos os lugares' })
+  @ApiOkResponse({ description: 'Lugares retornadas com sucesso' })
   async findAll(): Promise<Place[]> {
     return await this.placeService.getAll();
   }
 
   @Get('listar/:id')
-  @ApiOperation({ summary: 'Retorna meta pelo id' })
-  @ApiOkResponse({ description: 'Meta retornada com sucesso' })
-  @ApiNotFoundResponse({ description: 'Meta não encontrada' })
+  @ApiOperation({ summary: 'Retorna lugar pelo id' })
+  @ApiOkResponse({ description: 'Lugar retornada com sucesso' })
+  @ApiNotFoundResponse({ description: 'Lugar não encontrada' })
   async findOne(@Param('id') id: string): Promise<Place> {
     return await this.placeService.getById(id);
   }
 
   @Put('atualizar/:id')
-  @ApiOperation({ summary: 'Atualiza uma meta' })
+  @ApiOperation({ summary: 'Atualiza uma meta ou lugar' })
   @ApiResponse({ status: 422, description: 'A data está inválida' })
-  @ApiNotFoundResponse({ description: 'Meta não encontrada' })
+  @ApiNotFoundResponse({ description: 'Lugar não encontrada' })
   @ApiOkResponse({
-    description: 'Meta atualizada com sucesso',
+    description: 'Lugar atualizado com sucesso',
     type: PlaceUpdateDto,
   })
   @ApiBadRequestResponse({ description: 'Data no formato errado' })
