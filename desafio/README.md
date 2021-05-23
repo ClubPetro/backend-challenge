@@ -3,14 +3,14 @@
 </h1>
 <p align="center">📆 API CRUD para lugares a se conhecer no mundo </p>
 
-- [Descrição](#api)
-- [Como Rodar a API](#api)
-  - [Pré Requisitos](#pre-requisitos)
-  - [Usando a API](#usando-api)
-    - [Clonando repositório](#repositorio)
-    - [Instalando depêndencias e iniciando a API](#dependências)
-- [Testes Unitários](#testes)
-- [Tecnologias](#tecnologias)
+- [Descrição](#descricao)
+- [🏃 Como Rodar a API](#-como-rodar-a-api)
+  - [✅ Pré Requisitos](#-pré-requisitos)
+  - [✅ Usando a API](#-usando-a-api)
+    - [✅ Clonando repositório](#-clonando-repositório)
+    - [✅ Instalando depêndencias e iniciando a API](#-instalando-depêndencias-e-iniciando-api)
+- [Testes Unitários](#testes-unitários)
+- [🛠 Tecnologias](#-tecnologias)
 
 <h4 align="center"> 
 	🚧 Em andamento  🚧
@@ -20,7 +20,7 @@
 
 ## Descrição
 
-[API](https://github.com/BrDSF/backend-challenge) Repositório da API do back-end challenge.
+Repositório da [API](https://github.com/BrDSF/backend-challenge) do back-end challenge.
 
 ---
 
