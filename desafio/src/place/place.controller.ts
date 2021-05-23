@@ -31,7 +31,7 @@ export class PlaceController {
   @Post('cadastrar')
   @ApiOperation({ summary: 'Cadastra um lugar' })
   @ApiCreatedResponse({
-    description: 'Lugar inserida com sucesso',
+    description: 'Lugar inserido com sucesso',
     type: PlaceCreateDto,
   })
   @ApiResponse({ status: 422, description: 'A data está inválida' })
@@ -43,21 +43,21 @@ export class PlaceController {
 
   @Get('listar')
   @ApiOperation({ summary: 'Retorna todos os lugares' })
-  @ApiOkResponse({ description: 'Lugares retornadas com sucesso' })
+  @ApiOkResponse({ description: 'Lugares retornados com sucesso' })
   async findAll(): Promise<Place[]> {
     return await this.placeService.getAll();
   }
 
   @Get('listar/:id')
   @ApiOperation({ summary: 'Retorna lugar pelo id' })
-  @ApiOkResponse({ description: 'Lugar retornada com sucesso' })
-  @ApiNotFoundResponse({ description: 'Lugar não encontrada' })
+  @ApiOkResponse({ description: 'Lugar retornado com sucesso' })
+  @ApiNotFoundResponse({ description: 'Lugar não encontrado' })
   async findOne(@Param('id') id: string): Promise<Place> {
     return await this.placeService.getById(id);
   }
 
   @Put('atualizar/:id')
-  @ApiOperation({ summary: 'Atualiza uma meta ou lugar' })
+  @ApiOperation({ summary: 'Atualiza meta/lugar' })
   @ApiResponse({ status: 422, description: 'A data está inválida' })
   @ApiNotFoundResponse({ description: 'Lugar não encontrada' })
   @ApiOkResponse({
@@ -74,7 +74,7 @@ export class PlaceController {
   }
 
   @Delete()
-  @ApiOperation({ summary: 'Deleta uma meta' })
+  @ApiOperation({ summary: 'Deleta um lugar' })
   @ApiOkResponse({ description: 'Lugar deletado com sucesso' })
   @ApiNotFoundResponse({ description: 'Lugar não encontrado' })
   async delete(@Param('id') id: string): Promise<void> {
