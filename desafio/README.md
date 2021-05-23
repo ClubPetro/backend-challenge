@@ -1,30 +1,34 @@
 <h1 align="center">
-    <a href="https://github.com/BrDSF/backend-challenge">🚀 Back-End Challenge</a>
+    <a href="https://github.com/BrDSF/backend-challenge">✈️ Back-End Challenge</a>
 </h1>
-<p align="center">📆 API CRUD para lugares a se conhecer no mundo </p>
+<p align="center">📆 API CRUD para marcar datas para lugares a se conhecer no mundo </p>
 
-- [Descrição](#descricao)
+# Tabela de conteúdos
+
+- [📜 Descrição](#descricao)
+- [📜 Tabela de conteúdos](#tabela-de-conteudos)
 - [🏃 Como Rodar a API](#-como-rodar-a-api)
   - [✅ Pré Requisitos](#-pré-requisitos)
   - [✅ Usando a API](#-usando-a-api)
     - [✅ Clonando repositório](#-clonando-repositório)
-    - [✅ Instalando depêndencias e iniciando a API](#-instalando-depêndencias-e-iniciando-api)
-- [Testes Unitários](#testes-unitários)
+    - [✅ Instalando depêndencias e iniciando a API](#-instalando-depêndencias-e-iniciando-a-api)
+- [⚙️ Testes Unitários](#testes-unitários)
 - [🛠 Tecnologias](#-tecnologias)
+- [🧑🏽 Autor](#-autor)
 
 <h4 align="center"> 
-	🚧 Em andamento  🚧
+	🏁 Em andamento  🏁
 </h4>
 
 ---
 
-## Descrição
+## 📜 Descrição
 
 Repositório da [API](https://github.com/BrDSF/backend-challenge) do back-end challenge.
 
 ---
 
-## 🏃 Como Rodar a API
+## 🔁 Como Rodar a API
 
 ### ✅ Pré Requisitos
 
@@ -67,7 +71,7 @@ Dentro da api existem rotas que podem ser testadas e utilizadas, você pode usar
 
 ---
 
-## Testes Unitários
+## ⚙️ Testes Unitários
 
 Para rodar alguns teste unitários dentro da api, é necessário estar dentro da pasta raiz do projeto, "desafio", e rodar em seu terminal:
 
@@ -89,7 +93,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Swagger](https://swagger.io)
 - [TypeORM](https://typeorm.io/)
 
-### Autor
+### 🧑🏽 Autor
 
 ---
 
