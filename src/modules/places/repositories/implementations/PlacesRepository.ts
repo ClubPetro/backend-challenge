@@ -22,14 +22,11 @@ class PlacesRepository implements IPlacesRepository {
     return place;
   }
 
-  async findByName(name: string): Promise<Place> {
-    const place = await this.repository.findOne({ name });
+  async findByCountry(country: string, name: string): Promise<Place> {
+    const place = await this.repository.findOne({
+      where: { country, name },
+    });
     return place;
-  }
-
-  async findByCountry(country: string): Promise<Place[]> {
-    const placesByCountry = await this.repository.find({ where: { country } });
-    return placesByCountry;
   }
 
   async listByGoal(): Promise<Place[]> {

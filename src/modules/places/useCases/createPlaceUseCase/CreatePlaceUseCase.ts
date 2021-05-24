@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { ICreatePlaceDTO } from "../../dtos/ICreatePlaceDTO";
 import { Place } from "../../entities/Places";
 import { IPlacesRepository } from "../../repositories/IPlacesRepository";
@@ -12,12 +13,15 @@ class CreatePlaceUseCase {
   ) {}
 
   async execute({ name, country, goal }: ICreatePlaceDTO): Promise<Place> {
-    const namesInCountry = await this.placesRepository.findByCountry(country);
-    const isNameInCountry = namesInCountry.find((place) => place.name === name);
+    const isNameInUseInCountry = await this.placesRepository.findByCountry(
+      country,
+      name
+    );
 
-    if (isNameInCountry) {
-      throw new Error("This name is already in use for this country");
+    if (isNameInUseInCountry) {
+      throw new AppError("Place name already in use in that country.");
     }
+
     const place = await this.placesRepository.create({
       name,
       country,

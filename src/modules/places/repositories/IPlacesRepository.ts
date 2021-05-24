@@ -4,8 +4,7 @@ import { Place } from "../entities/Places";
 interface IPlacesRepository {
   create(data: ICreatePlaceDTO): Promise<Place>;
   findById(id: string): Promise<Place>;
-  findByName(name: string): Promise<Place>;
-  findByCountry(country: string): Promise<Place[]>;
+  findByCountry(country: string, name: string): Promise<Place>;
   listByGoal(): Promise<Place[]>;
   remove(id: string): Promise<void>;
 }
