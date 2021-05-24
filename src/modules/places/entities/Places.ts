@@ -1,17 +1,38 @@
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+@Entity("Places")
 class Place {
-  id: string;
+  @PrimaryColumn()
+  id?: string;
+
+  @Column()
   name: string;
+
+  @Column()
   country: string;
-  urlFlag: string;
+
+  @Column()
+  url_flag?: string;
+
+  @Column()
   goal: Date;
-  created_at: Date;
-  updated_at: Date;
+
+  @CreateDateColumn()
+  created_at?: Date;
+
+  @UpdateDateColumn()
+  updated_at?: Date;
 
   constructor() {
     if (!this.id) this.id = uuidV4();
   }
 }
 
-export { Place }
+export { Place };
