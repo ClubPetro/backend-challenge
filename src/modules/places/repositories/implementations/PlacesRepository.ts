@@ -11,8 +11,8 @@ class PlacesRepository implements IPlacesRepository {
     this.repository = getRepository(Place);
   }
 
-  async create({ name, country, goal }: ICreatePlaceDTO): Promise<Place> {
-    const place = this.repository.create({ name, country, goal });
+  async create({ id, name, country, goal }: ICreatePlaceDTO): Promise<Place> {
+    const place = this.repository.create({ id, name, country, goal });
     await this.repository.save(place);
     return place;
   }
