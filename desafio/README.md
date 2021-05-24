@@ -44,7 +44,7 @@ Para usar a api local, abra seu terminal/cmd clone este repositório usando o co
 
 ```bash
 # clonar repositório
-$ https://github.com/BrDSF/backend-challenge.git
+$ git clone https://github.com/BrDSF/backend-challenge.git
 ```
 
 Entre na pasta raiz do projeto, "desafio", e crie um arquivo com a seguinte nomeclatura, ".env", sem as aspas. Este arquivo terá as variáveis do banco de dados, um modelo dele pode ser encontrado no arquivo da pasta raiz .env.examples, copie este modelo para dentro do seu .env e preencha com os dados requisitados.
