@@ -17,11 +17,12 @@ class UpdateGoalUseCase {
 
   async execute({ id, goal }: IRequest): Promise<void> {
     const place = await this.placesRepository.findById(id);
+
     if (!place) {
       throw new AppError("Place not found", 404);
     }
 
-    if (goal < place.created_at) {
+    if (place.created_at > goal) {
       throw new AppError(
         "It's not able to set a Goal on na date before the created_at attribute"
       );
