@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { UpdateNameUseCase } from "./updateNameUseCase";
+import { UpdateNameUseCase } from "./UpdateNameUseCase";
 
 class UpdateNameController {
   async handle(request: Request, response: Response): Promise<Response> {

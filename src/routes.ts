@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { CreatePlaceController } from "./modules/places/useCases/createPlaceUseCase/CreatePlaceController";
 import { ListPlacesController } from "./modules/places/useCases/listPlacesUseCase/ListPlacesController";
-import { UpdateNameController } from "./modules/places/useCases/updateNameUseCase/updateNameController";
+import { UpdateNameController } from "./modules/places/useCases/updateNameUseCase/UpdateNameController";
 
 const routes = Router();
 
@@ -12,6 +12,6 @@ const updateNameController = new UpdateNameController();
 
 routes.post("/places", createPlaceController.handle);
 routes.get("/places", listPlaceController.handle);
-routes.patch("/places/:id", updateNameController.handle);
+routes.patch("/places/name/:id", updateNameController.handle);
 
 export { routes };
