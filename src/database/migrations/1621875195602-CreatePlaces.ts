@@ -1,11 +1,11 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreatePlaces1621875195602 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.createTable(new Table({
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(
+      new Table({
         name: "Places",
-        "columns": [
+        columns: [
           {
             name: "id",
             type: "uuid",
@@ -22,6 +22,7 @@ export class CreatePlaces1621875195602 implements MigrationInterface {
           {
             name: "url_flag",
             type: "varchar",
+            isNullable: true,
           },
           {
             name: "goal",
@@ -30,19 +31,19 @@ export class CreatePlaces1621875195602 implements MigrationInterface {
           {
             name: "created_at",
             type: "timestamp",
-            default: "now()"
+            default: "now()",
           },
           {
             name: "updated_at",
             type: "timestamp",
-            default: "now()"
-          }
-        ]
-      }))
-    }
+            default: "now()",
+          },
+        ],
+      })
+    );
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable("Places");
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable("Places");
+  }
 }
