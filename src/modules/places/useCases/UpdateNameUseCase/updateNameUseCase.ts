@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../errors/AppError";
-import { Place } from "../../entities/Places";
 import { IPlacesRepository } from "../../repositories/IPlacesRepository";
 
 interface IRequest {
