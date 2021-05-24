@@ -1,0 +1,8 @@
+{
+  "name": "backend-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hereisjohnny2/backend-challenge.git",
+  "author": "hereisjohnny2 <joaomarceloccarvalho@gmail.com>",
+  "license": "MIT"
+}
