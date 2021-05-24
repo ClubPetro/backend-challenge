@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { CreatePlaceController } from "./modules/places/useCases/createPlaceUseCase/CreatePlaceController";
 import { ListPlacesController } from "./modules/places/useCases/listPlacesUseCase/ListPlacesController";
-import { UpdateNameController } from "./modules/places/useCases/UpdateNameUseCase/updateNameController";
+import { UpdateNameController } from "./modules/places/useCases/updateNameUseCase/updateNameController";
 
 const routes = Router();
 
