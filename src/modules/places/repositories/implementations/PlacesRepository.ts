@@ -11,8 +11,13 @@ class PlacesRepository implements IPlacesRepository {
     this.repository = getRepository(Place);
   }
 
-  async create({ id, name, country, goal }: ICreatePlaceDTO): Promise<Place> {
-    const url_flag = `https://flagcdn.com/h240/${country}.png`;
+  async create({
+    id,
+    name,
+    country,
+    goal,
+    url_flag,
+  }: ICreatePlaceDTO): Promise<Place> {
     const place = this.repository.create({ id, name, country, goal, url_flag });
     await this.repository.save(place);
     return place;

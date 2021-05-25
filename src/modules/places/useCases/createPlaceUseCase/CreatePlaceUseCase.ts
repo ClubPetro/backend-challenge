@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { ICreatePlaceDTO } from "../../dtos/ICreatePlaceDTO";
 import { Place } from "../../entities/Places";
+import { CountryCodeRepository } from "../../repositories/implementations/CountryCodeRepository";
 import { IPlacesRepository } from "../../repositories/IPlacesRepository";
 
 @injectable()
@@ -22,10 +23,16 @@ class CreatePlaceUseCase {
       throw new AppError("Place name already in use in that country.");
     }
 
+    const codesRepository = new CountryCodeRepository();
+    const country_code = await codesRepository.findCodeByName(country);
+
+    const url_flag = `https://flagcdn.com/h240/${country_code.toLowerCase()}.png`;
+
     const place = await this.placesRepository.create({
       name,
       country,
       goal,
+      url_flag,
     });
 
     return place;
