@@ -19,7 +19,7 @@ class CreatePlaceUseCase {
 
   async execute({ name, country, goal }: ICreatePlaceDTO): Promise<Place> {
     const isNameInUseInCountry = await this.placesRepository.findByCountry(
-      country,
+      country.name,
       name
     );
 
@@ -27,13 +27,7 @@ class CreatePlaceUseCase {
       throw new AppError("Place name already in use in that country.");
     }
 
-    const country_code = await this.countryRepository.findCodeByName(country);
-
-    if (!country_code) {
-      throw new AppError("Not able to get country code");
-    }
-
-    const url_flag = `https://flagcdn.com/h240/${country_code.toLowerCase()}.png`;
+    const url_flag = `https://flagcdn.com/h240/${country.code.toLowerCase()}.png`;
 
     const place = await this.placesRepository.create({
       name,

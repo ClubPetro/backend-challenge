@@ -1,3 +1,4 @@
+import { ICountryDataDTO } from "modules/places/dtos/ICountryDataDTO";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../errors/AppError";
@@ -29,7 +30,10 @@ class UpdateGoalUseCase {
     }
 
     place.goal = goal;
-    await this.placesRepository.create(place);
+    await this.placesRepository.create({
+      ...place,
+      country: { name: place.country, code: "" },
+    });
   }
 }
 

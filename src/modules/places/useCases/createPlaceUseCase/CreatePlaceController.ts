@@ -5,11 +5,11 @@ import { CreatePlaceUseCase } from "./CreatePlaceUseCase";
 
 class CreatePlaceController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, country, goal } = request.body;
+    const { name, country_data, goal } = request.body;
     const createPlaceUseCase = container.resolve(CreatePlaceUseCase);
     const place = await createPlaceUseCase.execute({
       name,
-      country,
+      country: country_data,
       goal,
     });
 

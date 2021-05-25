@@ -30,7 +30,10 @@ class UpdateNameUseCase {
     }
 
     place.name = name;
-    await this.placesRepository.create(place);
+    await this.placesRepository.create({
+      ...place,
+      country: { name: place.country, code: "" },
+    });
   }
 }
 

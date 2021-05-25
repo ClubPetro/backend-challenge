@@ -1,5 +1,7 @@
+import { ICountryDataDTO } from "../dtos/ICountryDataDTO";
+
 interface ICountryCodeRepository {
-  findCodeByName(country_name: string): Promise<string>;
+  listAvailableCountries(): Promise<ICountryDataDTO[]>;
 }
 
 export { ICountryCodeRepository };

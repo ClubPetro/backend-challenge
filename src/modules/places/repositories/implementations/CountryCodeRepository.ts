@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import { ICountryDataDTO } from "modules/places/dtos/ICountryDataDTO";
 
 import { ICountryCodeRepository } from "../ICountryCodeRepository";
 
@@ -10,14 +11,16 @@ class CountryCodeRepository implements ICountryCodeRepository {
       baseURL: "http://countryapi.gear.host/v1/Country/getCountries",
     });
   }
-  async findCodeByName(country_name: string): Promise<string> {
-    const { data } = await this.repository.get("/", {
-      params: { pName: country_name },
+  async listAvailableCountries(): Promise<ICountryDataDTO[]> {
+    const { data } = await this.repository.get("/");
+    const countries = data.Response.map((country): ICountryDataDTO => {
+      return {
+        name: country.Name,
+        code: country.Alpha2Code,
+      };
     });
 
-    const { Alpha2Code } = data.Response[0];
-
-    return Alpha2Code;
+    return countries;
   }
 }
 
