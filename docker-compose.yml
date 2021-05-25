@@ -1,0 +1,31 @@
+version: "3.7"
+
+services: 
+  database_clubpetro:
+    image: postgres
+    container_name: database_clubpetro
+    restart: always
+    ports: 
+      - 5432:5432
+    environment: 
+      - POSTGRES_USER=clubpetro
+      - POSTGRES_PASSWORD=clubpetro
+      - POSTGRES_DB=places
+    volumes:
+      - pgdata:/data/postgres
+
+  places_app:
+    build: .
+    container_name: places_app
+    ports: 
+      - 3334:3334
+    volumes: 
+      - .:/usr/app
+    links: 
+      - database_clubpetro
+    depends_on: 
+      - database_clubpetro
+      
+volumes:
+  pgdata:
+    driver: local
