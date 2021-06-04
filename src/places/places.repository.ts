@@ -119,10 +119,11 @@ export class PlacesRepository extends Repository<Places> {
     if (place) {
       if (place.trim().length > 0)
         UpPlace.place = place.trim();
+        UpPlace.updated_at = new Date();
     }
     if (goal) {
       if (goal.trim().length > 0) {
-        
+
         const checkDate = new DateUtils(goal);
         checkDate.validateDate();
         UpPlace.goal = checkDate.dateEntity;
@@ -132,10 +133,10 @@ export class PlacesRepository extends Repository<Places> {
 
         if (!checkDate.dateIsBefore)
           throw new BadRequestException(`goal :"${format(checkDate.dateEntity, 'MM/yyyy')}" anterior a data atual "${format(new Date(), 'MM/yyyy')}" `);
-      }
+          UpPlace.updated_at = new Date();
+        }
     }
 
-    UpPlace.updated_at = new Date();
 
     try {
       return await UpPlace.save();
