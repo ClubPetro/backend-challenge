@@ -116,18 +116,23 @@ export class PlacesRepository extends Repository<Places> {
       throw new NotFoundException(`Not found any parameter`);
     }
 
-    if (place.trim().length > 0)
-      UpPlace.place = place.trim();
+    if (place) {
+      if (place.trim().length > 0)
+        UpPlace.place = place.trim();
+    }
+    if (goal) {
+      if (goal.trim().length > 0) {
+        
+        const checkDate = new DateUtils(goal);
+        checkDate.validateDate();
+        UpPlace.goal = checkDate.dateEntity;
 
-    if (goal.trim().length > 0) {
-      const checkDate = new DateUtils(goal);
-      checkDate.validateDate();
-      UpPlace.goal = checkDate.dateEntity;
-      if (!checkDate.isValidFormat)
-        throw new BadRequestException("Date format invalid for goal.");
+        if (!checkDate.isValidFormat)
+          throw new BadRequestException("Date format invalid for goal.");
 
-      if (!checkDate.dateIsBefore)
-        throw new BadRequestException(`goal :"${format(checkDate.dateEntity, 'MM/yyyy')}" anterior a data atual "${format(new Date(), 'MM/yyyy')}" `);
+        if (!checkDate.dateIsBefore)
+          throw new BadRequestException(`goal :"${format(checkDate.dateEntity, 'MM/yyyy')}" anterior a data atual "${format(new Date(), 'MM/yyyy')}" `);
+      }
     }
 
     UpPlace.updated_at = new Date();
