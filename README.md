@@ -3,12 +3,9 @@
 <img src="./img/logo-clubpetro.png" style="margin-left: 100px"
      alt="Clubpetro" width="300">
 
-##Descrição
+## Descrição
 Desenvolvimento de uma Api para lugares aos quais se deseja conhecer ao redor do mundo. Os principais dados armazenados são: <b>country</b> , <b>place</b>, <b>goal</b>, <b>urlflag</b>, do local  ao qual se deseja realizar a visita. O desenvolvimento foi realizado utilizando o framework [Nestjs](https://github.com/nestjs/nest)
 
-A api pode ser utilizada para realizar as atividades de backend de uma aplicação igual ou semelhante a apresentada na imagem a seguir. 
-
-<img src="./img/challenge.png" alt="Desafio" >
 
 ##### Funcionalidades
   - Criar novos lugares; 
@@ -22,7 +19,7 @@ A api pode ser utilizada para realizar as atividades de backend de uma aplicaç�
 - [Docker e Docker-Compose](https://docs.docker.com/docker-for-windows/install/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
 - [Git](https://github.com/git-guides/install-git)
-- node
+- [Node.js](https://nodejs.org/en/)
 
 
 

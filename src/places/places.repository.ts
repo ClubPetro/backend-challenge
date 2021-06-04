@@ -31,7 +31,7 @@ export class PlacesRepository extends Repository<Places> {
 
     } catch (error) {
       this.logger.error('Country not found', error.stack);
-      throw new InternalServerErrorException("Country not found.");
+      throw new BadRequestException("Country not found.");
     }
 
     /*Consulta para verificar a existencia de um local repetido para o mesmo pais*/
@@ -50,7 +50,7 @@ export class PlacesRepository extends Repository<Places> {
       throw new BadRequestException("Format Inválid for date");
 
     /*checa se a data passada é anterior a atual*/
-    if (!checkDate.dateIsAfter)
+    if (!checkDate.dateIsBefore)
       throw new BadRequestException(`Failed insert, because goal :"${format(checkDate.dateEntity, 'dd/MM/yyyy')}" is before  : "${format(new Date(), 'dd/MM/yyyy')}"`);
 
     places.country = country;
@@ -93,45 +93,47 @@ export class PlacesRepository extends Repository<Places> {
 
     const { place, goal } = updatePlacesDto;
 
-    const Uplugar = await this.findOne(id);
+    const UpPlace = await this.findOne(id);
 
 
-    if (!Uplugar)
+    if (!UpPlace)
       throw new NotFoundException(`Place with ID: "${id}" not found.`);
 
     const query = this.createQueryBuilder('Places');
 
-    query.andWhere('Places.country = :country', { country: Uplugar.country });
-    query.andWhere('Places.id != :id', { id: Uplugar.id });
+    query.andWhere('Places.country = :country', { country: UpPlace.country });
+    query.andWhere('Places.id != :id', { id: UpPlace.id });
     query.andWhere('Places.place = :place', { place });
 
-    const lugarJaExiste = await query.getOne();
+    const placeAlreadyexists = await query.getOne();
 
-    if (lugarJaExiste)
-      throw new ConflictException(`Place : "${place}" already exist for country: "${Uplugar.country}" `);
+    if (placeAlreadyexists)
+      throw new ConflictException(`Place : "${place}" already exist for country: "${UpPlace.country}" `);
 
-    if (place.trim().length === 0 && goal.trim().length === 0) {
+
+
+    if (!place && !goal) {
       throw new NotFoundException(`Not found any parameter`);
     }
 
     if (place.trim().length > 0)
-      Uplugar.place = place.trim();
+      UpPlace.place = place.trim();
 
     if (goal.trim().length > 0) {
       const checkDate = new DateUtils(goal);
       checkDate.validateDate();
-      Uplugar.goal = checkDate.dateEntity;
+      UpPlace.goal = checkDate.dateEntity;
       if (!checkDate.isValidFormat)
-        throw new BadRequestException("Date format invalid for goal. Valid format is dd/mm/yyyy or mm/yyyy");
+        throw new BadRequestException("Date format invalid for goal.");
 
-      if (!checkDate.dateIsAfter)
-        throw new BadRequestException(`goal :"${format(checkDate.dateEntity, 'MM/yyyy')}" anterior a data atual "${format(new Date(), 'dd/MM/yyyy')}" `);
+      if (!checkDate.dateIsBefore)
+        throw new BadRequestException(`goal :"${format(checkDate.dateEntity, 'MM/yyyy')}" anterior a data atual "${format(new Date(), 'MM/yyyy')}" `);
     }
 
-    Uplugar.updated_at = new Date();
+    UpPlace.updated_at = new Date();
 
     try {
-      return await Uplugar.save();
+      return await UpPlace.save();
     } catch (error) {
       this.logger.error(`Failed to update place", Data: ${JSON.stringify(updatePlacesDto)}`, error.stack);
       throw new InternalServerErrorException();

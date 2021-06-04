@@ -1,12 +1,12 @@
 import { Logger } from '@nestjs/common';
 import { validate } from 'class-validator';
-import { format, isBefore, isValid, parseISO } from 'date-fns';
+import { addDays, format, isBefore, isValid, parseISO } from 'date-fns';
 import isAfter from 'date-fns/isAfter';
 
 export class DateUtils {
 
   public isValidFormat: boolean;
-  public dateIsAfter: boolean;
+  public dateIsBefore: boolean;
   public dateEntity: Date;
   public dateResult: string;
   public goal: string;
@@ -23,23 +23,18 @@ export class DateUtils {
 
     try {
       var dateFormat;
-     this.goal = this.goal.trim();
+      this.goal = this.goal.trim();
       this.goal = this.goal.replace(replacer, '-');
-      const test = this.goal.split('-');
-      if (test.length === 2)
-        dateFormat = `${test[1]}-${test[0]}-${ ('0'+ DateNow.getDate()).slice(-2)} 00:00:00`;
-      if (test.length === 3)
-        dateFormat = `${test[2]}-${test[1]}-${test[0]} 00:00:00`;
+      const splitGoal = this.goal.split('-');
+      if (splitGoal.length === 2)
+        dateFormat = `${splitGoal[1]}-${splitGoal[0]}-${('0' + DateNow.getDate()).slice(-2)} 00:00:00`;
+      if (splitGoal.length === 3)
+        dateFormat = `${splitGoal[2]}-${splitGoal[1]}-${splitGoal[0]} 00:00:00`;
       const parsedDate = parseISO(dateFormat);
       if (isValid(parsedDate))
         this.isValidFormat = true;
       this.dateEntity = parsedDate;
-      
-      if(parsedDate.getFullYear() >= DateNow.getFullYear() &&
-         parsedDate.getMonth()    >= DateNow.getMonth()    && 
-         parsedDate.getDate()     >= DateNow.getDate() ){
-          this.dateIsAfter = true;
-        }
+      this.dateIsBefore = isBefore(addDays(new Date(), -1), this.dateEntity);
 
     } catch (error) {
       this.dateResult = error;
