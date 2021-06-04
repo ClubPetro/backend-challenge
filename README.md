@@ -30,6 +30,9 @@ Desenvolvimento de uma Api para lugares aos quais se deseja conhecer ao redor do
 #clonar o repositorio 
 $ git clone https://github.com/DaniloRicardoCrabi/backend-challenge.git
 
+# acessa a pasta principal do projeto
+$ cd backend-challenge
+
 # instalar as dependencias do projeto
 $ yarn install
 
@@ -55,8 +58,11 @@ $ yarn  start
 ###### POST
 - Cadastrar novos lugares; 
 	http://localhost:3000/places
-	 Requer:  
-
+	 - Requer:  
+	 	 - country
+		 - place
+		 - goal 
+		 	
 ###### GET
 - Obter todos os lugares cadastrados;
    - http://localhost:3000/places
@@ -64,18 +70,18 @@ $ yarn  start
 ###### GET
 - Obter todos um lugar cadastrado pelo id;
 	- http://localhost:3000/places/id
-		Required: id
+		- Required: id
 
 ###### PUT
 - Modifica <b>place</b> ou goal cadastrado pelo id;
 	- http://localhost:3000/places/id
-		Requer: id
-		Opcional: place or goal
+		- Requer: id
+		- Opcional: place or goal
 
 ###### DELETE
 - Remove um lugar cadastrado 
 	-  http://localhost:3000/places/id
-		Requer: id
+		- Requer: id
 
 #### Linguagens e libs utilizadas:
 
