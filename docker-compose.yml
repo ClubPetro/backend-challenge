@@ -1,12 +1,33 @@
-version: '3'
+version: "3.9"
+
 services:
-  db:
-    image: 'postgres:latest'
+  database: 
+    image: postgres
+    container_name: database
+    restart: always
+    ports: 
+      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: backend-challenge
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=backend-challenge
     volumes:
-      - ./pgdata:/var/lib/postgres/data
-    ports:
-      - '5432:5432'
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: container_app
+    restart: always
+    ports: 
+      - 3000:3000
+      - 9229:9229 
+    volumes: 
+      - .:/usr/app
+    links: 
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
