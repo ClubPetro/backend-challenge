@@ -1,6 +1,7 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PlacesModule } from './places/places.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         synchronize: true, // for development
       }),
       inject: [ConfigService],
-    })
+    }),
+    PlacesModule
   ],
 })
 export class AppModule { }
