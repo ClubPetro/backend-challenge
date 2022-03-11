@@ -1,0 +1,20 @@
+{
+  "name": "backend-challenge",
+  "version": "1.0.0",
+  "description": "<img src=\"./img/logo-clubpetro.png\" style=\"margin-left: 100px\"\r      alt=\"Clubpetro\" width=\"300\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattCozendey/backend-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MattCozendey/backend-challenge/issues"
+  },
+  "homepage": "https://github.com/MattCozendey/backend-challenge#readme"
+}
