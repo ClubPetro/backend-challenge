@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, //everything not anottated in CTO classes will be removed whilst validating.
-    disableErrorMessages: true
+    disableErrorMessages: false
   }));
 
   Logger.log(`Generating document data...`);

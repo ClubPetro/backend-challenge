@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { Place } from '../models/place.entity';
+import { GetPlacesQuery } from '../controller/places.helpers';
+import { MAX_PAGE_SIZE, PaginatedData } from '../controller/places.helpers';
 @Injectable()
 export class PlacesService {
   constructor(
@@ -14,8 +16,21 @@ export class PlacesService {
     return 1;
   }
 
-  async findAll(): Promise<string> {
-    return `This action returns all places`;
+  async findAll(queryParams: GetPlacesQuery): Promise<PaginatedData> {
+    const page = queryParams.page || 1;
+
+    const [result, total] = await this.placesRepository.findAndCount({
+      order: { id: "DESC" },
+      take: MAX_PAGE_SIZE,
+      skip: (page - 1) * MAX_PAGE_SIZE
+    });
+
+    return {
+      data: result,
+      total: total,
+      page: page,
+      page_size: MAX_PAGE_SIZE
+    };
   }
 
   async findOne(id: number): Promise<Place> {
