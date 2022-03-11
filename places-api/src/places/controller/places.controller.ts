@@ -11,7 +11,7 @@ export class PlacesController {
 
   @Post()
   @ApiOperation({ summary: 'Creates a new country-place-destination relationship and returns the created id.' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: `The informed date was not in the 'YYYY-MM' format or was prior to the date of the request.` })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: `The informed date was not in the correct format or was prior to the date of the request.` })
   @ApiResponse({ status: HttpStatus.CONFLICT, description: 'The informed place has already been assigned for the informed country.' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The country-place-destination relationship has been successfully created.' })
   @ApiBody({ type: CreatePlaceDto })
