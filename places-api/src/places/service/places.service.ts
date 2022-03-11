@@ -22,7 +22,6 @@ export class PlacesService {
     const entity: Place = await this.placesRepository.findOne(id);
     if (entity === undefined) throw new NotFoundException(`No country-place-destination relationship with id:${id} were found.`);
 
-
     return entity;
   }
 
