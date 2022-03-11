@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { IsInt, Min, Max, } from "class-validator";
+import { IsInt, Min, Max, IsUrl } from "class-validator";
 
 //values are not null by default
 @Entity()
@@ -24,12 +24,13 @@ export class Place extends BaseEntity {
     @Min(0)
     year: number;
 
+    @Column()
+    @IsUrl()
+    image_url: string;
+
     @CreateDateColumn({ type: 'timestamp with time zone' })
     created_at: Date;
 
     @UpdateDateColumn({ type: 'timestamp with time zone' })
     updated_at: Date;
-
-    @Column()
-    image_url: string;
 }
