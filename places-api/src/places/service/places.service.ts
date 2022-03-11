@@ -1,26 +1,36 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePlaceDto } from '../dto/create-place.dto'
+import { BadRequestException, ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
-
+import { Place } from '../models/place.entity';
 @Injectable()
 export class PlacesService {
-  create(createPlaceDto: CreatePlaceDto) {
-    return 'This action adds a new place';
+  constructor(
+    @InjectRepository(Place) private placesRepository: Repository<Place>
+  ) { } //repository of place entity
+
+  async create(createPlaceDto: CreatePlaceDto): Promise<number> {
+    return 1;
   }
 
-  findAll() {
+  async findAll(): Promise<string> {
     return `This action returns all places`;
   }
 
-  findOne(id: number) {
+  async findOne(id: number): Promise<string> {
     return `This action returns a #${id} place`;
   }
 
-  update(id: number, updatePlaceDto: UpdatePlaceDto) {
+  async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<string> {
     return `This action updates a #${id} place`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} place`;
+  async remove(id: number): Promise<string> {
+    const entityToBeRemoved: Place = await this.placesRepository.findOne(id);
+    if (entityToBeRemoved === undefined) throw new NotFoundException(`No country-place-destination relationship with id:${id} were found.`);
+
+    await this.placesRepository.delete(id);
+    return `Country-place-destination relationship of ${id} has been successfully deleted.`;
   }
 }
