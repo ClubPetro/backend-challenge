@@ -5,7 +5,7 @@ import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiQuery } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
-import { GetPlacesQuery } from './places.helpers';
+import { GetPlacesQuery, PaginatedData } from './places.helpers';
 
 @ApiTags("places")
 @Controller('places')
@@ -18,7 +18,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.CONFLICT, description: 'The informed place has already been assigned for the informed country.' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The country-place-destination relationship has been successfully created.' })
   @ApiBody({ type: CreatePlaceDto })
-  async create(@Body() createPlaceDto: CreatePlaceDto) {
+  async create(@Body() createPlaceDto: CreatePlaceDto): Promise<number> {
     return this.placesService.create(createPlaceDto);
   }
 
@@ -31,7 +31,7 @@ export class PlacesController {
     description: "A page parameter. If not supplied, assume 1.",
     required: false
   })
-  async findAll(@Query() queryParams: GetPlacesQuery) {
+  async findAll(@Query() queryParams: GetPlacesQuery): Promise<PaginatedData> {
     return this.placesService.findAll(queryParams);
   }
 
