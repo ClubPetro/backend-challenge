@@ -18,8 +18,12 @@ export class PlacesService {
     return `This action returns all places`;
   }
 
-  async findOne(id: number): Promise<string> {
-    return `This action returns a #${id} place`;
+  async findOne(id: number): Promise<Place> {
+    const entity: Place = await this.placesRepository.findOne(id);
+    if (entity === undefined) throw new NotFoundException(`No country-place-destination relationship with id:${id} were found.`);
+
+
+    return entity;
   }
 
   async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<string> {
