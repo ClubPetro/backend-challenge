@@ -15,7 +15,7 @@ export class CreatePlaceDto {
     @IsInt()
     month: number;
 
-    @ApiProperty({ example: 2022, description: 'Year', type: Number, minimum: 2021 })
+    @ApiProperty({ example: 2022, description: 'Year', type: Number, minimum: 0 })
     @IsInt()
     @Min(0)
     year: number;
