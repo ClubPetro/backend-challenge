@@ -6,6 +6,7 @@ export class PaginatedData {
     data: any[];
     total: number;
     page: number;
+    total_pages: number;
     page_size: number;
 }
 export class GetPlacesQuery {
@@ -14,4 +15,11 @@ export class GetPlacesQuery {
     @IsOptional()
     @Min(1)
     page: number;
+}
+export class MessageResponse {
+    message: string;
+}
+export class CreationIDResponse {
+    @IsInt()
+    id: number
 }

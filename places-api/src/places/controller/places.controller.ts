@@ -5,7 +5,7 @@ import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiQuery } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
-import { GetPlacesQuery, PaginatedData } from './places.helpers';
+import { CreationIDResponse, GetPlacesQuery, MessageResponse, PaginatedData } from '../places.helpers';
 
 @ApiTags("places")
 @Controller('places')
@@ -18,8 +18,8 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.CONFLICT, description: 'The informed place has already been assigned for the informed country.' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The country-place-destination relationship has been successfully created.' })
   @ApiBody({ type: CreatePlaceDto })
-  async create(@Body() createPlaceDto: CreatePlaceDto): Promise<number> {
-    return this.placesService.create(createPlaceDto);
+  async create(@Body() createPlaceDto: CreatePlaceDto): Promise<CreationIDResponse> {
+    return await this.placesService.create(createPlaceDto);
   }
 
   @Get()
@@ -32,7 +32,7 @@ export class PlacesController {
     required: false
   })
   async findAll(@Query() queryParams: GetPlacesQuery): Promise<PaginatedData> {
-    return this.placesService.findAll(queryParams);
+    return await this.placesService.findAll(queryParams);
   }
 
   @Get(':id')
@@ -40,7 +40,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'The specified country-place-destination relationship did not exist.' })
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully fetched.' })
   async findOne(@Param('id') id: string): Promise<Place> {
-    return this.placesService.findOne(+id);
+    return await this.placesService.findOne(+id);
   }
 
   @Put(':id')
@@ -50,7 +50,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Either the date or the place were invalid.' })
   @ApiBody({ type: UpdatePlaceDto })
   async update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto) {
-    return this.placesService.update(+id, updatePlaceDto);
+    return await this.placesService.update(+id, updatePlaceDto);
   }
 
   @Delete(':id')
@@ -58,7 +58,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'The specified country-place-destination relationship did not exist.' })
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully deleted.' })
   @HttpCode(HttpStatus.OK)
-  async remove(@Param('id') id: string): Promise<string> {
-    return this.placesService.remove(+id);
+  async remove(@Param('id') id: string): Promise<MessageResponse> {
+    return await this.placesService.remove(+id);
   }
 }

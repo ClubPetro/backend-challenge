@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, Min, Max, IsInt } from 'class-validator';
+import { IsString, Min, Max, IsInt, IsOptional } from 'class-validator';
 export class UpdatePlaceDto {
     @ApiProperty({ example: 'Curitiba', description: 'Name of the country part.', type: String })
     @IsString()
@@ -9,10 +9,12 @@ export class UpdatePlaceDto {
     @IsInt()
     @Min(1)
     @Max(12)
+    @IsOptional()
     month: number;
 
     @ApiProperty({ example: 2030, description: 'Year.', type: Number, minimum: 0 })
     @IsInt()
     @Min(0)
+    @IsOptional()
     year: number;
 }
