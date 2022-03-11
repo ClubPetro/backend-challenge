@@ -1,12 +1,16 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-
 const PORT = process.env.APP_PORT || 3000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true, //everything not anottated in CTO classes will be removed whilst validating.
+    disableErrorMessages: true
+  }));
 
   Logger.log(`Generating document data...`);
   const config = new DocumentBuilder()
