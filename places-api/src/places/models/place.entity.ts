@@ -1,17 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, CreateDateColumn, UpdateDateColumn, IsNull, Unique } from 'typeorm';
 import { IsInt, Min, Max, IsUrl, IsOptional } from "class-validator";
-
+const COUNTRY_NAME_NAME = 'country_name';
+const COUNTRY_PART_NAME = 'country_part';
 //values are not null by default
 @Entity()
-@Unique(['country_name', 'country_part'])
+@Unique([COUNTRY_NAME_NAME, COUNTRY_PART_NAME])
 export class Place extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'country_name' })
+    @Column({ name: COUNTRY_NAME_NAME })
     country_name: string;
 
-    @Column({ name: 'country_part' })
+    @Column({ name: COUNTRY_PART_NAME })
     country_part: string;
 
     @Column()
