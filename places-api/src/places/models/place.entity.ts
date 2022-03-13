@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { IsInt, Min, Max, IsUrl } from "class-validator";
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, CreateDateColumn, UpdateDateColumn, IsNull } from 'typeorm';
+import { IsInt, Min, Max, IsUrl, IsOptional } from "class-validator";
 
 //values are not null by default
 @Entity()

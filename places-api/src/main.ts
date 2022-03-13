@@ -3,14 +3,16 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-const PORT = process.env.APP_PORT || 3000;
+import { ConfigService } from '@nestjs/config';
+import { getNetworkConfig, networkConfig } from './config/index.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true, //everything not anottated in CTO classes will be removed whilst validating.
-    disableErrorMessages: false
-  }));
+  const cfgService: ConfigService = app.get(ConfigService);
+  const networkConfig: networkConfig = getNetworkConfig(cfgService);
+
+  console.log(networkConfig);
+  app.useGlobalPipes(new ValidationPipe(networkConfig.validationPipeOptions));
 
   Logger.log(`Generating document data...`);
   const config = new DocumentBuilder()
@@ -29,7 +31,7 @@ async function bootstrap() {
   SwaggerModule.setup('/api', app, document);
 
   Logger.log(`Document set-up. Starting server...`);
-  await app.listen(PORT);
-  Logger.log(`Server listening on port ${PORT}`);
+  await app.listen(networkConfig.port);
+  Logger.log(`Server listening on port ${networkConfig.port}`);
 }
 bootstrap();

@@ -1,6 +1,8 @@
+import { getNetworkConfig, networkConfig } from "./network/network.config";
 import { getDBConfig } from "./database/typeorm.config";
 
-
 export {
-    getDBConfig
+    getNetworkConfig,
+    networkConfig,
+    getDBConfig,
 };
