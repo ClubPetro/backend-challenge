@@ -6,9 +6,9 @@ import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiQuery } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
 import { GetPlacesQuery } from '../places.helpers';
-import { JSONResponse, CommonJSONResponses } from 'src/helpers/common-response-models';
+import { JSONResponse, CommonJSONResponses } from '../../helpers/common-response-models';
 import { MAX_PAGE_SIZE } from '../config/places.config';
-import { PaginatedData } from 'src/helpers/common-classes';
+import { PaginatedData } from '../../helpers/common-classes';
 @ApiTags("places")
 @Controller('places')
 export class PlacesController {
