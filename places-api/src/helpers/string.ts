@@ -7,6 +7,7 @@ export function deepClean(str: string): string {
      * removes diacritics from a string. ãó => ao
      * for every letter of the string, if the letter in lowercase is not alphanumeric,
      * replace it with '-' (hyphen) only once until a new alphanumeric character is found.
+     * example: "ãó  Vá" => "ao-Va"
     */
     let newStr = "";
     const noDiacriticsString = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();

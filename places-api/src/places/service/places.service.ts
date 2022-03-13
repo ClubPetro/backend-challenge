@@ -1,38 +1,40 @@
-import { BadRequestException, ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpStatus, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Not } from 'typeorm';
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { Place } from '../models/place.entity';
-import { GetPlacesQuery, MessageResponse } from '../places.helpers';
-import { MAX_PAGE_SIZE, PaginatedData, CreationIDResponse } from '../places.helpers';
+import { GetPlacesQuery } from '../places.helpers';
 import { deepClean } from 'src/helpers/string';
+import { PaginatedData } from 'src/helpers/common-classes';
 @Injectable()
 export class PlacesService {
   constructor(
     @InjectRepository(Place) private placesRepository: Repository<Place>
   ) { } //repository of place entity
 
-  async create(createPlaceDto: CreatePlaceDto): Promise<CreationIDResponse> {
-    return { id: 1 };
+  async create(createPlaceDto: CreatePlaceDto): Promise<Place> {
+    return new Place();
+    // return { id: 1 };
   }
 
   async findAll(queryParams: GetPlacesQuery): Promise<PaginatedData> {
-    const page = queryParams.page || 1;
-
     const [result, total] = await this.placesRepository.findAndCount({
       order: { year: "ASC", month: "ASC", id: "DESC" },
-      take: MAX_PAGE_SIZE,
-      skip: (page - 1) * MAX_PAGE_SIZE
+      take: queryParams.limit,
+      skip: (queryParams.page - 1) * queryParams.limit,
     });
 
     return {
-      data: result,
-      total: total,
-      page: page,
-      total_pages: Math.ceil(total / MAX_PAGE_SIZE),
-      page_size: MAX_PAGE_SIZE
-    };
+      items: result,
+      meta: {
+        total_item_count: total,
+        total_page_count: Math.ceil(total / queryParams.limit),
+        current_page: queryParams.page,
+        current_page_item_count: result.length,
+        max_items_per_page: queryParams.limit
+      }
+    }
   }
 
   async findOne(id: number): Promise<Place> {
@@ -62,20 +64,19 @@ export class PlacesService {
     if (entitiesWithSameCountryAndPlace.length > 0) return true;
     return false;
   }
-  async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<MessageResponse> {
+  async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<boolean> {
     const entity: Place = await this.assertEntityExists(id);
 
     const doesPlaceOfEntityRepeatInCountry = await this.doesPlaceRepeatInCountry(entity);
     if (doesPlaceOfEntityRepeatInCountry) throw new ConflictException(`Country-place-destination relationship with id:${id} already exists.`);
 
-
-    return { message: `This action updates a #${id} place` };
+    return true;
   }
 
-  async remove(id: number): Promise<MessageResponse> {
+  async remove(id: number): Promise<boolean> {
     await this.assertEntityExists(id);
 
     await this.placesRepository.delete(id);
-    return { message: `Country-place-destination relationship of ${id} has been successfully deleted.` };
+    return true;
   }
 }

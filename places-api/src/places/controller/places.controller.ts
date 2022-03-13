@@ -5,8 +5,10 @@ import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiQuery } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
-import { CreationIDResponse, GetPlacesQuery, MessageResponse, PaginatedData } from '../places.helpers';
-
+import { GetPlacesQuery } from '../places.helpers';
+import { CommonResponse } from 'src/helpers/common-response-models';
+import { MAX_PAGE_SIZE } from '../config/places.config';
+import { PaginatedData } from 'src/helpers/common-classes';
 @ApiTags("places")
 @Controller('places')
 export class PlacesController {
@@ -18,21 +20,33 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.CONFLICT, description: 'The informed place has already been assigned for the informed country.' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The country-place-destination relationship has been successfully created.' })
   @ApiBody({ type: CreatePlaceDto })
-  async create(@Body() createPlaceDto: CreatePlaceDto): Promise<CreationIDResponse> {
+  async create(@Body() createPlaceDto: CreatePlaceDto): Promise<any> {
     return await this.placesService.create(createPlaceDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Returns country-place-destination relationships in pages of 50 entries.' })
+  @ApiOperation({ summary: `Returns country-place-destination relationships in pages of ${MAX_PAGE_SIZE}(or specified limit) entries.` })
   @ApiResponse({ status: HttpStatus.OK, description: 'Country-place-destination relationships have been succesfully fetched.' })
   @ApiQuery({
     name: "page",
-    type: String,
+    type: Number,
     description: "A page parameter. If not supplied, assume 1.",
     required: false
   })
-  async findAll(@Query() queryParams: GetPlacesQuery): Promise<PaginatedData> {
-    return await this.placesService.findAll(queryParams);
+  @ApiQuery({
+    name: "limit",
+    type: Number,
+    description: `A limit parameter. If not supplied, assume ${MAX_PAGE_SIZE}.`,
+    required: false
+  })
+  async findAll(@Query() queryParams: GetPlacesQuery): Promise<CommonResponse> {
+    queryParams.page = queryParams.page || 1;
+    queryParams.limit = queryParams.limit || MAX_PAGE_SIZE;
+    const places: PaginatedData = await this.placesService.findAll(queryParams);
+    return {
+      status: HttpStatus.OK,
+      data: places,
+    };
   }
 
   @Get(':id')
@@ -49,7 +63,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully updated.' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Either the date or the place were invalid.' })
   @ApiBody({ type: UpdatePlaceDto })
-  async update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto) {
+  async update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto): Promise<any> {
     return await this.placesService.update(+id, updatePlaceDto);
   }
 
@@ -58,7 +72,11 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'The specified country-place-destination relationship did not exist.' })
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully deleted.' })
   @HttpCode(HttpStatus.OK)
-  async remove(@Param('id') id: string): Promise<MessageResponse> {
-    return await this.placesService.remove(+id);
+  async remove(@Param('id') id: string): Promise<CommonResponse> {
+    await this.placesService.remove(+id);
+    return {
+      status: HttpStatus.OK,
+      data: null
+    }
   }
 }
