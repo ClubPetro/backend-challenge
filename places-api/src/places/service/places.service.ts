@@ -5,7 +5,6 @@ import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { Place } from '../models/place.entity';
 import { GetPlacesQuery } from '../places.helpers';
-import { deepClean } from 'src/helpers/string';
 import { PaginatedData } from 'src/helpers/common-classes';
 @Injectable()
 export class PlacesService {
@@ -49,26 +48,8 @@ export class PlacesService {
 
     return entity;
   }
-  async doesPlaceRepeatInCountry(entity: Place): Promise<boolean> {
-    const deepPlace: string = deepClean(entity.country_part).toLowerCase();
-    const deepCountry: string = deepClean(entity.country_name).toLowerCase();
-
-    const entitiesWithSameCountryAndPlace: Place[] = await this.placesRepository.find({
-      where: {
-        country_part: deepPlace,
-        country_name: deepCountry,
-        id: Not(entity.id)
-      }
-    });
-
-    if (entitiesWithSameCountryAndPlace.length > 0) return true;
-    return false;
-  }
   async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<boolean> {
     const entity: Place = await this.assertEntityExists(id);
-
-    const doesPlaceOfEntityRepeatInCountry = await this.doesPlaceRepeatInCountry(entity);
-    if (doesPlaceOfEntityRepeatInCountry) throw new ConflictException(`Country-place-destination relationship with id:${id} already exists.`);
 
     return true;
   }
