@@ -26,7 +26,7 @@ export class PlacesController {
 
   @Get()
   @ApiOperation({ summary: `Returns country-place-destination relationships in pages of ${MAX_PAGE_SIZE}(or specified limit) entries.` })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Country-place-destination relationships have been succesfully fetched.' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Country-place-destination relationships have been successfully fetched.' })
   @ApiQuery({
     name: "page",
     type: Number,
@@ -70,7 +70,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'The specified country-place-destination relationship did not exist.' })
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully deleted.' })
   @HttpCode(HttpStatus.OK)
-  async remove(@Param('id') id: string): Promise<JSONResponse> {
+  async remove(@Param('id') id: number): Promise<JSONResponse> {
     await this.placesService.remove(+id);
     return CommonJSONResponses.success();
   }
