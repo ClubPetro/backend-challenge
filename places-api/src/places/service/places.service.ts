@@ -12,9 +12,34 @@ export class PlacesService {
     @InjectRepository(Place) private placesRepository: Repository<Place>
   ) { } //repository of place entity
 
+  getInvalidDateFromPastException(): BadRequestException {
+    return new BadRequestException(`You cannot create a destination to the past.`);
+  }
+
   async create(createPlaceDto: CreatePlaceDto): Promise<Place> {
-    return new Place();
-    // return { id: 1 };
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    if (currentYear > createPlaceDto.year) throw this.getInvalidDateFromPastException();
+    if (currentYear === createPlaceDto.year && currentMonth > createPlaceDto.month) throw this.getInvalidDateFromPastException();
+
+    const isYearPlacePairUnique = await this.isCountryAndCountryPlacePairUnique(createPlaceDto.country_name, createPlaceDto.country_part);
+    if (!isYearPlacePairUnique) throw new ConflictException(`A country-place-destination relationship with the same country-part combination already exists.`);
+
+    const newEntity: Place = this.placesRepository.create({
+      country_name: createPlaceDto.country_name,
+      country_part: createPlaceDto.country_part,
+      year: createPlaceDto.year,
+      month: createPlaceDto.month,
+      image_url: createPlaceDto.image_url,
+    });
+
+    return await newEntity.save();
+  }
+
+  async isCountryAndCountryPlacePairUnique(countryName: string, countryPart: string): Promise<boolean> {
+    return await this.placesRepository.findOne({ where: { country_name: countryName, country_part: countryPart } }) === undefined;
   }
 
   async findAll(queryParams: GetPlacesQuery): Promise<PaginatedData> {
@@ -50,6 +75,7 @@ export class PlacesService {
   }
   async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<boolean> {
     const entity: Place = await this.assertEntityExists(id);
+
 
     return true;
   }

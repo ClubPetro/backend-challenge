@@ -17,14 +17,14 @@ export class Place extends BaseEntity {
 
     @Column()
     @IsInt()
-    @Min(1)
-    @Max(12)
-    month: number;
+    @Min(0)
+    year: number;
 
     @Column()
     @IsInt()
-    @Min(0)
-    year: number;
+    @Min(1)
+    @Max(12)
+    month: number;
 
     @Column()
     @IsUrl()
