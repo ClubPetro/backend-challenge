@@ -61,7 +61,7 @@ export class PlacesController {
   @ApiResponse({ status: HttpStatus.OK, description: 'The specified country-place-destination relationship has been successfully updated.' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Either the date or the place were invalid.' })
   @ApiBody({ type: UpdatePlaceDto })
-  async update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto): Promise<any> {
+  async update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto): Promise<Place> {
     return await this.placesService.update(+id, updatePlaceDto);
   }
 

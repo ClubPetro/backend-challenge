@@ -13,7 +13,7 @@ export class PlacesService {
   ) { } //repository of place entity
 
   getInvalidDateFromPastException(): BadRequestException {
-    return new BadRequestException(`You cannot create a destination to the past.`);
+    return new BadRequestException(`You cannot set a destination to the past.`);
   }
 
   async create(createPlaceDto: CreatePlaceDto): Promise<Place> {
@@ -33,6 +33,8 @@ export class PlacesService {
       year: createPlaceDto.year,
       month: createPlaceDto.month,
       image_url: createPlaceDto.image_url,
+      created_at: currentDate,
+      updated_at: currentDate,
     });
 
     return await newEntity.save();
@@ -73,11 +75,42 @@ export class PlacesService {
 
     return entity;
   }
-  async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<boolean> {
+  async update(id: number, updatePlaceDto: UpdatePlaceDto): Promise<Place> {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    //if no fields are passed, throw exception
+    //if country_part is passed, check if country-country_part pair is unique.
+    //if year is passed, check if it's in the past.
+    //if month is passed and year is not passed, assume already registered value and throw exception if it's in the past.
+    //if year and month are passed, check if it's in the past.
+    const isDTOEmpty = Object.keys(updatePlaceDto).length === 0;
+    if (isDTOEmpty) throw new BadRequestException(`No fields were passed.`);
+
     const entity: Place = await this.assertEntityExists(id);
 
+    if (updatePlaceDto.country_part !== undefined) {
+      const isCountryPlacePairUnique = await this.isCountryAndCountryPlacePairUnique(entity.country_name, updatePlaceDto.country_part);
+      if (!isCountryPlacePairUnique) throw new ConflictException(`A country-place-destination relationship with the same country-part combination already exists.`);
+    }
 
-    return true;
+    const dtoYear = typeof updatePlaceDto.year === 'undefined' ? entity.year : updatePlaceDto.year;
+    const dtoMonth = typeof updatePlaceDto.month === 'undefined' ? entity.month : updatePlaceDto.month;
+
+
+    if (currentYear > dtoYear) throw this.getInvalidDateFromPastException();
+    if (currentYear === dtoYear && currentMonth > dtoMonth) throw this.getInvalidDateFromPastException();
+
+
+
+    const updatedEntity = {
+      ...updatePlaceDto,
+      updated_at: currentDate,
+    }
+    await this.placesRepository.update(id, updatedEntity);
+
+    return await this.findOne(id);
   }
 
   async remove(id: number): Promise<boolean> {
