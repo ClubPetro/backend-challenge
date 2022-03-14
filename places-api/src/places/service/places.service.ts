@@ -5,7 +5,7 @@ import { CreatePlaceDto } from '../dto/create-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
 import { Place } from '../models/place.entity';
 import { GetPlacesQuery } from '../places.helpers';
-import { PaginatedData } from 'src/helpers/common-classes';
+import { PaginatedData } from '../../helpers/common-classes'
 @Injectable()
 export class PlacesService {
   constructor(
