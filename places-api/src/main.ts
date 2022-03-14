@@ -11,7 +11,6 @@ async function bootstrap() {
   const cfgService: ConfigService = app.get(ConfigService);
   const networkConfig: networkConfig = getNetworkConfig(cfgService);
 
-  console.log(networkConfig);
   app.useGlobalPipes(new ValidationPipe(networkConfig.validationPipeOptions));
 
   Logger.log(`Generating document data...`);
