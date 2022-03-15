@@ -29,21 +29,26 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
+$ yarn run typeorm migration:run
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn run start
 
 # watch mode
-$ npm run start:dev
+$ yarn run start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn run start:prod
 ```
+
+### Usage
+
+{HOST}/api hosts a swagger document containing instructions on the usage of the API.
 
 ## Support
 

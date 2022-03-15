@@ -9,9 +9,7 @@ export const getDBConfig = async (config: ConfigService): Promise<TypeOrmModuleO
         username: config.get<string>('TYPEORM_USERNAME'),
         password: config.get<string>('TYPEORM_PASSWORD'),
         database: config.get<string>('TYPEORM_DATABASE'),
-        entities: ["src/entity/**/*{.js,.ts}"],
-        migrations: ["src/migration/**/*{.js,.ts}"],
-        subscribers: ["src/subscriber/**/*{.js,.ts}"],
+        autoLoadEntities: true,
         synchronize: config.get<string>('TYPEORM_SYNCHRONIZE') === "true",
         logging: config.get<string>('TYPEORM_LOGGING') === "true"
     }
