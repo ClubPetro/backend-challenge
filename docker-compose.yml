@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    container_name: travel_app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/node/app

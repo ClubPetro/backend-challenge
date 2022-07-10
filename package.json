@@ -6,18 +6,24 @@
   "author": "Gabriel Feijó <gabrielfeijo94@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --exit-child --transpile-only --respawn --ignore-watch node_modules -- src/server.ts"
+    "dev": "ts-node-dev --exit-child --transpile-only --respawn --ignore-watch node_modules -- src/server.ts",
+    "test": "jest"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.7"
+    "typeorm": "^0.3.7",
+    "supertest": "^6.2.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.4",
     "@types/node": "^18.0.3",
+    "@types/supertest": "^2.0.12",
+    "jest": "^28.1.2",
+    "ts-jest": "^28.0.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4"
   }
