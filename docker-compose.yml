@@ -1,6 +1,20 @@
 version: '3.7'
 
 services:
+  database:
+    image: postgres
+    contrainer_name: database_desafio
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=clubpetro
+      - POSTGRES_DB=desafioclubpetro
+    volumes:
+      - pgdata:/data/postgres
+
+
   app:
     build: .
     container_name: travel_app
@@ -8,3 +22,9 @@ services:
       - 3000:3000
     volumes:
       - .:/usr/node/app
+    links:
+      - database
+    depends_on:
+      - database
+    
+    
