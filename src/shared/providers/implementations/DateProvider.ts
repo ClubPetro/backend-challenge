@@ -1,11 +1,11 @@
 import { IDateProvider } from "../IDateProvider";
-
+import dayjs from "dayjs";
 class DateProvider implements IDateProvider{
     dateNow(): Date {
-        throw new Error("Method not implemented.");
+        return dayjs().toDate();
     }
     convertStringToDate(goal: string): Date {
-        throw new Error("Method not implemented.");
+        return dayjs(goal).toDate();
     }
 
 }
