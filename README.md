@@ -128,6 +128,7 @@ A estrutura do projeto segue este modelo:
 <div align="center">
   <img alt="Arquitetura da Api" src="./arquitetura-software.png">
 </div>
+
 ---
 
 ## 🦸 Autor
