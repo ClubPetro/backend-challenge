@@ -1,8 +1,7 @@
-import "reflect-metadata";
-import { ITravelsRepository } from "../repositories/ITravelsRepository"
+import { ITravelsRepository } from "../../repositories/ITravelsRepository"
 import {inject, injectable} from "tsyringe";
-import { ItravelDTO } from "../dtos/ITravelDTO";
-import { AppError } from "../../../errors/AppError";
+import { ItravelDTO } from "./ITravelDTO";
+import { AppError } from "../../../../errors/AppError";
 
 @injectable()
 class CreateTravelUseCase{

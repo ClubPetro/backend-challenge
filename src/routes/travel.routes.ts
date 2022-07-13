@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateTravelController } from "../modules/travels/useCases/CreateTravelController";
+import { CreateTravelController } from "../modules/travels/useCases/CreateTravel/CreateTravelController";
 
 const travelRoutes = Router();
 

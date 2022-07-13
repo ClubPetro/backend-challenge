@@ -1,5 +1,5 @@
 import { Travel } from "../../../entities/Travel";
-import { ItravelDTO } from "../../dtos/ITravelDTO";
+import { ItravelDTO } from "../../useCases/CreateTravel/ITravelDTO";
 import { ITravelsRepository } from "../ITravelsRepository";
 
 class TravelsRepository implements ITravelsRepository{

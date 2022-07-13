@@ -17,8 +17,12 @@ export class CreateTravels1657491856992 implements MigrationInterface {
                             type: "varchar"
                         },
                         {
-                            name:"meta",
+                            name:"place",
                             type:"varchar"
+                        },
+                        {
+                            name:"goal",
+                            type:"timestamp"
                         },
                         {
                             name:"createdAt",

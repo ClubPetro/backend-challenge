@@ -1,4 +1,4 @@
-import {ItravelDTO} from '../dtos/ITravelDTO';
+import {ItravelDTO} from '../useCases/CreateTravel/ITravelDTO';
 import {Travel} from '../../entities/Travel';
 
 interface ITravelsRepository{

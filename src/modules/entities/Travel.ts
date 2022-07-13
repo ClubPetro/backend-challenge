@@ -1,18 +1,22 @@
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuidV4} from 'uuid';
 
+@Entity()
 class Travel {
+    @PrimaryGeneratedColumn()
     id?: string;
 
+    @Column()
     country: string;
-
+    @Column()
     place: string;
-
+    @Column()
     goal: Date;
-
+    @Column()
     urlFlag: string;
-
+    @CreateDateColumn()
     createdAt: Date;
-
+    @UpdateDateColumn()
     updatedAt: Date;
 
     constructor(){
