@@ -1,0 +1,27 @@
+{
+  "requiresCompatibilities": ["FARGATE"],
+  "containerDefinitions": [{
+    "name": "places-service",
+    "essential": true,
+    "memoryReservation": "",
+    "portMappings": [{
+      "protocol": "tcp",
+      "containerPort": 80,
+      "hostPort": 80
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/places-service",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }],
+  "family": "places-service-td",
+  "networkMode": "awsvpc",
+  "memory": "512",
+  "cpu": "256",
+  "taskRoleArn": "arn:aws:iam::170770599442:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::170770599442:role/ecsTaskExecutionRole"
+}
