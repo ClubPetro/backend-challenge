@@ -104,13 +104,13 @@ $ docker-compose up
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### [](https://github.com/andrewronscki/places-serverside)**Server**  ([NestJS](https://nodejs.org/en/))
+#### [](https://github.com/andrewronscki/places-serverside)**Server** ([NestJS](https://nodejs.org/en/))
 -   **[Typescript](https://www.typescriptlang.org/)**
 -   **[Postgres](https://www.postgresql.org/)**
 -   **[TypeORM](https://typeorm.io/)**
 -   **[Jest](https://jestjs.io/pt-BR/)**
 -   **[dotENV](https://github.com/motdotla/dotenv)**
-### [](https://github.com/andrewronscki/places-infrastructure)**Infra** ([Terraform](https://www.terraform.io/))
+#### [](https://github.com/andrewronscki/places-infrastructure)**Infra** ([Terraform](https://www.terraform.io/))
 -   **[AWS](https://aws.amazon.com/pt/)**
 
 > Projeto da infraestrutura do projeto https://github.com/andrewronscki/places-infrastructure
