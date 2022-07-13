@@ -23,14 +23,16 @@ Tabela de conteúdos
 =================
 <!--ts-->
    * [Sobre o projeto](#-sobre-o-projeto)
-   * [Funcionalidades](#-funcionalidades)
+   * [Funcionalidades](#%EF%B8%8F-funcionalidades)
    * [Como executar o projeto](#-como-executar-o-projeto)
      * [Pré-requisitos](#pré-requisitos)
-     * [Rodando o Backend (servidor)](#user-content--rodando-o-backend-servidor)
+     * [Rodando o Backend (servidor)](#-rodando-o-backend-servidor)
    * [Tecnologias](#-tecnologias)
-     * [Server](#user-content-server--nodejs----typescript)
+     * [Server](#server--nestjs)
+     * [Infra](#infra-terraform)
+   * [Estrutura do Projeto](#-estrutura-do-projeto)
    * [Autor](#-autor)
-   * [Licença](#user-content--licença)
+   * [Licença](#-licença)
 <!--te-->
 
 
@@ -115,6 +117,17 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 > Veja o arquivo  [package.json](https://github.com/andrewronscki/places-serverside/blob/main/package.json)
 
+---
+
+## 🛠 Estrutura do Projeto
+A estrutura do projeto segue este modelo:
+- O sistema deve ser desenvolvido utilizando os ensinamentos do Clean Architecture e Domain-Driven Design, separando as camadas em domain, data, infra e presentation;
+- O sistema deve ser agrupado por módulos independentes;
+- O desenvolvimento dos casos de uso deve ser orientado a testes (TDD).
+
+<div align="center">
+  <img alt="Arquitetura da Api" src="./arquitetura-software.png">
+</div>
 ---
 
 ## 🦸 Autor
