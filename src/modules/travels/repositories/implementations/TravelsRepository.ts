@@ -10,7 +10,7 @@ class TravelsRepository implements ITravelsRepository{
     findByCountryAndPlace(country:string, place:string): Promise<Travel> {
         throw new Error("Method not implemented.");
     }
-    update(uuid: string): Promise<void> {
+    update({}: ItravelDTO): Promise<void> {
         throw new Error("Method not implemented.");
     }
     delete(uiid: string): Promise<void> {

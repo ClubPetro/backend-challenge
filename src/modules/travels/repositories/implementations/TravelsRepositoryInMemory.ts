@@ -1,5 +1,6 @@
 import { Travel } from "../../../entities/Travel";
 import { ItravelDTO } from "../../useCases/CreateTravel/ITravelDTO";
+import { IUpdateTravelDTO } from "../../useCases/UpdateTravel/IUpdateTravelDTO";
 import { ITravelsRepository } from "../ITravelsRepository";
 
 class TravelsRepositoryInMemory implements ITravelsRepository{
@@ -24,8 +25,15 @@ class TravelsRepositoryInMemory implements ITravelsRepository{
         return result;
     }
 
-    update(uuid: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async findById(uuid: string): Promise<Travel> {
+        const result = this.travels.find(obj => obj.id == uuid);
+        return result;
+    }
+
+    async update(data: IUpdateTravelDTO): Promise<void> {
+        const objIndex = this.travels.findIndex(obj => obj.id == data.id);
+       this.travels[objIndex].goal = data.goal;
+       this.travels[objIndex].place = data.place;
     }
     delete(uiid: string): Promise<void> {
         throw new Error("Method not implemented.");

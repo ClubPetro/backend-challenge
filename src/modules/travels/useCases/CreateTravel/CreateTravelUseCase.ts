@@ -11,8 +11,8 @@ class CreateTravelUseCase{
      ){}
 
      async execute(data: ItravelDTO): Promise<void>{
-         const travelAlreadyExists = await this.travelsRepository.findByCountryAndPlace(data.country, data.place);
-         if(travelAlreadyExists) throw new AppError("Travel already exists");
+        const travelAlreadyExists = await this.travelsRepository.findByCountryAndPlace(data.country, data.place);
+        if(travelAlreadyExists) throw new AppError("Travel already exists");
         await this.travelsRepository.create(data);
      }
 }

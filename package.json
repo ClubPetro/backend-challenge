@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --exit-child --transpile-only --respawn --ignore-watch node_modules -- src/server.ts",
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test jest",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration:run": "yarn typeorm migration:run -d ./src/database",
     "migration:revert": "yarn typeorm migration:revert -d ./src/database"
@@ -31,6 +31,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
