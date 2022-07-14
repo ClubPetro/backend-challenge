@@ -10,8 +10,7 @@
     "test": "jest",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration:run": "yarn typeorm migration:run -d ./src/database",
-    "migration:revert": "yarn typeorm migration:revert -d ./src/database",
-    "migration:create": "yarn typeorm migration:create ./src/database/migrations"
+    "migration:revert": "yarn typeorm migration:revert -d ./src/database"
   },
   "dependencies": {
     "dayjs": "^1.11.3",

@@ -1,9 +1,20 @@
 import {Request, Response} from 'express';
-
+import { container } from 'tsyringe';
+import { CreateTravelUseCase } from './CreateTravelUseCase';
+import { ItravelDTO } from './ITravelDTO';
 class CreateTravelController{
 
-    handle(request:Request, response:Response): Response {
+    async handle(request:Request, response:Response){
 
+        const {country, place, urlFlag, goal} = request.body as ItravelDTO;;
+        const createTravelUseCase = container.resolve(CreateTravelUseCase);
+
+        await createTravelUseCase.execute({
+            country,
+            place,
+            urlFlag,
+            goal
+        })
         return response.send({"message":"ok"})
     }
 }

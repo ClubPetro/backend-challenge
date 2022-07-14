@@ -16,7 +16,7 @@ describe("Create Travel", () =>{
         dateProvider = new DateProvider();
     })
 
-    it("Should to be able to create a new travel", async () => {
+    it("Should be able to create a new travel", async () => {
         await createTravelUseCase.execute({
             country: "Brasil",
             place:"Curitiba",
@@ -29,7 +29,7 @@ describe("Create Travel", () =>{
         
     })
 
-    it("Should not to be able to create a new travel with same country and place", async () => {
+    it("Should not be able to create a new travel with same country and place", async () => {
         expect(async () =>{
             const data = {
                 country: "Brasil",

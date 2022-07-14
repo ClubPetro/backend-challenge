@@ -1,6 +1,7 @@
 export interface ItravelDTO {
-    country: string;
+    readonly id?: string;
+    country?: string;
     place: string;
-    urlFlag: string;
+    urlFlag?: string;
     goal: Date;
 }

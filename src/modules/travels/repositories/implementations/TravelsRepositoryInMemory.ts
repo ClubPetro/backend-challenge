@@ -15,7 +15,8 @@ class TravelsRepositoryInMemory implements ITravelsRepository{
     }
     async list(): Promise<Travel[]> {
         const all = this.travels;
-        return all;
+        //return ascending goals
+        return all.sort((a, b) => a.goal.getTime() -b.goal.getTime());
     }
 
     async findByCountryAndPlace(country:string, place:string): Promise<Travel> {
