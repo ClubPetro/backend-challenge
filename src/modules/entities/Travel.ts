@@ -1,9 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuidV4} from 'uuid';
 
-@Entity()
+@Entity("travels")
 class Travel {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id?: string;
 
     @Column()

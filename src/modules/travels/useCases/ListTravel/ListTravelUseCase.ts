@@ -6,13 +6,11 @@ class ListTravelUseCase{
 
     constructor(
         @inject("TravelsRepository")
-        private travelRepository: ITravelsRepository
+        private travelsRepository: ITravelsRepository
     ){}
 
     async execute(){
-
-        const results = await this.travelRepository.list();
-
+        const results = await this.travelsRepository.list();
         return results;
     }
 }

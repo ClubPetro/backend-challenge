@@ -25,8 +25,8 @@ class TravelsRepositoryInMemory implements ITravelsRepository{
         return result;
     }
 
-    async findById(uuid: string): Promise<Travel> {
-        const result = this.travels.find(obj => obj.id == uuid);
+    async findById(id: string): Promise<Travel> {
+        const result = this.travels.find(obj => obj.id == id);
         return result;
     }
 
@@ -35,8 +35,9 @@ class TravelsRepositoryInMemory implements ITravelsRepository{
        this.travels[objIndex].goal = data.goal;
        this.travels[objIndex].place = data.place;
     }
-    delete(uiid: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<void> {
+        const objIndex = this.travels.findIndex(obj => obj.id == id);
+        this.travels.splice(objIndex,1);
     }  
 
 }

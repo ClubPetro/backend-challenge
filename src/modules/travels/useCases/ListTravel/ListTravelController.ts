@@ -4,7 +4,6 @@ import { container } from 'tsyringe';
 class ListTravelController{
 
     async handle(request:Request, response:Response){
-        const data = request.body;
         const listTravelUseCase = container.resolve(ListTravelUseCase);
         const results = await listTravelUseCase.execute();
         response.status(200).send({

@@ -25,6 +25,11 @@ export class CreateTravels1657491856992 implements MigrationInterface {
                             type:"timestamp"
                         },
                         {
+                            name:"urlFlag",
+                            type:"varchar"
+                        },
+
+                        {
                             name:"createdAt",
                             type:"timestamp",
                             default: "now()",
