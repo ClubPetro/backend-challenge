@@ -8,19 +8,15 @@ import { ITravelsRepository } from "../ITravelsRepository";
 class TravelsRepository implements ITravelsRepository{
     
     private repository: Repository<Travel>;
-    private static INSTANCE: TravelsRepository;
-    static getInstance(): TravelsRepository{
-        if(!TravelsRepository.INSTANCE){
-            TravelsRepository.INSTANCE = new TravelsRepository();
-        }
-        return TravelsRepository.INSTANCE
-    }
-
     constructor(){
         this.repository = AppDataSource.getRepository(Travel);
     }
     async list(): Promise<Travel[]> {
-        const result = await this.repository.find({});
+        const result = await this.repository.find({
+            order:{
+                goal:"ASC"
+            }
+        })
         return result;
     }
     async findByCountryAndPlace(country:string, place:string): Promise<Travel> {

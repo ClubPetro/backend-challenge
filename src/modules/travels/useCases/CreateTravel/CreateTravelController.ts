@@ -15,7 +15,7 @@ class CreateTravelController{
             urlFlag,
             goal
         })
-        return response.status(201).send({message: "Goal created with success"});
+        return response.status(201).send({message: "Travel created with success"});
     }
 }
 

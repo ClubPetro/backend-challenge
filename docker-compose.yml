@@ -19,11 +19,10 @@ services:
     container_name: travel_app
     ports:
       - 3000:3000
+      - 9229:9229
     volumes:
       - .:/usr/node/app
     links:
       - database
     depends_on:
       - database
-    
-    

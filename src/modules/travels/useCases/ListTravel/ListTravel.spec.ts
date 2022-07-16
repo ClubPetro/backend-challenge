@@ -13,19 +13,19 @@ describe("List Travel", () =>{
     beforeAll(async () =>{
         travelsRepositoryInMemory = new TravelsRepositoryInMemory();
         listTravelUseCase = new ListTravelUseCase(travelsRepositoryInMemory);
-        createTravelUseCase = new CreateTravelUseCase(travelsRepositoryInMemory);
         dateProvider = new DateProvider();
+        createTravelUseCase = new CreateTravelUseCase(travelsRepositoryInMemory,dateProvider);
         await createTravelUseCase.execute({
             country:"Netherlands",
             place: "Amsterdã",
-            goal: dateProvider.convertStringToDate("2023-01"),
+            goal: "01/2023",
             urlFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/1280px-Flag_of_the_Netherlands.svg.png"
         });
 
         await createTravelUseCase.execute({
             country:"Denmark",
             place: "Copenhage",
-            goal: dateProvider.convertStringToDate("2022-11"),
+            goal: "11/2022",
             urlFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/125px-Flag_of_Denmark.svg.png"
         });
 

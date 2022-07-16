@@ -2,7 +2,6 @@ import { AppError } from "../../../../errors/AppError";
 import { DateProvider } from "../../../../shared/providers/implementations/DateProvider";
 import { TravelsRepositoryInMemory } from "../../repositories/implementations/TravelsRepositoryInMemory"
 import { DeleteTravelUseCase } from "./DeleteTravelUseCase";
-import {container} from 'tsyringe'
 
 let dateProvider:DateProvider;
 let travelsRepositoryInMemory:TravelsRepositoryInMemory
@@ -12,20 +11,19 @@ describe("Delete Travel",() =>{
 
     beforeAll(async ()=>{
         dateProvider = new DateProvider();
-       /*  travelsRepositoryInMemory = new TravelsRepositoryInMemory();
-        deleteTravelUseCase = new DeleteTravelUseCase(travelsRepositoryInMemory); */
-        deleteTravelUseCase = container.resolve(DeleteTravelUseCase)
+        travelsRepositoryInMemory = new TravelsRepositoryInMemory();
+        deleteTravelUseCase = new DeleteTravelUseCase(travelsRepositoryInMemory);
         await travelsRepositoryInMemory.create({
             country: "Brasil",
             place:"Curitiba",
-            goal: dateProvider.convertStringToDate("2022-11"),
+            goal: "11/2022",
             urlFlag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/275px-Flag_of_Brazil.svg.png"
         })
 
         await travelsRepositoryInMemory.create({
             country: "Brasil",
             place:"Pernambuco",
-            goal: dateProvider.convertStringToDate("2023-01"),
+            goal: "01/2023",
             urlFlag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/275px-Flag_of_Brazil.svg.png"
         })
 

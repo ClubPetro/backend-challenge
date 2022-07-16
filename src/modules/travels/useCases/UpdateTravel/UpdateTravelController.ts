@@ -10,7 +10,7 @@ class UpdateTravelController{
         const {place, goal} = request.body;
         const updateTravelUseCase = container.resolve(UpdateTravelUseCase);
         await updateTravelUseCase.execute({id,place,goal});
-        return response.status(200).send({});
+        return response.status(200).send({message: "Travel updated with success"});
     }
 }
 
