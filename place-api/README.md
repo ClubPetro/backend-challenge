@@ -29,9 +29,11 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 ## Tecnologias
-  - NestJs
+  - Typescript
+  - NestJS
   - MongoDB
   - Swagger
+  - JestJS
 
 ## Support
 
