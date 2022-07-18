@@ -1,9 +1,9 @@
 
-# Nome do Projeto 
+# Project name
 <h1 align="center">PlaceApi</h1>
 
-## Descrição do Projeto
-<p align="center">API de lugares</p>
+## Project description
+<p align="center">Places API</p>
 
 
 ## Framework
