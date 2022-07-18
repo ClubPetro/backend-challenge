@@ -42,9 +42,9 @@ $ npm run start:dev
   - Swagger
   - JestJS
 
-## Endpoints da API
+## API endpoints
 
- - Swagger da Aplicação: http://localhost:3000/api/ 
+ - Application Swagger: http://localhost:3000/api/ 
  
  
 ###### POST
