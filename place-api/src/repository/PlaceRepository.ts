@@ -113,9 +113,9 @@ export class PlaceRepository {
         place.lastModifyDate = new Date(
             date.valueOf() - date.getTimezoneOffset() * 60000,
         )
-        const placeUpdate = await this.placeModel
-            .findByIdAndUpdate(id, place)
-            .exec()
+        await this.placeModel.findByIdAndUpdate(id, place)
+        // Objeto atualizado
+        const placeUpdate = await this.placeModel.findOne({ _id: id })
         return placeUpdate
     }
 
