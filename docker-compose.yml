@@ -10,9 +10,9 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=clubpetro
-      - POSTGRES_DB=desafioclubpetro
+      - POSTGRES_DB=desafioclubpetro , test
     volumes:
-      - ./docker_postgres_init.sql:docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - pgdata:/data/postgres
 
   app:
     build: .
