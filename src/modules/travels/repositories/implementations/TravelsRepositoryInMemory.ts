@@ -32,7 +32,7 @@ class TravelsRepositoryInMemory implements ITravelsRepository{
 
     async update(data: IUpdateTravelDTO): Promise<void> {
         const objIndex = this.travels.findIndex(obj => obj.id == data.id);
-       this.travels[objIndex].goal = data.goal;
+       this.travels[objIndex].goal = data.goal as Date;
        this.travels[objIndex].place = data.place;
     }
     async delete(id: string): Promise<void> {

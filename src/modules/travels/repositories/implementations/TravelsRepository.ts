@@ -31,7 +31,7 @@ class TravelsRepository implements ITravelsRepository{
     async update(data:IUpdateTravelDTO): Promise<void> {
         const travel = await this.repository.findOneBy({id:data.id});
         travel.place = data.place ? data.place : travel.place;
-        travel.goal = data.goal ? data.goal : travel.goal;
+        travel.goal = data.goal ? data.goal as Date : travel.goal;
         await this.repository.save(travel);
     }
     async delete(id: string): Promise<void> {

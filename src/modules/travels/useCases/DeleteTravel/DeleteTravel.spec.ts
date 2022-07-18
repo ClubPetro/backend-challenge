@@ -7,7 +7,7 @@ let dateProvider:DateProvider;
 let travelsRepositoryInMemory:TravelsRepositoryInMemory
 let deleteTravelUseCase: DeleteTravelUseCase;
 
-describe("Delete Travel",() =>{
+describe("Delete Travel UseCase",() =>{
 
     beforeAll(async ()=>{
         dateProvider = new DateProvider();

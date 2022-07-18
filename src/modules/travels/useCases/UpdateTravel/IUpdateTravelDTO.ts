@@ -1,5 +1,5 @@
 export interface IUpdateTravelDTO{
     id: string;
     place?: string;
-    goal?: Date;
+    goal?: string | Date;
 }

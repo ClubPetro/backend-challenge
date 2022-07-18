@@ -7,24 +7,24 @@ let dateProvider:DateProvider;
 let travelsRepositoryInMemory:TravelsRepositoryInMemory
 let updateTravelUseCase: UpdateTravelUseCase;
 
-describe("Update Travel",() =>{
+describe("Update Travel UseCase",() =>{
 
     beforeAll(async ()=>{
         dateProvider = new DateProvider();
         travelsRepositoryInMemory = new TravelsRepositoryInMemory();
-        updateTravelUseCase = new UpdateTravelUseCase(travelsRepositoryInMemory);
+        updateTravelUseCase = new UpdateTravelUseCase(travelsRepositoryInMemory, dateProvider);
 
         await travelsRepositoryInMemory.create({
             country: "Brasil",
             place:"Curitiba",
-            goal: dateProvider.convertStringToDate("2022-11"),
+            goal: "11/2022",
             urlFlag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/275px-Flag_of_Brazil.svg.png"
         })
 
         await travelsRepositoryInMemory.create({
             country: "Brasil",
             place:"Pernambuco",
-            goal: dateProvider.convertStringToDate("2023-01"),
+            goal: "01/2023",
             urlFlag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/275px-Flag_of_Brazil.svg.png"
         })
 
@@ -35,7 +35,7 @@ describe("Update Travel",() =>{
             const request = {
                 id:"12345",
                 place:"Pernambuco",
-                goal:dateProvider.convertStringToDate("2023-03")
+                goal:"03/2023"
             }
             await updateTravelUseCase.execute(request);
         }).rejects.toBeInstanceOf(AppError);
@@ -47,7 +47,7 @@ describe("Update Travel",() =>{
             const request = {
                 id,
                 place:"Curitiba",
-                goal:dateProvider.convertStringToDate("2023-03")
+                goal:"03/2023"
             }
             await updateTravelUseCase.execute(request);
         }).rejects.toBeInstanceOf(AppError);
@@ -58,7 +58,7 @@ describe("Update Travel",() =>{
         const request = {
             id,
             place:"Pernambuco",
-            goal:dateProvider.convertStringToDate("2023-03")
+            goal:"03/2023"
         }
         await updateTravelUseCase.execute(request);
         const {place,goal}= await travelsRepositoryInMemory.findById(id);

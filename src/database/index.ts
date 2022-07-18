@@ -1,17 +1,15 @@
 import {DataSource} from 'typeorm';
 const AppDataSource = new DataSource({
     type: "postgres",
-    host: "database_desafio",
+    host: process.env.NODE_ENV == "test" ? "localhost" : "database_desafio",
     port: 5432,
     username: "docker",
     password: "clubpetro",
-    database: "desafioclubpetro",
+    database: process.env.NODE_ENV == "test" ? "test" : "desafioclubpetro",
     entities:["./src/modules/entities/*.ts"],
     migrations:["./src/database/migrations/*.ts"],
     migrationsRun:true,
-    logging:true,
-    synchronize:true,
-    
+    logging:true,   
 })
 
 

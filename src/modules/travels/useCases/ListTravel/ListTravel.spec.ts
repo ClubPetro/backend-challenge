@@ -8,7 +8,7 @@ let travelsRepositoryInMemory: TravelsRepositoryInMemory;
 let createTravelUseCase: CreateTravelUseCase;
 let dateProvider: DateProvider;
 
-describe("List Travel", () =>{
+describe("List Travel UseCase", () =>{
 
     beforeAll(async () =>{
         travelsRepositoryInMemory = new TravelsRepositoryInMemory();
