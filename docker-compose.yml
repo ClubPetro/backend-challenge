@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=clubpetro
       - POSTGRES_DB=desafioclubpetro
     volumes:
-      - ./pgdata:/data/postgres
+      - ./docker_postgres_init.sql:docker-entrypoint-initdb.d/docker_postgres_init.sql
 
   app:
     build: .
@@ -26,3 +26,8 @@ services:
       - database
     depends_on:
       - database
+
+
+volumes:
+    pgdata:
+        driver: local

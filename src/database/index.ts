@@ -9,7 +9,6 @@ const AppDataSource = new DataSource({
     entities:["./src/modules/entities/*.ts"],
     migrations:["./src/database/migrations/*.ts"],
     migrationsRun:true,
-    logging:true,   
 })
 
 

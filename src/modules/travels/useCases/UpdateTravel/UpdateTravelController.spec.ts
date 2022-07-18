@@ -2,10 +2,11 @@ import request from 'supertest';
 
 import {app} from '../../../../app';
 import { AppDataSource } from '../../../../database';
+import {v4 as uuidV4} from 'uuid'
 
 describe("Update Travel Controller", () =>{
 
-    beforeEach(async () =>{
+    beforeAll(async () =>{
         await AppDataSource.initialize()
 
         await request(app).post("/travels")
@@ -25,13 +26,14 @@ describe("Update Travel Controller", () =>{
         })
     })
 
-    afterEach(async () =>{
-        await AppDataSource.dropDatabase()
+    afterAll(async () =>{
+        await AppDataSource.createQueryRunner().clearTable("travels")
         await AppDataSource.destroy()
     })
 
     it("Should not be able to update a Travel with id invalid", async ()=>{
-        const response = await request(app).patch("/travels/22222")
+        const id = uuidV4()
+        const response = await request(app).patch(`/travels/${id}`)
         .send({
             place:"Pernambuco",
             goal:"03/2023"
@@ -42,9 +44,9 @@ describe("Update Travel Controller", () =>{
 
     it("Should not be able to update a Travel with a same country and place already exists", async ()=>{
         const travels = await request(app).get("/travels")
-        const response = await request(app).patch(`/travels/${travels.body.data[0]}`)
+        const response = await request(app).patch(`/travels/${travels.body.data[0].id}`)
         .send({
-            place:"Curitiba",
+            place:"Pernambuco",
             goal:"03/2023"
         })
         expect(response.status).toBe(400)
@@ -53,9 +55,8 @@ describe("Update Travel Controller", () =>{
     it("Should be able to update a Travel", async ()=>{
 
         const travels = await request(app).get("/travels")
-        const response = await request(app).patch(`/travels/${travels.body.data[0]}`)
+        const response = await request(app).patch(`/travels/${travels.body.data[1].id}`)
         .send({
-            id: travels.body.data[0],
             place:"Pernambuco",
             goal:"03/2023"
         })

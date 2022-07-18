@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect=0.0.0.0:9229 --exit-child --transpile-only --respawn --ignore-watch node_modules -- src/server.ts",
     "dev:debug": "cross-env NODE_ENV=test ts-node-dev --inspect=0.0.0.0:9229 --exit-child --transpile-only --respawn --ignore-watch node_modules -- src/server.ts",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration:run": "yarn typeorm migration:run -d ./src/database",
     "migration:revert": "yarn typeorm migration:revert -d ./src/database"

@@ -1,10 +1,11 @@
 import request  from "supertest";
 import { app } from "../../../../app"
 import { AppDataSource } from "../../../../database"
+import {v4 as uuidV4} from 'uuid'
 
 describe("Delete Travel Controller",  () =>{
 
-    beforeEach(async () =>{
+    beforeAll(async () =>{
         await AppDataSource.initialize()
 
         await request(app).post("/travels")
@@ -24,8 +25,8 @@ describe("Delete Travel Controller",  () =>{
         })
     })
 
-    afterEach(async () =>{
-        await AppDataSource.dropDatabase()
+    afterAll(async () =>{
+        await AppDataSource.createQueryRunner().clearTable("travels")
         await AppDataSource.destroy()
     })
 
@@ -34,12 +35,13 @@ describe("Delete Travel Controller",  () =>{
         const travels = await request(app).get("/travels")
         
         const response = await request(app).delete(`/travels/${travels.body.data[0].id}`)
-        expect(response).toBe(200);      
+        expect(response.status).toBe(200);      
         
     })
 
     it("Should not be able to delete a Travel that id does not exists ", async ()=>{
-        const response = await request(app).delete("/travels/12345")
+        const id = uuidV4()
+        const response = await request(app).delete(`/travels/${id}`)
         expect(response.status).toBe(404)
     })
 

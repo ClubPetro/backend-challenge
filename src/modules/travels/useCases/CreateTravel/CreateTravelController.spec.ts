@@ -5,12 +5,12 @@ import { AppDataSource } from '../../../../database';
 
 describe("Create Travel Controller", () =>{
     
-    beforeEach(async () =>{
+    beforeAll(async () =>{
         await AppDataSource.initialize()
     })
 
-    afterEach(async () =>{
-        await AppDataSource.dropDatabase()
+    afterAll(async () =>{
+        await AppDataSource.createQueryRunner().clearTable("travels")
         await AppDataSource.destroy()
     })
 

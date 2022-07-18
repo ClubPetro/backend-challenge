@@ -5,7 +5,7 @@ import { AppDataSource } from '../../../../database';
 
 describe("List Travel Controller", () =>{
 
-    beforeEach(async () =>{
+    beforeAll(async () =>{
         await AppDataSource.initialize()
 
         await request(app).post("/travels")
@@ -25,8 +25,8 @@ describe("List Travel Controller", () =>{
         })
     })
 
-    afterEach(async () =>{
-        await AppDataSource.dropDatabase()
+    afterAll(async () =>{
+        await AppDataSource.createQueryRunner().clearTable("travels")
         await AppDataSource.destroy()
     })
     
