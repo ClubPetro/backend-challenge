@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres:alpine
+    container_name: database_desafio
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=clubpetro
+      - POSTGRES_DB=desafioclubpetro
+    volumes:
+        - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+
+  app:
+    build: .
+    container_name: travel_app
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - .:/usr/node/app
+    links:
+      - database
+    depends_on:
+      - database
