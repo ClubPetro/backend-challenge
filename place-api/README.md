@@ -13,7 +13,17 @@
 ## Installation
 
 ```bash
+
+# clone repository
+$ git clone https://github.com/LeonardoNascimentoDev/backend-challenge.git
+
+# access project folder
+$ cd backend-challenge
+
+# install project dependencies
 $ npm install
+
+
 ```
 
 ## Running the app
@@ -24,14 +34,15 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 ## Tecnologias
   - NestJs
   - MongoDB
   - Swagger
+
+## API endpoints
+
+ - Swagger da Aplicação: http://localhost:3000/api/ 
 
 ## Support
 
