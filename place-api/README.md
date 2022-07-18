@@ -36,9 +36,11 @@ $ npm run start
 $ npm run start:dev
 ```
 ## Tecnologias
-  - NestJs
+  - Typescript
+  - NestJS
   - MongoDB
   - Swagger
+  - JestJS
 
 ## API endpoints
 
