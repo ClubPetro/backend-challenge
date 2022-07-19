@@ -19,6 +19,8 @@ export class Place {
 
     @Prop({ nullable: true })
     lastModifyDate?: Date
+
+    _id?: string
 }
 
 export const PlaceSchema = SchemaFactory.createForClass(Place)
