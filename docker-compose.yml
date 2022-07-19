@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  backend:
+    container_name: backend_container
+    build: ./
+    command: yarn start:prod
+    ports:
+      - "3000:3000"
+    env_file:
+      - .backend.env
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    env_file:
+      - .database.env
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: on-failure
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
