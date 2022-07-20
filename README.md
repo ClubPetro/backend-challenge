@@ -110,6 +110,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[TypeORM](https://typeorm.io/)**
 -   **[Jest](https://jestjs.io/pt-BR/)**
 -   **[dotENV](https://github.com/motdotla/dotenv)**
+-   **[Docker](https://docs.docker.com/engine/install/ubuntu/)**
 #### [](https://github.com/andrewronscki/places-infrastructure)**Infra** ([Terraform](https://www.terraform.io/))
 -   **[AWS](https://aws.amazon.com/pt/)**
 
