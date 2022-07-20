@@ -1,6 +1,6 @@
-import { SystemError } from '@/shared/domain';
+import { BusinessError } from '@/shared/domain';
 
-export class DeletePlaceError extends SystemError {
+export class DeletePlaceError extends BusinessError {
   constructor() {
     super('Erro ao deletar lugar.');
   }

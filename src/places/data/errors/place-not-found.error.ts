@@ -1,6 +1,6 @@
-import { SystemError } from '@/shared/domain';
+import { BusinessError } from '@/shared/domain';
 
-export class PlaceNotFoundError extends SystemError {
+export class PlaceNotFoundError extends BusinessError {
   constructor() {
     super('Lugar não foi encontrado.');
   }

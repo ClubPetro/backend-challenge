@@ -1,6 +1,6 @@
-import { SystemError } from '@/shared/domain';
+import { BusinessError } from '@/shared/domain';
 
-export class UpdatePlaceError extends SystemError {
+export class UpdatePlaceError extends BusinessError {
   constructor() {
     super('Erro ao atualizar lugar.');
   }

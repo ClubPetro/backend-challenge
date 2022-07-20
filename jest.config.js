@@ -1,4 +1,5 @@
 module.exports = {
+  transform: {},
   roots: ['<rootDir>/src'],
   collectCoverageFrom: ['<rootDir>/src/**/data/use-cases/*.{ts,tsx}'],
   coverageDirectory: 'coverage',

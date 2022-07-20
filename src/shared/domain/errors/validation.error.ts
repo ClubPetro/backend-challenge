@@ -1,9 +1,11 @@
-export class ValidationError extends Error {
+import { HttpException, HttpStatus } from '@nestjs/common';
+
+export class ValidationError extends HttpException {
   constructor(
     private readonly param: string,
     private readonly errorMessage: string,
   ) {
-    super(errorMessage);
+    super(errorMessage, HttpStatus.BAD_REQUEST);
     this.name = this.constructor.name;
   }
 }
