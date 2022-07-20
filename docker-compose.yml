@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  db:
+    container_name: backend-challenge-database
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  api:
+    container_name: backend-challenge
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/app
+    ports:
+      - 9001:9001
+    command: npm run start:dev
+    env_file:
+      - .env
+    links:
+      - "db:database.backendchallenge.com.br"
+    depends_on:
+      - db
