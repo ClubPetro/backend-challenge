@@ -36,15 +36,6 @@ import { DeletePlaceService } from '@modules/places/services/delete-place.servic
 import { PlaceGoneService } from '@modules/places/services/place-gone.service';
 import { PlaceDuplicatedService } from '@modules/places/services/place-duplicated.service';
 
-const queryPaginationDefault = {
-  order: [
-    {
-      field: 'goal',
-      order: 'ASC',
-    },
-  ],
-};
-
 @ControllerDecorator('places')
 @UseInterceptors(CacheInterceptor)
 export class PlacesController {
