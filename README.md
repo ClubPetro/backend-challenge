@@ -56,3 +56,91 @@ Os dados a ser considerados são:
 - O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
 - Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
 Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+
+---
+
+## Descrição do desenvolvimento
+
+### Informações
+
+- [x] node
+- [x] nestjs
+- [x] docker
+- [x] docker-compose
+- [x] CI/CD com github actions
+  - [x] novo PR na master -> testes automatizados
+  - [x] push na master -> deploy GCP
+- [x] [URL da aplicação]() // TODO adicionar a URL
+
+### Rodando a aplicação
+
+Build
+
+```bash
+docker-compose build
+```
+
+Run
+
+```bash
+docker-compose up
+```
+
+Rebuild and run
+
+```bash
+docker-compose up --build
+```
+
+# Rotas
+
+## GET /docs
+
+Documentação da api com Swagger.
+
+## GET /places
+
+Lista todos os lugares ordernado pela data da meta.
+
+### **Parametros**
+
+|          Nome | Requerido |  Tipo   | Descrição                                                                                                                                                           |
+| -------------:|:---------:|:-------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     `order`   | opcional  | string  | order por outra propriedade, exemplo `createdAt:DESC`. |
+|
+
+## GET /places/:id
+
+Buscar um lugar por id.
+
+## POST /places
+
+Criar novo lugar.
+
+### Exemplo para criar
+
+```json
+{
+  "country": "Brasil",
+  "location": "Rio de Janeiro",
+  "goal": "2022-12-01T16:52:07.055Z",
+  "imageUrl": "https://static.todamateria.com.br/upload/ba/nd/bandeiradobrasil-2-cke.jpg"
+}
+```
+
+## PATCH /places/:id
+
+atualizar um lugar.
+
+### Exemplo para atualizar
+
+```json
+{
+  "location": "Ibiporã",
+  "goal": "2022-10-01T16:52:07.055Z"
+}
+```
+
+## DELETE /places/:id
+
+deletar um lugar.
