@@ -70,9 +70,9 @@ Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 - [x] CI/CD com github actions
   - [x] novo PR na master -> testes automatizados
   - [x] push na master -> deploy GCP
-- [x] [URL da aplicação]() // TODO adicionar a URL
+- [x] [URL da aplicação](https://backend-challenge-eiqfhquepa-rj.a.run.app)
 
-### Rodando a aplicação
+### Rodando a aplicação localhost
 
 Build
 
@@ -106,7 +106,7 @@ Lista todos os lugares ordernado pela data da meta.
 
 |          Nome | Requerido |  Tipo   | Descrição                                                                                                                                                           |
 | -------------:|:---------:|:-------:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     `order`   | opcional  | string  | order por outra propriedade, exemplo `createdAt:DESC`. |
+|     `order`   | opcional  | string  | ordenar por outra propriedade, exemplo `createdAt:DESC`. |
 |
 
 ## GET /places/:id
