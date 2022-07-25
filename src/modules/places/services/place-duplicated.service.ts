@@ -23,11 +23,11 @@ export class PlaceDuplicatedService {
   async execute({ id, location, country }: IRequest): Promise<void> {
     if (id) {
       const place = await this.placesRepository.findOneById(id);
-      const exists = await this.placesRepository.findByCondition({
+      const existDuplicate = await this.placesRepository.findByCondition({
         country: place.country,
         location,
       });
-      if (exists) {
+      if (existDuplicate && existDuplicate.id !== place.id) {
         throw new EntityDuplicated(this.message);
       }
     }

@@ -139,6 +139,37 @@ describe('PlacesController', () => {
         ...updatePlace,
       });
     });
+
+    it('should update same place', async () => {
+      const sameCountry = await placesController.create({
+        country: place.country,
+        location: generateString(5),
+        goal: generateDate(new Date(2022, 0, 1), new Date(2030, 11, 1)),
+        imageUrl: `http://${generateString(5)}.com.br`,
+      });
+      const updatePlace = {
+        location: sameCountry.location,
+        goal: place.goal,
+      };
+      expect(
+        placesController.updatePartial(place.id, updatePlace),
+      ).rejects.toBeInstanceOf(Error);
+    });
+
+    it('should not update place', async () => {
+      const updatePlace = {
+        location: 'test2',
+        goal: new Date(2022, 1, 1),
+      };
+      const result = await placesController.updatePartial(
+        place.id,
+        updatePlace,
+      );
+      expect(result).toBeDefined();
+      expect(result).toMatchObject({
+        ...updatePlace,
+      });
+    });
   });
 
   describe('delete', () => {
