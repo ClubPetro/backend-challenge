@@ -37,10 +37,16 @@ describe('Place duplicated', () => {
       ).rejects.toBeInstanceOf(EntityDuplicated);
     });
 
-    it('should be able to throw EntityDuplicated if place exists with same location and id', async () => {
+    it('should be able to throw EntityDuplicated if place exists with same location and country by id', async () => {
+      const sameCountry = await fakePlacesRepository.create({
+        country: place.country,
+        location: generateString(5),
+        goal: generateDate(new Date(2022, 0, 1), new Date(2030, 11, 1)),
+        imageUrl: `http://${generateString(5)}.com.br`,
+      });
       await expect(
         placeDuplicatedService.execute({
-          location: place.location,
+          location: sameCountry.location,
           id: place.id,
         }),
       ).rejects.toBeInstanceOf(EntityDuplicated);
