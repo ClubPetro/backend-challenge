@@ -1,0 +1,87 @@
+version: '3'
+services:
+  api:
+    container_name: "api_${NODE_ENV}"
+    image: "api_${NODE_ENV}"
+    environment:
+      - NODE_ENV:${NODE_ENV}
+    build:
+      context: ./
+      target: "${NODE_ENV}"
+      dockerfile: Dockerfile
+    entrypoint: ["npm", "run", "start:debug"]
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - nesjs-network
+    volumes:
+      - app-data:/usr/src/app/node_modules
+      - .:/usr/src/app
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - postgres
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    restart: always
+    networks:
+      - nesjs-network
+    volumes:
+      - redis-data:/data
+
+  redis-commander:
+    container_name: redis-commander
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:${CACHE_PORT}
+    networks:
+      - nesjs-network
+    ports:
+      - "8081:8081"
+    depends_on:
+        - redis
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    networks:
+      - nesjs-network
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    volumes:
+      - pg-admin:/root/.pgadmin
+      - .:/var/lib/pgadmin
+    env_file:
+      - .env
+    networks:
+      - nesjs-network
+
+networks:
+  nesjs-network:
+    driver: bridge
+
+volumes:
+  app-data:
+  pg-data:
+  pg-admin:
+  redis-data:
