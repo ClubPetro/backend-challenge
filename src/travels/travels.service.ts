@@ -12,7 +12,7 @@ export class TravelsService {
   ) {}
 
   async get(): Promise<Travel[]> {
-    return await this.travelsRepository.find();
+    return await this.travelsRepository.find({ order: { goal: 'ASC' } });
   }
 
   async getOne(id: any): Promise<Travel> {
