@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { TravelsService } from './travels.service';
 import { Travel } from './travel.entity';
 
@@ -9,5 +9,25 @@ export class TravelsController {
   @Get()
   async get(): Promise<Travel[]> {
     return await this.travelsService.get();
+  }
+
+  @Get(':id')
+  async getOne(id: any): Promise<Travel> {
+    return await this.travelsService.getOne(id);
+  }
+
+  @Post()
+  async create(data: any): Promise<void> {
+    return await this.travelsService.create(data);
+  }
+
+  @Put(':id')
+  async update(id: any, data: any): Promise<void> {
+    return await this.travelsService.update(id, data);
+  }
+
+  @Delete(':id')
+  async delete(id: any): Promise<void> {
+    return await this.travelsService.delete(id);
   }
 }
