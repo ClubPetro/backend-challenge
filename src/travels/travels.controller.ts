@@ -13,7 +13,6 @@ export class TravelsController {
 
   @Get(':id')
   async getOne(@Param('id') id: any): Promise<Travel> {
-    console.log(id);
     return await this.travelsService.getOne(id);
   }
 
