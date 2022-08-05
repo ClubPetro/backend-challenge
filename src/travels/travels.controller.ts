@@ -30,12 +30,12 @@ export class TravelsController {
   }
 
   @Put(':id')
-  async update(id: any, data: any): Promise<void> {
+  async update(@Param('id') id: any, @Body() data: any): Promise<void> {
     return await this.travelsService.update(id, data);
   }
 
   @Delete(':id')
-  async delete(id: any): Promise<void> {
+  async delete(@Param('id') id: any): Promise<void> {
     return await this.travelsService.delete(id);
   }
 }
