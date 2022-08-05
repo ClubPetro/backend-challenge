@@ -63,7 +63,7 @@ describe('TravelsService', () => {
   });
 
   it('should delete a travel', async () => {
-    repositoryMock.save.mockReturnValue(travel);
+    repositoryMock.delete.mockReturnValue(travel);
     expect(await service.delete(travel.id)).toEqual(undefined);
     expect(repositoryMock.delete).toBeCalled();
   });
