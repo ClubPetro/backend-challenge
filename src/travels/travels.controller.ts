@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Param } from '@nestjs/common';
 import { TravelsService } from './travels.service';
 import { Travel } from './travel.entity';
 
@@ -12,12 +12,14 @@ export class TravelsController {
   }
 
   @Get(':id')
-  async getOne(id: any): Promise<Travel> {
+  async getOne(@Param('id') id: any): Promise<Travel> {
+    console.log(id);
     return await this.travelsService.getOne(id);
   }
 
   @Post()
   async create(data: any): Promise<void> {
+    console.log('asndsaudasia');
     return await this.travelsService.create(data);
   }
 
