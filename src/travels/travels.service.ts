@@ -26,10 +26,8 @@ export class TravelsService {
     const travel = new Travel({
       country: data.country,
       regional: data.regional,
-      goal: data.goal,
+      goal: new Date(data.goal),
       pictureUrl: data.pictureUrl,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
     await this.travelsRepository.save(travel);
   }
@@ -45,7 +43,6 @@ export class TravelsService {
       ...dataTravel,
       regional: data.regional,
       goal: data.goal,
-      updatedAt: new Date(),
     };
 
     await this.travelsRepository.save(travel);
