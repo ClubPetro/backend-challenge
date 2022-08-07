@@ -1,0 +1,37 @@
+steps:
+  # Build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/${_PROJECT}/backend-challenge",
+        "-f",
+        "Dockerfile",
+        ".",
+      ]
+
+  # Push the container image to Container Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/${_PROJECT}/backend-challenge"]
+
+  # Deploy container image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args: [
+      'run',
+      'deploy',
+      'backend-challenge',
+      '--image',
+      'gcr.io/${_PROJECT}/backend-challenge',
+      '--region',
+      'us-central1',
+      '--platform',
+      'managed',
+      '--port',
+      '3000',
+      '--allow-unauthenticated',
+    ]
+
+images:
+  - "gcr.io/${_PROJECT}/backend-challenge"

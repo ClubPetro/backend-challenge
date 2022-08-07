@@ -56,3 +56,43 @@ Os dados a ser considerados são:
 - O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
 - Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
 Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+
+### Como executar a aplicação.
+
+1. Instalar as dependências:
+
+    `yarn install`
+
+2. Rodar o projeto:
+
+    `yarn start`
+
+3. Acessar o projeto:
+
+    `[http://localhost:3000/]http://localhost:3000/`
+
+
+### Como executar a aplicação com Docker.
+
+1. Baixar e instalar docker, instruções no link a seguir:
+
+    `[Instalar Docker]https://docs.docker.com/get-docker/`
+
+2. Fazer o build:
+
+    `yarn build:docker`
+
+3. Rodar o projeto:
+
+    `yarn start:docker`
+
+4. Acessar o projeto:
+
+    `[http://localhost:8080/]http://localhost:8080/`
+
+
+### Deploy Google Cloud.
+
+1. Acessar o projeto:
+
+    `[Clique aqui]https://backend-challenge-snpxcokbla-uc.a.run.app/`
