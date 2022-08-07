@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { MockType, repositoryMockFactory } from '../../utils/repository.mock';
+import {
+  MockType,
+  repositoryMockFactory,
+} from '../../utils/repository-mock.utils';
 import { CountriesService } from './countries.service';
 import { MongoRepository } from 'typeorm';
 import { Country } from './country.entity';

@@ -1,7 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { TravelsService } from './travels.service';
-import { MockType, repositoryMockFactory } from '../../utils/repository.mock';
+import {
+  MockType,
+  repositoryMockFactory,
+} from '../../utils/repository-mock.utils';
 import { MongoRepository } from 'typeorm';
 import { Travel } from './travel.entity';
 
