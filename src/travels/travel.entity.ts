@@ -29,7 +29,7 @@ export class Travel {
 
   @ApiProperty()
   @Column()
-  pictureUrl: string;
+  flagUrl: string;
 
   @ApiProperty()
   @CreateDateColumn()
@@ -53,6 +53,9 @@ export class CreateTravelDto {
 
   @ApiProperty()
   goal: Date;
+
+  @ApiProperty()
+  flagUrl: string;
 }
 
 export class UpdateTravelDto {

@@ -7,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { ObjectID } from 'mongodb';
 import { Travel } from './travel.entity';
-import { generateSlug } from '../../utils/slug.utils';
 
 @Injectable()
 export class TravelsService {
@@ -40,7 +39,7 @@ export class TravelsService {
       country: data.country,
       regional: data.regional,
       goal: new Date(data.goal),
-      pictureUrl: `https://aimore.net/band/${generateSlug(data.country)}.jpg`,
+      flagUrl: data.flagUrl,
     });
     await this.travelsRepository.save(travel);
   }

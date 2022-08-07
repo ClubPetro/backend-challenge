@@ -16,7 +16,7 @@ describe('TravelsService', () => {
     country: 'Brasil',
     regional: 'Fortaleza',
     goal: '2022-08-05T04:23:04.947Z',
-    pictureUrl: 'http://test.com/image.jpg',
+    flagUrl: 'http://test.com/image.jpg',
     createdAt: '2022-08-05T04:23:04.947Z',
     updatedAt: '2022-08-05T04:23:04.947Z',
   };
