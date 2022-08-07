@@ -69,14 +69,14 @@ Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 
 3. Acessar o projeto:
 
-    [http://localhost:3000/]http://localhost:3000/
+    [http://localhost:3000/](http://localhost:3000/)
 
 
 ### Como executar a aplicação com Docker.
 
 1. Baixar e instalar docker, instruções no link a seguir:
 
-    [Instalar Docker]https://docs.docker.com/get-docker/
+    [Instalar Docker](https://docs.docker.com/get-docker/)
 
 2. Fazer o build:
 
@@ -88,11 +88,11 @@ Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 
 4. Acessar o projeto:
 
-    [http://localhost:8080/]http://localhost:8080/
+    [http://localhost:8080/](http://localhost:8080/)
 
 
 ### Deploy Google Cloud.
 
 1. Acessar o projeto:
 
-    [Clique aqui]https://backend-challenge-snpxcokbla-uc.a.run.app/
+    [Clique aqui](https://backend-challenge-snpxcokbla-uc.a.run.app/)
