@@ -41,7 +41,9 @@ describe('TravelsService', () => {
     const travels = [travel];
     repositoryMock.find.mockReturnValue(travels);
     expect(await service.get()).toEqual(travels);
-    expect(repositoryMock.find).toHaveBeenCalledWith();
+    expect(repositoryMock.find).toHaveBeenCalledWith({
+      order: { goal: 'ASC' },
+    });
   });
 
   it('should find a travel', async () => {

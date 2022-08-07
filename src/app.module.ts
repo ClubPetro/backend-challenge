@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Travel } from './travels/travel.entity';
 import { TravelsController } from './travels/travels.controller';
 import { TravelsService } from './travels/travels.service';
+import { Country } from './countries/country.entity';
+import { CountriesController } from './countries/countries.controller';
+import { CountriesService } from './countries/countries.service';
 
 @Module({
   imports: [
@@ -19,9 +22,9 @@ import { TravelsService } from './travels/travels.service';
       useUnifiedTopology: true,
       useNewUrlParser: true,
     }),
-    TypeOrmModule.forFeature([Travel]),
+    TypeOrmModule.forFeature([Country, Travel]),
   ],
-  controllers: [AppController, TravelsController],
-  providers: [AppService, TravelsService],
+  controllers: [AppController, CountriesController, TravelsController],
+  providers: [AppService, CountriesService, TravelsService],
 })
 export class AppModule {}
