@@ -80,11 +80,11 @@ Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 
 2. Fazer o build:
 
-    `yarn build:docker`
+    `yarn docker:build`
 
 3. Rodar o projeto:
 
-    `yarn start:docker`
+    `yarn docker:start`
 
 4. Acessar o projeto:
 
@@ -93,6 +93,14 @@ Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 
 ### Deploy Google Cloud.
 
-1. Acessar o projeto:
+1. Acessar:
 
-    [Clique aqui](https://backend-challenge-snpxcokbla-uc.a.run.app/)
+    [API](https://backend-challenge-snpxcokbla-uc.a.run.app/)
+
+### Documentação.
+
+1. Acessar:
+
+    [Docs](https://backend-challenge-snpxcokbla-uc.a.run.app/docs)
+
+    <img src="./img/swagger.png" alt="swagger">

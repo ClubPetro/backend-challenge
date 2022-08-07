@@ -7,19 +7,58 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('travels')
 @Unique(['regional', 'regional'])
 export class Travel {
-  @ObjectIdColumn() id: ObjectID;
-  @Column() country: string; //País
-  @Column() regional: string; //Local
-  @Column() goal: Date; //Meta
-  @Column() pictureUrl: string; //Url
-  @CreateDateColumn() createdAt: Date; //Data de criação do registro
-  @UpdateDateColumn() updatedAt: Date; //Data de atualização do registro
+  @ObjectIdColumn()
+  id: ObjectID;
+
+  @ApiProperty()
+  @Column()
+  country: string;
+
+  @ApiProperty()
+  @Column()
+  regional: string;
+
+  @ApiProperty()
+  @Column()
+  goal: Date;
+
+  @ApiProperty()
+  @Column()
+  pictureUrl: string;
+
+  @ApiProperty()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @ApiProperty()
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   constructor(travel?: Partial<Travel>) {
     Object.assign(this, travel);
   }
+}
+
+export class CreateTravelDto {
+  @ApiProperty()
+  country: string;
+
+  @ApiProperty()
+  regional: string;
+
+  @ApiProperty()
+  goal: Date;
+}
+
+export class UpdateTravelDto {
+  @ApiProperty()
+  regional: string;
+
+  @ApiProperty()
+  goal: Date;
 }

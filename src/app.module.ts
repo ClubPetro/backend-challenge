@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Travel } from './travels/travel.entity';
 import { TravelsController } from './travels/travels.controller';
@@ -24,7 +22,7 @@ import { CountriesService } from './countries/countries.service';
     }),
     TypeOrmModule.forFeature([Country, Travel]),
   ],
-  controllers: [AppController, CountriesController, TravelsController],
-  providers: [AppService, CountriesService, TravelsService],
+  controllers: [CountriesController, TravelsController],
+  providers: [CountriesService, TravelsService],
 })
 export class AppModule {}

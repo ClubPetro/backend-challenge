@@ -20,14 +20,15 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "deploy": "gcloud builds submit . --config=./cloudbuild.yaml --substitutions=_PROJECT=uplifted-light-358519",
-    "build:docker": "docker build -t backend-challenge .",
-    "start:docker": "docker run -d -p 8080:3000 --name backend-challenge backend-challenge"
+    "docker:build": "docker build -t backend-challenge .",
+    "docker:start": "docker run -d -p 8080:3000 --name backend-challenge backend-challenge"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.0.5",
     "@nestjs/typeorm": "^9.0.0",
     "mongodb": "^3.7.3",
     "reflect-metadata": "^0.1.13",
