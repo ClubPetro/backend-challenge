@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { ObjectID } from 'mongodb';
@@ -24,6 +28,14 @@ export class TravelsService {
   }
 
   async create(data: any): Promise<void> {
+    const checkIfExistRegional = await this.travelsRepository.findOne({
+      where: { country: data.country, regional: data.regional },
+    });
+
+    if (checkIfExistRegional) {
+      throw new BadRequestException('Regional was not been created');
+    }
+
     const travel = new Travel({
       country: data.country,
       regional: data.regional,
