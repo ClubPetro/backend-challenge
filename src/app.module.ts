@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PlacesModule } from './places/places.module';
 import configuration from './config/general';
 import TypeOrmConfig from './config/typeorm';
 
@@ -12,6 +13,7 @@ import TypeOrmConfig from './config/typeorm';
             load: [configuration],
         }),
         TypeOrmConfig(),
+        PlacesModule,
     ],
     controllers: [AppController],
     providers: [AppService],
