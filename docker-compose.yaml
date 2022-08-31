@@ -1,0 +1,54 @@
+version: '3.8'
+
+volumes:
+  database-data:
+  cache-data:
+
+networks:
+  places-api-network:
+    name: places-api-network
+
+services:
+  api:
+    container_name: places-api
+    build: .
+    restart: unless-stopped
+    command: npm run start:debug
+    env_file: .env
+    depends_on:
+      - database
+      - cache
+    networks:
+      - places-api-network
+    ports:
+      - ${PORT}:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  database:
+    image: postgres:13.2
+    container_name: places-database
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      - places-api-network
+    ports:
+      - ${DATABASE_PORT}:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+  cache:
+    image: redis:6.2-alpine
+    container_name: places-cache
+    restart: unless-stopped
+    command: redis-server --requirepass ${CACHE_PASSWORD} --port ${CACHE_PORT}
+    networks:
+      - places-api-network
+    ports:
+      - ${CACHE_PORT}:6379
+    volumes:
+      - cache-data:/data
