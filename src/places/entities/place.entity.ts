@@ -1,10 +1,12 @@
 import {
     Column,
     CreateDateColumn,
+    Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 
+@Entity('places')
 export class Place {
     @PrimaryGeneratedColumn('uuid')
     id: string;
