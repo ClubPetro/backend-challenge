@@ -16,6 +16,7 @@ import {
 } from 'typeorm';
 import { GlobalResponseError } from '../global-response.error';
 import { ErrorEnum } from '../enums/error.enum';
+import { ThrottlerException } from '@nestjs/throttler';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -56,6 +57,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
             case BadRequestException:
                 status = HttpStatus.BAD_REQUEST;
                 message = responseMessage;
+                break;
+            case ThrottlerException:
+                status = HttpStatus.TOO_MANY_REQUESTS;
+                message = (exception as ThrottlerException).message;
                 break;
             case EntityNotFoundError:
                 status = HttpStatus.UNPROCESSABLE_ENTITY;

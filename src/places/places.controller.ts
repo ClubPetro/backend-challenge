@@ -7,11 +7,14 @@ import {
     Param,
     Delete,
     HttpCode,
+    UseGuards,
 } from '@nestjs/common';
 import { PlacesService } from './places.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
+@UseGuards(ThrottlerGuard)
 @Controller('places')
 export class PlacesController {
     constructor(private readonly placesService: PlacesService) {}
