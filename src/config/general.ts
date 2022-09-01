@@ -7,9 +7,4 @@ export default () => ({
         username: process.env.DATABASE_USERNAME || 'dev',
         password: process.env.DATABASE_PASSWORD || 'pass',
     },
-    redis: {
-        host: process.env.CACHE_HOST || 'cache',
-        port: parseInt(process.env.CACHE_PORT, 10) || 6379,
-        password: process.env.CACHE_PASSWORD || 'pass',
-    },
 });
