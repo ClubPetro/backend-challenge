@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class CreatePlaceDto {
     @IsString()
@@ -7,6 +7,6 @@ export class CreatePlaceDto {
     @IsString()
     readonly goal: string;
 
-    @IsNumber()
-    readonly country_id: number;
+    @IsString()
+    readonly country: string;
 }

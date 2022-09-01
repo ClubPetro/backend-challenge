@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Country } from './entities/country.entity';
 import { Repository } from 'typeorm';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
@@ -9,19 +10,28 @@ import { Place } from './entities/place.entity';
 export class PlacesService {
     constructor(
         @InjectRepository(Place) private readonly repository: Repository<Place>,
+        @InjectRepository(Country)
+        private readonly countryRepository: Repository<Country>,
     ) {}
 
-    create(createPlaceDto: CreatePlaceDto) {
-        const place = this.repository.create(createPlaceDto);
+    async create(createPlaceDto: CreatePlaceDto) {
+        const country = await this.preloadCountry(createPlaceDto.country);
+        const place = this.repository.create({ ...createPlaceDto, country });
+
         return this.repository.save(place);
     }
 
     findAll() {
-        return this.repository.find();
+        return this.repository.find({
+            relations: ['country'],
+        });
     }
 
     async findOne(id: string) {
-        const place = await this.repository.findOne({ where: { id } });
+        const place = await this.repository.findOne({
+            relations: ['country'],
+            where: { id },
+        });
 
         if (!place) {
             throw new NotFoundException(`Place #${id} not found`);
@@ -51,5 +61,17 @@ export class PlacesService {
         }
 
         return this.repository.remove(place);
+    }
+
+    private async preloadCountry(name: string): Promise<Country> {
+        const country = await this.countryRepository.findOne({
+            where: { name },
+        });
+
+        if (!country) {
+            throw new NotFoundException(`Contry #${name} not exists`);
+        }
+
+        return country;
     }
 }
