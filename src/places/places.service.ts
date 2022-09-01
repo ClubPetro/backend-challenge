@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
 import { Place } from './entities/place.entity';
+import { formatGoal } from './helpers/date.helper';
 
 @Injectable()
 export class PlacesService {
@@ -14,53 +15,63 @@ export class PlacesService {
         private readonly countryRepository: Repository<Country>,
     ) {}
 
-    async create(createPlaceDto: CreatePlaceDto) {
+    async create(createPlaceDto: CreatePlaceDto): Promise<Place> {
         const country = await this.preloadCountry(createPlaceDto.country);
-        const place = this.repository.create({ ...createPlaceDto, country });
+        const goal = formatGoal(createPlaceDto.goal);
+        const place = this.repository.create({
+            ...createPlaceDto,
+            country,
+            goal,
+        });
 
         return this.repository.save(place);
     }
 
-    findAll() {
+    findAll(): Promise<Place[]> {
         return this.repository.find({
             relations: ['country'],
+            order: { goal: 'ASC' },
         });
     }
 
-    async findOne(id: string) {
+    async findOne(id: string): Promise<Place> {
         const place = await this.repository.findOne({
             relations: ['country'],
             where: { id },
         });
 
         if (!place) {
-            throw new NotFoundException(`Place #${id} not found`);
+            throw new NotFoundException(`Place ${id} not found`);
         }
 
         return place;
     }
 
-    async update(id: string, updatePlaceDto: UpdatePlaceDto) {
+    async update(id: string, updatePlaceDto: UpdatePlaceDto): Promise<Place> {
+        if (updatePlaceDto.goal) {
+            updatePlaceDto.goal = formatGoal(updatePlaceDto.goal);
+        }
+
         const place = await this.repository.preload({
             id,
             ...updatePlaceDto,
         });
 
         if (!place) {
-            throw new NotFoundException(`Place #${id} not found`);
+            throw new NotFoundException(`Place ${id} not found`);
         }
 
         return this.repository.save(place);
     }
 
-    async remove(id: string) {
-        const place = await this.repository.findOneOrFail({ where: { id } });
+    async remove(id: string): Promise<void> {
+        const place = await this.repository.findOne({ where: { id } });
 
         if (!place) {
-            throw new NotFoundException(`Place #${id} not found`);
+            throw new NotFoundException(`Place ${id} not found`);
         }
 
-        return this.repository.remove(place);
+        this.repository.remove(place);
     }
 
     private async preloadCountry(name: string): Promise<Country> {
@@ -69,7 +80,7 @@ export class PlacesService {
         });
 
         if (!country) {
-            throw new NotFoundException(`Contry #${name} not exists`);
+            throw new NotFoundException(`Country ${name} not exists`);
         }
 
         return country;

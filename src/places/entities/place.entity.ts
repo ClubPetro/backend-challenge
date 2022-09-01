@@ -21,8 +21,8 @@ export class Place {
     @Column('varchar', { length: 120 })
     name: string;
 
-    @Column('varchar', { length: 7 })
-    goal: string;
+    @Column()
+    goal: Date;
 
     @CreateDateColumn()
     created_at: Date;

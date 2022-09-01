@@ -6,6 +6,7 @@ import {
     Patch,
     Param,
     Delete,
+    HttpCode,
 } from '@nestjs/common';
 import { PlacesService } from './places.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
@@ -16,6 +17,7 @@ export class PlacesController {
     constructor(private readonly placesService: PlacesService) {}
 
     @Post()
+    @HttpCode(201)
     create(@Body() createPlaceDto: CreatePlaceDto) {
         return this.placesService.create(createPlaceDto);
     }
@@ -36,6 +38,7 @@ export class PlacesController {
     }
 
     @Delete(':id')
+    @HttpCode(204)
     remove(@Param('id') id: string) {
         return this.placesService.remove(id);
     }
