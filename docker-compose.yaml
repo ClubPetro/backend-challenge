@@ -11,13 +11,14 @@ networks:
 services:
   api:
     container_name: places-api
-    build: .
+    build:
+      context: .
+      target: dev
     restart: unless-stopped
     command: npm run start:debug
     env_file: .env
     depends_on:
       - database
-      - cache
     networks:
       - places-api-network
     ports:
