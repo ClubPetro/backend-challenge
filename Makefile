@@ -12,7 +12,10 @@ build:
 	docker-compose up -d --build
 
 cov:
-	docker-compose exec api npm run test:cov -- --maxWorkers=1
+	docker-compose exec api npm run test:cov
+
+tests:
+	docker-compose exec api npm run test
 
 exec:
 	docker-compose exec api sh
