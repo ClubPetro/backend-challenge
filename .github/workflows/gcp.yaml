@@ -1,0 +1,37 @@
+name: GCP
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Setup to Deploy in GCP
+    runs-on: ubuntu-latest
+    environment: env-cicd
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/places-api:latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      # Login to GCP
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME .
+
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME
+
+      - name: Deploy in Cloud Run
+        run: gcloud run deploy places-test --image $IMAGE_NAME --region us-central1 --memory 512Mi --min-instances 0 --max-instances 1 --platform managed --port 80 --allow-unauthenticated
