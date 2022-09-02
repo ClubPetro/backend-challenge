@@ -9,7 +9,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule, { cors: true });
     const port = process.env.PORT || 80;
 
-    app.setGlobalPrefix('api/v1');
+    app.setGlobalPrefix('api/v1', { exclude: ['/'] });
 
     app.use(helmet(), helmet.hidePoweredBy());
 
