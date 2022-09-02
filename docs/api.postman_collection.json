@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "2347a1bc-8aed-49a5-98fb-4a6e2cc55642",
+		"name": "ClubPetro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21100222"
+	},
+	"item": [
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/places",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/places/{{placeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"places",
+								"{{placeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"placeId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bahia\",\n    \"goal\": \"10/2022\",\n    \"country\": \"Brasil\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/places",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update place",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Paris\",\n    \"goal\": \"12/2024\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/places/{{placeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"places",
+								"{{placeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete place",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/places/{{placeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"places",
+								"{{placeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "placeId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

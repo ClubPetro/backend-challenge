@@ -2,7 +2,7 @@
 
 The project is an API to register places you want to visit.
 
-## Usage
+## 🌎 Usage
 
 - [Access Project](https://places-test.nicolau.dev/api/v1) (<small>Countries available: `Brazil, United States, France`</small>)
 
