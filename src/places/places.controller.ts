@@ -7,12 +7,10 @@ import {
     Param,
     Delete,
     HttpCode,
-    UseGuards,
 } from '@nestjs/common';
 import { PlacesService } from './places.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
-import { ThrottlerGuard } from '@nestjs/throttler';
 import {
     ApiBadRequestResponse,
     ApiConflictResponse,
@@ -21,9 +19,9 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
+import { Place } from './entities/place.entity';
 
 @ApiTags('places')
-@UseGuards(ThrottlerGuard)
 @Controller('places')
 export class PlacesController {
     constructor(private readonly placesService: PlacesService) {}
@@ -38,17 +36,17 @@ export class PlacesController {
     @ApiConflictResponse({
         description: 'The place already exists in the country.',
     })
-    create(@Body() createPlaceDto: CreatePlaceDto) {
+    create(@Body() createPlaceDto: CreatePlaceDto): Promise<Place> {
         return this.placesService.create(createPlaceDto);
     }
 
     @Get()
-    findAll() {
+    findAll(): Promise<Place[]> {
         return this.placesService.findAll();
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id') id: string): Promise<Place> {
         return this.placesService.findOne(id);
     }
 
@@ -58,7 +56,10 @@ export class PlacesController {
         status: 200,
         description: 'The place has been successfully updated.',
     })
-    update(@Param('id') id: string, @Body() updatePlaceDto: UpdatePlaceDto) {
+    update(
+        @Param('id') id: string,
+        @Body() updatePlaceDto: UpdatePlaceDto,
+    ): Promise<Place> {
         return this.placesService.update(id, updatePlaceDto);
     }
 
@@ -68,7 +69,7 @@ export class PlacesController {
     @ApiNoContentResponse({
         description: 'The place has been successfully deleted.',
     })
-    remove(@Param('id') id: string) {
+    remove(@Param('id') id: string): Promise<void> {
         return this.placesService.remove(id);
     }
 }

@@ -5,7 +5,8 @@ import { AppService } from './app.service';
 import { PlacesModule } from './places/places.module';
 import configuration from './config/general';
 import TypeOrmConfig from './config/typeorm';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
     imports: [
@@ -21,6 +22,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
         PlacesModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: APP_GUARD,
+            useClass: ThrottlerGuard,
+        },
+    ],
 })
 export class AppModule {}
