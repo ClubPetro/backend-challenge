@@ -27,6 +27,7 @@ jobs:
               run: npm run test
 
     deploy:
+        needs: test
         name: Setup to Deploy in GCP
         runs-on: ubuntu-latest
         environment: env-cicd
