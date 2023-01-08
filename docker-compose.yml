@@ -1,0 +1,12 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:12
+    restart: always
+    volumes:
+      - /home/Docker/Volumes/MySql:/var/lib/mysql
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backend-challenge
+    ports:
+      - 5432:5432
