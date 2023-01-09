@@ -5,7 +5,5 @@ import { CountryModule } from './country/country.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(ormConfig), CountryModule],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

@@ -11,4 +11,4 @@ switch (process.env.NODE_ENV) {
     typeEnv = '.env.local.yml';
     break;
 }
-dotenvyml.config({ patch: resolvePath(process.cwd(), typeEnv) });
+dotenvyml.config({ path: resolvePath(process.cwd(), typeEnv) });
