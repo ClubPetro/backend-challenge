@@ -8,7 +8,7 @@ import {
 import { CountryService } from './country.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 @ApiTags('Country')
-@Controller('country')
+@Controller('countrys')
 export class CountryController {
   constructor(private readonly countryService: CountryService) {}
 
