@@ -3,8 +3,6 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const rotaProdutos = require('./routes/produtos');
-const rotaPedidos = require('./routes/pedidos');
 const rotaLugares = require('./routes/lugares');
 
 app.use(morgan('dev'));
@@ -25,8 +23,6 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.use('/produtos', rotaProdutos);
-app.use('/pedidos', rotaPedidos);
 app.use('/lugares', rotaLugares);
 
 app.use((req,res,next)=>{
