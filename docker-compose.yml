@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  cache:
+    container_name: redis_clubpetro_challenge
+    image: redis:alpine
+    restart: always
+    volumes:
+      - /usr/src/app/redis:/data
+    ports:
+      - '${REDIS_PORT}:6379'
+  db:
+    container_name: database_clubpetro_challenge
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - /usr/src/app/pgdata:/var/lib/postgresql/data
+    ports:
+      - '${DB_PORT}:5432'
+  api:
+    container_name: api_clubpetro_challenge
+    build: .
+    command: npm start
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - cache
+      - db

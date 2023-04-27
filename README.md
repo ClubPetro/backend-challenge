@@ -1,58 +1,48 @@
-# Desafio de Backend
+# How to run 🚀
 
-<img src="./img/logo-clubpetro.png" style="margin-left: 100px"
-     alt="Clubpetro" width="300">
+> npm i
+> docker compose up --build
 
-- [Descrição](#descrição)
-  - [O Desafio](#o-desafio)
-  - [Requisitos Obrigatórios](#requisitos-obrigatórios)
-  - [Bônus](#bônus)
-- [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
+# How to test
 
-## Descrição
+Start application, get container id and execute verbose test
 
-Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
+> docker ps
 
-#### O Desafio
+> docker exec -it {container_id} npm run test --verbose
 
-O desafio consiste em desenvolver uma API rest que permita o CRUD de lugares para se conhecer ao redor do mundo para alimentar o frontend que pode ser visto na imagem a seguir:
+![Test Veracity](/test-veracity.png 'Test Veracity')
 
-<img src="./img/challenge.png" alt="Desafio" >
+# Obrigatórios
 
-Os dados a ser considerados são:
+✅ Apenas o Local e a Meta poderão ser editados<br>
+✅ O mesmo local em determinado país não poderá ser adicionado de forma duplicada<br>
+✅ A listagem dos dados deverá ser ordenada de forma crescente pela meta<br>
 
-- País: O país escolhido;
-- Local: O local dentro do país escolhido;
-- Meta: O mês e o ano que o usuário pretende visitar o local;
-- Url da bandeira do país;
-- Data de criação do registro;
-- Data de atualização do registro.
+# Bônus
 
-#### Requisitos Obrigatórios
+✅ Utilização do framework NestJS<br>
+✅ Typescript<br>
+✅ TypeORM<br>
+✅ Testes automatizados<br>
+✅ Docker<br>
+✅ Deploy para Google Cloud Platform: http://34.16.144.95<br><br>
+![Cloud Veracity](/cloud-veracity.png 'Cloud Veracity')
 
-> Requisitos que serão avaliados no desafio.
+# Extras
 
-- A API deverá ser desenvolvida com Node.js e Express;
-- Apenas o Local e a Meta poderão ser editados;
-- O mesmo local em determinado país não poderá ser adicionado de forma duplicada;
-- A listagem dos dados deverá ser ordenada de forma crescente pela meta;
-- O candidato deverá adicionar ao projeto uma explicação de como executar a aplicação.
-
-#### Bônus
-
-> Requisitos que não são obrigatórios mas podem te deixar em vantagem com relação aos outros candidatos.
-
-- Utilização do framework [NestJS](https://nestjs.com/);
-- Typescript;
-- Testes automatizados;
-- [TypeORM](https://typeorm.io/#/);
-- [Docker](https://www.docker.com/);
-- Deploy para [Google Cloud Platform](https://cloud.google.com/) (ao criar conta é possível receber um bonus para teste).
-
-### Submissão e Prazo de entrega
-
-- O canditado deverá realizar um fork deste repositório e submeter o código no mesmo;
-- Em caso do deploy realizado, a url deverá ser adicionada no README;
-- O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
-- Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
-Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+✅ User/Travel relationship<br>
+✅ Swagger (http://34.16.144.95/documentation)<br>
+✅ Error handler (Exception Filter)<br>
+✅ Pagination<br>
+✅ Healthcheck<br>
+✅ Cache<br>
+✅ Input validation<br>
+✅ Logging<br>
+✅ JWT<br>
+✅ Unit tests<br>
+✅ Integration tests<br>
+✅ I/O Nomenclature resolver<br>
+✅ Clusters (100% uptime)<br>
+✅ Observability (PM2 monitor)<br>
+✅ Insomnia Collection

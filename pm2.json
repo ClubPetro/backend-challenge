@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "api",
+      "script": "src/main.ts",
+      "instances": 4,
+      "exec_mode": "cluster"
+    }
+  ]
+}
