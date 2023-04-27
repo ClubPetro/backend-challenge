@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import 'dotenv/config';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
-import { PagginationInterceptor } from './interceptor/paggination.interceptor';
+import { PaginationInterceptor } from './interceptor/pagination.interceptor';
 import { JWTInfoInterceptor } from './interceptor/jwt-info.interceptor';
 import { NomenclatureInterceptor } from './interceptor/nomenclature.interceptor';
 
@@ -41,7 +41,7 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors(new PagginationInterceptor());
+  app.useGlobalInterceptors(new PaginationInterceptor());
   app.useGlobalInterceptors(new JWTInfoInterceptor());
   app.useGlobalInterceptors(new NomenclatureInterceptor());
   await app.listen(process.env.PORT || 8080);

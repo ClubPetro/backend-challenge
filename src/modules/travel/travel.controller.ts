@@ -18,7 +18,7 @@ import {
   ApiParam,
 } from '@nestjs/swagger';
 import { PaginationResultDTO } from '../../utils/dto/pagination-result.dto';
-import { PaginationDTO } from '../../utils/dto/pagition.dto';
+import { PaginationDTO } from '../../utils/dto/pagination.dto';
 import { SuccessResponseDTO } from '../../utils/dto/success-response.dto';
 import { JwtAuthGuard } from '../authentication/strategies/jwt-auth.guard';
 import { CreateTravelDTO } from './dto/create-travel.dto';

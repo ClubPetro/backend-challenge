@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class PagginationInterceptor implements NestInterceptor {
+export class PaginationInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const http = context.switchToHttp().getRequest();
 
