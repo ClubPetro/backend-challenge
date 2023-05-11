@@ -24,9 +24,12 @@ class UpdatePlaceUseCase {
       const formatDate = formatGoalDate(goal);
 
       const update = await this.placeRepository.update({
+        id,
         name,
         goal: formatDate,
       });
+
+      console.log("usecase", update.goal);
 
       return update;
     } catch (error) {

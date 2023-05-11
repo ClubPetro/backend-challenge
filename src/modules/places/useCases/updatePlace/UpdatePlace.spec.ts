@@ -12,31 +12,20 @@ describe("Unit test Update Place", () => {
   });
 
   it("Should able update a place or goal ", async () => {
-    const place = {
-      name: "place's test",
-      goal: "02/2024",
-      country_id: "123456798",
-    };
-    await createPlaceRespository.create({
-      name: place.name,
-      goal: place.goal,
-      country_id: place.country_id,
-    });
-
-    const updatedPlaceData = {
+    const place = await createPlaceRespository.create({
       name: "new place name",
       goal: "03/2025",
-    };
-
-    const placeUpdated = await upadatePlaceUseCase.execute({
-      name: updatedPlaceData.name,
-      goal: updatedPlaceData.goal,
+      country_id: "123456",
     });
-
-    const updatedPlace = await createPlaceRespository.findById(placeUpdated.id);
-
-    expect(updatedPlace.name).toBe(updatedPlaceData.name);
-    expect(updatedPlace.goal).toBe(updatedPlaceData.goal);
+    console.log("Place", place);
+    const updatedPlace = await upadatePlaceUseCase.execute({
+      id: place.id,
+      name: "Update New Place",
+      goal: "01/10/2025",
+    });
+    console.log("UpdatePlace", updatedPlace);
+    expect(updatedPlace.name).toBe("Update New Place");
+    expect(updatedPlace.goal).toBe("10/2025");
   });
 
   it("Should throw an error if place does not exist", async () => {
