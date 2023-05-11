@@ -1,58 +1,45 @@
-# Desafio de Backend
-
-<img src="./img/logo-clubpetro.png" style="margin-left: 100px"
-     alt="Clubpetro" width="300">
-
-- [Descrição](#descrição)
-  - [O Desafio](#o-desafio)
-  - [Requisitos Obrigatórios](#requisitos-obrigatórios)
-  - [Bônus](#bônus)
-- [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
+# Backend-challenge
 
 ## Descrição
 
-Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
+O objetivo deste projeto é criar uma API para gerenciar lugares e suas metas, onde é possível criar, listar, atualizar e excluir lugares, bem como atualizar suas metas.
 
-#### O Desafio
+## Tecnologias Utilizadas
 
-O desafio consiste em desenvolver uma API rest que permita o CRUD de lugares para se conhecer ao redor do mundo para alimentar o frontend que pode ser visto na imagem a seguir:
+- Node.js
+- Express.js
+- TypeScript
+- TypeORM
+- Jest
+- Docker Compose
 
-<img src="./img/challenge.png" alt="Desafio" >
+## Como Rodar o Projeto
 
-Os dados a ser considerados são:
+### Pré-requisitos
 
-- País: O país escolhido;
-- Local: O local dentro do país escolhido;
-- Meta: O mês e o ano que o usuário pretende visitar o local;
-- Url da bandeira do país;
-- Data de criação do registro;
-- Data de atualização do registro.
+- Node.js (versão 14 ou superior)
+- Docker (versão 20 ou superior)
+- Docker Compose (versão 1.28 ou superior)
 
-#### Requisitos Obrigatórios
+### Passo a Passo
 
-> Requisitos que serão avaliados no desafio.
+1. Clone o repositório em sua máquina
+2. Instale as dependências do projeto com o comando `yar install`
+3. Inicie o banco de dados e o servidor com o Docker Compose, executando o comando `docker-compose up -d`
+4. Execute o projeto com o comando `yarn dev`
 
-- A API deverá ser desenvolvida com Node.js e Express;
-- Apenas o Local e a Meta poderão ser editados;
-- O mesmo local em determinado país não poderá ser adicionado de forma duplicada;
-- A listagem dos dados deverá ser ordenada de forma crescente pela meta;
-- O candidato deverá adicionar ao projeto uma explicação de como executar a aplicação.
+Após seguir esses passos, o seu projeto deverá estar rodando em `http://localhost:3333`.
 
-#### Bônus
+## Rotas
 
-> Requisitos que não são obrigatórios mas podem te deixar em vantagem com relação aos outros candidatos.
+Abaixo estão as rotas disponíveis na API:
 
-- Utilização do framework [NestJS](https://nestjs.com/);
-- Typescript;
-- Testes automatizados;
-- [TypeORM](https://typeorm.io/#/);
-- [Docker](https://www.docker.com/);
-- Deploy para [Google Cloud Platform](https://cloud.google.com/) (ao criar conta é possível receber um bonus para teste).
+- `POST /country` - Cria um país
+- `POST /place` - Cria um lugar
+- `GET /` - Lista todos os lugares
+- `PATCH /place/update/:id` - Atualiza um lugar ou sua meta
+- `DELETE /place/delete/:id` - Exclui um lugar
 
-### Submissão e Prazo de entrega
+## Como Rodar os Testes
 
-- O canditado deverá realizar um fork deste repositório e submeter o código no mesmo;
-- Em caso do deploy realizado, a url deverá ser adicionada no README;
-- O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
-- Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
-Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+Para executar os testes, execute o comando `yarn test`. Os testes serão executados utilizando o Jest e serão exibidos no console.
