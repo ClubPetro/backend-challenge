@@ -17,13 +17,13 @@ describe("Unit test Update Place", () => {
       goal: "03/2025",
       country_id: "123456",
     });
-    console.log("Place", place);
+
     const updatedPlace = await upadatePlaceUseCase.execute({
       id: place.id,
       name: "Update New Place",
       goal: "01/10/2025",
     });
-    console.log("UpdatePlace", updatedPlace);
+
     expect(updatedPlace.name).toBe("Update New Place");
     expect(updatedPlace.goal).toBe("10/2025");
   });

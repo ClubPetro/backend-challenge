@@ -29,8 +29,6 @@ class UpdatePlaceUseCase {
         goal: formatDate,
       });
 
-      console.log("usecase", update.goal);
-
       return update;
     } catch (error) {
       throw new AppError(error);
