@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  challenge_database:
+    image: postgres
+    container_name: challenge_database
+    ports: 
+      - 5432:5432 
+    restart: always
+    environment: 
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=base
+    volumes: 
+      - pgdata:/data/postgres
+volumes: 
+  pgdata:
+    driver: local
