@@ -29,10 +29,16 @@ docker compose up -d
 
 ## Inicializando o prisma
 
-Para utilizar o prisma orm e gerar as migrações, utilize o comando: 
+Para utilizar o prisma orm e gerar as migrações, utilize o comando: (
 
 ```
 npx prima migrate dev --name Init
+```
+
+Caso queira verificar o banco de dados, utilize o comando:
+
+```
+npx prisma studio
 ```
 
 ## Iniciando a aplicação
@@ -49,12 +55,11 @@ OBS: A aplicação não possui testes automatizados
 
 Para utilizar a aplicação já em funcionamento, utilize as seguintes rotas:
 
-
 ### Post: /place/create
 
 Para está rota é necessário utilizar um body json:
 
-Ex: 
+Ex:
 
 ```
 {
@@ -77,7 +82,7 @@ Retorno:
 
 Para utilizar esta rota é necessário apenas requisitala
 
-Retorno: 
+Retorno:
 
 ```
 [
@@ -124,7 +129,7 @@ Retorno:
 
 Para utilizar esta rota é necessário um body json
 
-Ex: 
+Ex:
 
 ```
 {
@@ -154,7 +159,7 @@ Ex:
 
 Para utilizar esta rota é necessário um parametro query do ID
 
-Ex: 
+Ex:
 
 ```
 http://localhost:3333/place/delete?id=1
