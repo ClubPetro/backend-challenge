@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { countryRouter } from './api/routes';
 
 export default class App {
   public app: express.Express;
@@ -11,6 +12,7 @@ export default class App {
   }
 
   private routes(): void {
+    this.app.use('/countries', countryRouter);
   }
 
   private config():void {
