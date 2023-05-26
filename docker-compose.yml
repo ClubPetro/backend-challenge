@@ -3,9 +3,6 @@ services:
   backend:
     build: ./
     container_name: app_backend
-    tty: true
-    stdin_open: true
-    command: sh
     ports:
       - 3001:3001
     platform: linux/x86_64
