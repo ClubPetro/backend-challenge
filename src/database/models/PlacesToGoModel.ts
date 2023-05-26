@@ -1,10 +1,9 @@
-import { Model, STRING } from 'sequelize';
+import { Model, STRING, INTEGER } from 'sequelize';
 import db from '.';
 import Country from './CountryModel';
 
 class PlacesToGo extends Model {
-  declare id: number;
-  declare countryId: string;
+  declare countryId: number;
   declare placeName: string;
   declare meta: string;
   declare createdAt: string;
@@ -14,7 +13,7 @@ class PlacesToGo extends Model {
 PlacesToGo.init(
   {
     countryId: {
-      type: STRING,
+      type: INTEGER,
       allowNull: false,
       primaryKey:  true,
     },
