@@ -12,6 +12,12 @@ class PlacesToGo extends Model {
 
 PlacesToGo.init(
   {
+    id: {
+      type: INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     countryId: {
       type: INTEGER,
       allowNull: false,
