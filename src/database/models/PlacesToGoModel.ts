@@ -1,0 +1,49 @@
+import { Model, STRING } from 'sequelize';
+import db from '.';
+import Country from './CountryModel';
+
+class PlacesToGo extends Model {
+  declare id: number;
+  declare countryId: string;
+  declare placeName: string;
+  declare meta: string;
+  declare createdAt: string;
+  declare updatedAt: string;
+}
+
+PlacesToGo.init(
+  {
+    countryId: {
+      type: STRING,
+      allowNull: false,
+      primaryKey:  true,
+    },
+    placeName: {
+      type: STRING,
+      allowNull: false,
+      primaryKey:  true,
+    },
+    meta: {
+      type: STRING,
+      allowNull: false,
+    },
+    createdAt: {
+      type: STRING,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize: db,
+    timestamps: false,
+    underscored: true,
+    modelName: 'places_to_go',
+  },
+);
+
+PlacesToGo.belongsTo(Country, { foreignKey: 'countryId', as: 'country' });
+
+export default PlacesToGo;

@@ -5,8 +5,9 @@
   "main": "./dist/src/server.js",
   "scripts": {
     "build": "tsc",
+    "postbuild": "npm run db:reset",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "prestart": "npm run build && npm run db:reset",
+    "prestart": "npm run build",
     "start": "node .",
     "predev": "npm run build",
     "dev": "ts-node-dev src/server.ts",
