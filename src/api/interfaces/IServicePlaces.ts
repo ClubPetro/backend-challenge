@@ -1,11 +1,11 @@
 import ICountryPlaces from './ICountryPlaces';
 import IPlacesToGo from './IPlacesToGo';
 
-interface IServicePlace {
-  getAll(): Promise<ICountryPlaces[]>
+interface IServicePlaces {
+  getAll(): Promise<IPlacesToGo[]>
   create(): Promise<ICountryPlaces>
   update(place: IPlacesToGo): Promise<void>
   remove(id: number): Promise<[affectedCount: number]>
 }
 
-export default IServicePlace;
+export default IServicePlaces;

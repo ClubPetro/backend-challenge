@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('places_to_go', {
+    await queryInterface.createTable('places', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -44,7 +44,7 @@ module.exports = {
       timestamps: false,
     });
   
-    await queryInterface.addConstraint('places_to_go', {
+    await queryInterface.addConstraint('places', {
       fields: ['country_id', 'place_name'],
       type: 'unique',
       name: 'unique_country_place_name'
@@ -52,7 +52,7 @@ module.exports = {
   },
 
   async down (queryInterface, _Sequelize) {
-    await queryInterface.dropTable('places_to_go');
-    await queryInterface.removeConstraint('places_to_go', 'unique_country_place_name');
+    await queryInterface.dropTable('places');
+    await queryInterface.removeConstraint('places', 'unique_country_place_name');
   }
 };

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { countryRouter } from './api/routes';
+import { countryRouter, placesRouter } from './api/routes';
 
 export default class App {
   public app: express.Express;
@@ -13,6 +13,7 @@ export default class App {
 
   private routes(): void {
     this.app.use('/countries', countryRouter);
+    this.app.use('/places', placesRouter);
   }
 
   private config():void {

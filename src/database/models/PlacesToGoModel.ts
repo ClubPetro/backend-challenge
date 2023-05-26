@@ -2,7 +2,8 @@ import { Model, STRING, INTEGER } from 'sequelize';
 import db from '.';
 import Country from './CountryModel';
 
-class PlacesToGo extends Model {
+class Places extends Model {
+  declare id: number;
   declare countryId: number;
   declare placeName: string;
   declare meta: string;
@@ -10,7 +11,7 @@ class PlacesToGo extends Model {
   declare updatedAt: string;
 }
 
-PlacesToGo.init(
+Places.init(
   {
     id: {
       type: INTEGER,
@@ -45,10 +46,10 @@ PlacesToGo.init(
     sequelize: db,
     timestamps: false,
     underscored: true,
-    modelName: 'places_to_go',
+    modelName: 'places',
   },
 );
 
-PlacesToGo.belongsTo(Country, { foreignKey: 'countryId', as: 'country' });
+Places.belongsTo(Country, { foreignKey: 'countryId', as: 'country' });
 
-export default PlacesToGo;
+export default Places;

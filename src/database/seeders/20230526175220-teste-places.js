@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('places_to_go',
+    await queryInterface.bulkInsert('places',
     [
       {
         country_id: 1,
@@ -22,6 +22,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('places_to_go', null, {});
+    await queryInterface.bulkDelete('places', null, {});
   }
 };
