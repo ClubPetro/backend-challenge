@@ -2,9 +2,18 @@
   "name": "backend-challenge-club-petro",
   "version": "1.0.0",
   "description": "<img src=\"./img/logo-clubpetro.png\" style=\"margin-left: 100px\"      alt=\"Clubpetro\" width=\"300\">",
-  "main": "index.js",
+  "main": "./dist/server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "/bin/sh tsc_eval.sh",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "prestart": "npm run build && npm run db:reset",
+    "start": "node .",
+    "predev": "npm run build && npm run db:reset",
+    "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
+    "lint": "eslint ./src --ext .ts",
+    "test": "mocha -r ts-node/register ./src/tests/**.{test,spec}.ts -t 10000 --exit",
+    "test:coverage": "nyc npm run test",
+    "test:coverage:json": "nyc --reporter=json-summary npm run test"
   },
   "repository": {
     "type": "git",
