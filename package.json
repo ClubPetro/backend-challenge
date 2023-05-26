@@ -5,11 +5,10 @@
   "main": "./dist/src/server.js",
   "scripts": {
     "build": "tsc",
-    "postbuild": "npm run db:reset",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "prestart": "npm run build",
+    "prestart": "npm run build && npm run db:reset",
     "start": "node .",
-    "predev": "npm run build",
+    "predev": "npm run build && npm run db:reset",
     "dev": "ts-node-dev src/server.ts",
     "lint": "eslint ./src --ext .ts",
     "test": "mocha -r ts-node/register ./src/tests/**.{test,spec}.ts -t 10000 --exit",
@@ -42,6 +41,7 @@
     "eslint": "^8.41.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
+    "sequelize-cli": "^6.6.0",
     "sinon": "^15.1.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
