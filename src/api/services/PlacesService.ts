@@ -9,7 +9,7 @@ class PlacesService implements IServicePlaces {
   static formatPlaces(places: IPlacesToGo[]) {
     const formatedPlaces = places.map((place) => {
       const handleMeta = place.meta.split('-');
-      const formatedMeta = `${handleMeta[0]}-${handleMeta[1]}`;
+      const formatedMeta = `${handleMeta[1]}/${handleMeta[0]}`;
       place.meta = formatedMeta;
       return place;
     });
