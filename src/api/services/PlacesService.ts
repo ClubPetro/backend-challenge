@@ -6,6 +6,17 @@ import Country from '../../database/models/CountryModel';
 class PlacesService implements IServicePlaces {
   protected model: ModelStatic<Places> = Places;
 
+  static formatPlaces(places: IPlacesToGo[]) {
+    const formatedPlaces = places.map((place) => {
+      const handleMeta = place.meta.split('-');
+      const formatedMeta = `${handleMeta[0]}-${handleMeta[1]}`
+      place.meta = formatedMeta;
+      return place
+    });
+
+    return formatedPlaces;
+  }
+
   async getAll(): Promise<IPlacesToGo[]> {
     const places = await this.model.findAll({
       include: [
@@ -18,7 +29,8 @@ class PlacesService implements IServicePlaces {
       order: [['meta', 'ASC']],
     });
 
-    return places;
+    const formatedPlaces = PlacesService.formatPlaces(places)
+    return formatedPlaces;
   }
 
   async create(place: IPlacesToGo): Promise<IPlacesToGo> {
