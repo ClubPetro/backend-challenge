@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import errorHandler from './api/middlewares/ErrorHandler';
 import { countryRouter, placesRouter } from './api/routes';
 
 export default class App {
@@ -9,6 +10,7 @@ export default class App {
     this.app = express();
     this.config();
     this.routes();
+    this.app.use(errorHandler);
   }
 
   private routes(): void {
