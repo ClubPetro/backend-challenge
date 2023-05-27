@@ -33,6 +33,11 @@ class PlacesService implements IServicePlaces {
     return formatedPlaces;
   }
 
+  async getById(id: number): Promise<IPlacesToGo | null> {
+    const place = await this.model.findByPk(id);
+    return place;
+  }
+
   async create(place: IPlacesToGo): Promise<IPlacesToGo> {
     const { countryId, placeName, meta } = place;
     const handleMeta = meta.split('/');
