@@ -15,6 +15,7 @@ class PlacesService implements IServicePlaces {
           attributes: { exclude: ['id'] },
         },
       ],
+      order: [['meta', 'ASC']],
     });
 
     return places;
