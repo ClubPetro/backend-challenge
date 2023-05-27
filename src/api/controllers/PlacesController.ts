@@ -18,6 +18,11 @@ class PlacesController {
     const newPlace = await this.service.create(req.body);
     return res.status(201).json(newPlace);
   }
+
+  async update(req: Request, res: Response) {
+    await this.service.update(req.body);
+    return res.status(200).json({ message: 'Updated' });
+  }
 }
 
 export default PlacesController;

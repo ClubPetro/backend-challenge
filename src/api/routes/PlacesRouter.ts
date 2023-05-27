@@ -8,5 +8,6 @@ const placesController = new PlacesController(placesService);
 
 placesRouter.get('/', (req: Request, res: Response) => placesController.getAll(req, res));
 placesRouter.post('/', (req: Request, res: Response) => placesController.create(req, res));
+placesRouter.put('/', (req: Request, res: Response) => placesController.update(req, res));
 
 export default placesRouter;

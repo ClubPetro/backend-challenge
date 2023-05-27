@@ -1,5 +1,5 @@
 import { ModelStatic } from 'sequelize';
-import { IPlacesToGo, IServicePlaces } from '../interfaces';
+import { IServicePlaces, IPlacesToGo, IUpdatePlaces } from '../interfaces';
 import Places from '../../database/models/PlacesToGoModel';
 import Country from '../../database/models/CountryModel';
 
@@ -9,9 +9,9 @@ class PlacesService implements IServicePlaces {
   static formatPlaces(places: IPlacesToGo[]) {
     const formatedPlaces = places.map((place) => {
       const handleMeta = place.meta.split('-');
-      const formatedMeta = `${handleMeta[0]}-${handleMeta[1]}`
+      const formatedMeta = `${handleMeta[0]}-${handleMeta[1]}`;
       place.meta = formatedMeta;
-      return place
+      return place;
     });
 
     return formatedPlaces;
@@ -29,14 +29,14 @@ class PlacesService implements IServicePlaces {
       order: [['meta', 'ASC']],
     });
 
-    const formatedPlaces = PlacesService.formatPlaces(places)
+    const formatedPlaces = PlacesService.formatPlaces(places);
     return formatedPlaces;
   }
 
   async create(place: IPlacesToGo): Promise<IPlacesToGo> {
     const { countryId, placeName, meta } = place;
     const handleMeta = meta.split('/');
-    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`
+    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
     const currentDate = new Date();
     
     const newPlace = await this.model.create({
@@ -50,8 +50,18 @@ class PlacesService implements IServicePlaces {
     return newPlace;
   }
 
-  async update(place: IPlacesToGo): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(place: IUpdatePlaces): Promise<[affectedCount: number]>{
+    const { id, placeName, meta } = place;
+    const handleMeta = meta.split('/');
+    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
+
+    const updatePlace = await this.model.update({
+      placeName,
+      meta: formatedMeta,
+      updatedAt: new Date(),
+    }, { where: { id } });
+
+    return updatePlace;
   }
 
   async remove(id: number): Promise<[affectedCount: number]> {

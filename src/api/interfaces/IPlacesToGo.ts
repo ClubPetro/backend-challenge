@@ -1,8 +1,11 @@
-interface IPlacesToGo {
+interface IUpdatePlaces {
   id?: number;
-  countryId: number;
   placeName: string;
   meta: string;
 }
 
-export default IPlacesToGo;
+interface IPlacesToGo extends IUpdatePlaces {
+  countryId: number;
+}
+
+export { IPlacesToGo, IUpdatePlaces };
