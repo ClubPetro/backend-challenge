@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors';
 import cors from 'cors';
 import errorHandler from './api/middlewares/ErrorHandler';
 import { countryRouter, placesRouter } from './api/routes';

@@ -2,6 +2,7 @@ import { ModelStatic } from 'sequelize';
 import { IServicePlaces, IPlacesToGo, IUpdatePlaces } from '../interfaces';
 import Places from '../../database/models/PlacesToGoModel';
 import Country from '../../database/models/CountryModel';
+import { NotFound } from '../errors';
 
 class PlacesService implements IServicePlaces {
   protected model: ModelStatic<Places> = Places;
@@ -70,6 +71,8 @@ class PlacesService implements IServicePlaces {
   }
 
   async remove(id: number): Promise<void> {
+    const place = await this.getById(id);
+    if (!place) throw new NotFound('Place not found');
     await this.model.destroy({ where: { id }});
   }
 }
