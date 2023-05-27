@@ -1,5 +1,5 @@
 import { ModelStatic } from 'sequelize';
-import { ICountryPlaces, IPlacesToGo, IServicePlaces } from '../interfaces';
+import { IPlacesToGo, IServicePlaces } from '../interfaces';
 import Places from '../../database/models/PlacesToGoModel';
 import Country from '../../database/models/CountryModel';
 
@@ -20,8 +20,21 @@ class PlacesService implements IServicePlaces {
     return places;
   }
 
-  async create(): Promise<ICountryPlaces> {
-    throw new Error('Method not implemented.');
+  async create(place: IPlacesToGo): Promise<IPlacesToGo> {
+    const { countryId, placeName, meta } = place;
+    const handleMeta = meta.split('/');
+    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`
+    const currentDate = new Date();
+    
+    const newPlace = await this.model.create({
+      countryId,
+      placeName,
+      meta: formatedMeta,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+    });
+
+    return newPlace;
   }
 
   async update(place: IPlacesToGo): Promise<void> {

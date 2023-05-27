@@ -1,4 +1,4 @@
-import { Model, STRING, INTEGER } from 'sequelize';
+import { Model, STRING, INTEGER, DATE } from 'sequelize';
 import db from '.';
 import Country from './CountryModel';
 
@@ -34,11 +34,11 @@ Places.init(
       allowNull: false,
     },
     createdAt: {
-      type: STRING,
+      type: DATE,
       allowNull: false,
     },
     updatedAt: {
-      type: STRING,
+      type: DATE,
       allowNull: false,
     },
   },
