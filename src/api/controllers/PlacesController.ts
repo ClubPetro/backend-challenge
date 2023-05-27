@@ -23,6 +23,11 @@ class PlacesController {
     await this.service.update(req.body);
     return res.status(200).json({ message: 'Updated' });
   }
+
+  async remove(req: Request, res: Response) {
+    await this.service.remove(req.body.id);
+    return res.status(204).json({ messsage: 'Deleted' });
+  }
 }
 
 export default PlacesController;

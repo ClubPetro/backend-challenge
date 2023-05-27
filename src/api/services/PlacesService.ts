@@ -64,8 +64,8 @@ class PlacesService implements IServicePlaces {
     return updatePlace;
   }
 
-  async remove(id: number): Promise<[affectedCount: number]> {
-    throw new Error('Method not implemented.');
+  async remove(id: number): Promise<void> {
+    await this.model.destroy({ where: { id }});
   }
 }
 
