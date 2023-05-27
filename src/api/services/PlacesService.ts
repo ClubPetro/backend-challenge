@@ -3,6 +3,7 @@ import { IServicePlaces, IPlacesToGo, IUpdatePlaces } from '../interfaces';
 import Places from '../../database/models/PlacesToGoModel';
 import Country from '../../database/models/CountryModel';
 import { NotFound } from '../errors';
+import placeValidation from './validations/placeValidation';
 
 class PlacesService implements IServicePlaces {
   protected model: ModelStatic<Places> = Places;
@@ -58,6 +59,12 @@ class PlacesService implements IServicePlaces {
 
   async update(place: IUpdatePlaces): Promise<[affectedCount: number]>{
     const { id, placeName, meta } = place;
+
+    const checkId = await this.getById(Number(id));
+    if (!checkId) throw new NotFound('Place not found');
+    
+    placeValidation(placeName, meta);
+
     const handleMeta = meta.split('/');
     const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
 
