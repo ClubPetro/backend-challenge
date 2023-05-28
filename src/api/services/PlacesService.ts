@@ -4,9 +4,11 @@ import Places from '../../database/models/PlacesToGoModel';
 import Country from '../../database/models/CountryModel';
 import { NotFound } from '../errors';
 import placeValidation from './validations/placeValidation';
+import CountryService from './CountryService';
 
 class PlacesService implements IServicePlaces {
   protected model: ModelStatic<Places> = Places;
+  private countryService = new CountryService();
 
   static formatPlaces(places: IPlacesToGo[]) {
     const formatedPlaces = places.map((place) => {
@@ -42,6 +44,12 @@ class PlacesService implements IServicePlaces {
 
   async create(place: IPlacesToGo): Promise<IPlacesToGo> {
     const { countryId, placeName, meta } = place;
+
+    const checkCountryId = await this.countryService.getById(countryId);    
+    if (!checkCountryId) throw new NotFound('Country not found');
+
+    placeValidation(placeName, meta);
+    
     const handleMeta = meta.split('/');
     const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
     const currentDate = new Date();

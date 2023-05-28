@@ -19,7 +19,7 @@ const validateMeta = (meta: string) => {
   const isInvalidMeta = checkValidations.some((check) => check === true);
 
   if (isInvalidMeta) throw new BadRequest('Invalid date or in the past');
-}
+};
 
 const placeValidation = (placeName: string, meta: string) => {
   validatePlaceName(placeName);
