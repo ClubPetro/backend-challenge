@@ -6,12 +6,12 @@ import CountryService from '../../api/services/CountryService';
 
 const { expect } = chai;
 
-describe('Test class CountryService', function() {
+describe('Test class CountryService should...', function() {
   afterEach(function() {
     sinon.restore();
   });
 
-  it('should return all countries', async function() {
+  it('return all countries', async function() {
     const mockedCountry1: Country = {
       'id': 1,
       'name': 'Brazil',
@@ -34,7 +34,7 @@ describe('Test class CountryService', function() {
     expect(result.length).to.be.equal(2);
   });
 
-  it('should return a country by id', async function() {
+  it('return a country by id', async function() {
     const mockedCountry: Country = {
       'id': 1,
       'name': 'Brazil',

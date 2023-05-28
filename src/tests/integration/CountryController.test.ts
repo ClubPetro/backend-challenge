@@ -8,14 +8,14 @@ import Country from '../../database/models/CountryModel';
 const { expect } = chai;
 chai.use(chaiHttp);
 
-describe('Test class CountryController', function() {
+describe('Test class CountryController should...', function() {
   afterEach(function() {
     sinon.restore();
   });
 
   const testApp = new App();
 
-  it('should return all countries', async function() {
+  it('return all countries', async function() {
     const mockedCountry1: Country = {
       'id': 1,
       'name': 'Brazil',

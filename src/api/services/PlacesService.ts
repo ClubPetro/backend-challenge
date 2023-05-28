@@ -50,7 +50,7 @@ class PlacesService implements IServicePlaces {
   async create(place: IPlacesToGo): Promise<IPlacesToGo> {
     const { countryId, placeName, meta } = place;
 
-    const checkCountryId = await this.countryService.getById(countryId);    
+    const checkCountryId = await this.countryService.getById(countryId);
     if (!checkCountryId) throw new NotFound('Country not found');
 
     placeValidation(placeName, meta);
