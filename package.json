@@ -11,7 +11,7 @@
     "predev": "npm run build && npm run db:reset",
     "dev": "ts-node-dev src/server.ts",
     "lint": "eslint ./src --ext .ts",
-    "test": "mocha -r ts-node/register ./src/tests/**.{test,spec}.ts -t 10000 --exit",
+    "test": "mocha -r ts-node/register ./src/tests/**/**.{test,spec}.ts -t 10000 --exit",
     "test:coverage": "nyc npm run test",
     "test:coverage:json": "nyc --reporter=json-summary npm run test"
   },
