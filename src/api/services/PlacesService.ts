@@ -21,6 +21,11 @@ class PlacesService implements IServicePlaces {
     return formatedPlaces;
   }
 
+  static formatMeta(meta: string) {
+    const handleMeta = meta.split('/');
+    return `${handleMeta[1]}-${handleMeta[0]}-01`;
+  }
+
   async getAll(): Promise<IPlacesToGo[]> {
     const places = await this.model.findAll({
       include: [
@@ -50,8 +55,7 @@ class PlacesService implements IServicePlaces {
 
     placeValidation(placeName, meta);
     
-    const handleMeta = meta.split('/');
-    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
+    const formatedMeta = PlacesService.formatMeta(meta);
     const currentDate = new Date();
     
     const newPlace = await this.model.create({
@@ -73,8 +77,7 @@ class PlacesService implements IServicePlaces {
     
     placeValidation(placeName, meta);
 
-    const handleMeta = meta.split('/');
-    const formatedMeta = `${handleMeta[1]}-${handleMeta[0]}-01`;
+    const formatedMeta = PlacesService.formatMeta(meta);
 
     const updatePlace = await this.model.update({
       placeName,
