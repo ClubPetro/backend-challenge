@@ -5,9 +5,9 @@
 - [Descrição](#descrição)
   - [Regras de Negócio](#regras-de-negócio)
 - [Diagrama EER](#Diagrama-EER)
-- [Tecnologias utilizadas](#🔥-tecnologias-utilizadas)
-- [Instruções para Inicializar](#✨-instruções-para-inicializar)
-- [Rotas de API](#📭-rotas-da-API)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Instruções para Inicializar](#instruções-para-inicializar)
+- [Rotas de API](#rotas-da-API)
 
 ## Descrição
 
@@ -35,12 +35,12 @@ Os dados a serem considerados são:
 Para solução desse desafio foi planejado a estrutura de dados para modelagem do banco de dados relacional abaixo: </br>
 <img src="./img/diagrama_EER.png" alt="Diagrama-EER" >
 
-## 🔥 Tecnologias utilizadas:
+## Tecnologias utilizadas:
 
   **Back-end:** Node.js, TypeScript, Express, Orientação a Objetos e Testes com Mocha, Chai e Sinon </br>
   **Banco de Dados:** SQL MySQL, Sequelize (ORM) </br>
 
-## ✨ Instruções para Inicializar:
+## Instruções para Inicializar:
 
   Clone o repositório: `git clone git@github.com:fa-biano/backend-challenge-club-petro.git`
   
@@ -69,7 +69,7 @@ Para solução desse desafio foi planejado a estrutura de dados para modelagem d
 
   Utilize o Insomnia ou qualquer outro client de sua preferência para testar as rotas disponíveis.
 
-## 📭 Rotas da API:
+## Rotas da API:
 
 O Backend está rodando na porta `3001`. Seguem as rotas que podem ser acessadas:
 
