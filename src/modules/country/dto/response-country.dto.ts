@@ -1,15 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 export class CreateCountryDto {
   @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
+  id: string;
+
+  @ApiProperty()
   name: string;
 
   @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  @IsUrl()
   flagUrl: string;
+
+  @ApiProperty()
+  createdAt: Date;
 }

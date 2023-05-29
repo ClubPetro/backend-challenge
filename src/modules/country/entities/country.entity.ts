@@ -1,11 +1,14 @@
-import { ObjectiveEntity } from 'src/modules/objective/entities/objective.entity';
+import { ObjectiveEntity } from '../../../modules/objective/entities/objective.entity';
 import { BaseEntity } from '../../../commons/entities/base.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { BeforeInsert, Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('country')
 export class CountryEntity extends BaseEntity {
-  @Column()
+  @Column({ unique: true })
   name: string;
+
+  @Column({ name: 'flag_url' })
+  flagUrl: string;
 
   @OneToMany(
     () => ObjectiveEntity,
@@ -15,4 +18,9 @@ export class CountryEntity extends BaseEntity {
     },
   )
   objectives: ObjectiveEntity[];
+
+  @BeforeInsert()
+  beforeInsert() {
+    this.name = this.name.toLowerCase();
+  }
 }

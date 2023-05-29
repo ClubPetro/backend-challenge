@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateCountryDto } from './dto/create-country.dto';
-import { UpdateCountryDto } from './dto/update-country.dto';
 import { CountryEntity } from './entities/country.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,23 +11,50 @@ export class CountryService {
     private countryRepository: Repository<CountryEntity>,
   ) {}
 
-  create(createCountryDto: CreateCountryDto) {
-    return 'This action adds a new country';
+  async create(createCountryDto: CreateCountryDto) {
+    const country = await this.countryRepository.findOneBy({
+      name: createCountryDto.name,
+    });
+
+    if (country) {
+      throw new HttpException(
+        'Country name is already exists',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    const countryCreated = this.countryRepository.create(createCountryDto);
+    return this.countryRepository.save(countryCreated);
   }
 
   findAll() {
-    return this.countryRepository.find();
+    return this.countryRepository.find({
+      select: {
+        id: true,
+        name: true,
+        flagUrl: true,
+        createdAt: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} country`;
+  findOneById(id: string) {
+    return this.countryRepository.findOneBy({ id });
   }
 
-  update(id: number, updateCountryDto: UpdateCountryDto) {
-    return `This action updates a #${id} country`;
-  }
+  async remove(id: string) {
+    const country = await this.countryRepository.findOneBy({ id });
 
-  remove(id: number) {
-    return `This action removes a #${id} country`;
+    if (!country) {
+      throw new HttpException('Country not found', HttpStatus.NOT_FOUND);
+    }
+
+    const { affected } = await this.countryRepository.delete(id);
+
+    if (!affected) {
+      throw new HttpException('Not Modified', HttpStatus.NOT_MODIFIED);
+    }
+
+    return country;
   }
 }
