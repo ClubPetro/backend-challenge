@@ -56,3 +56,72 @@ Os dados a ser considerados são:
 - O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
 - Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
 Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+
+## Description
+Ao entrar no endpoint você pode visualizar todos os endpoints,
+```bash
+http://localhost:3000/api/api-docs
+```
+- GET - /api/country Busca todos os países 
+- POST - /api/country Cria um país
+- DELETE - /api/country Remove o país e todos seus dependentes 
+
+- GET - /api/objective Busca todos os objetivos com a meta e a data paginado
+- POST - /api/objective Cria o objetivo com a meta e a data
+- PATCH - /api/objective Atualiza o objetivo
+- DELETE - /api/objective Remove o objetivo
+
+Para visualizar o coverage ao rodar npm run test:cov, é só abrir o index.html com o seu browser.
+```bash
+cd coverage/lcov-report/index.html
+```
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## After Installation
+
+```bash
+Create .env by copying .env.example
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+# Run in Docker
+Build Image
+
+```bash
+docker build -t clubpetro-test .
+```
+
+Run Image
+
+```bash
+docker run -p 3000:3000 -d clubpetro-test
+```
