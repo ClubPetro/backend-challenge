@@ -1,6 +1,15 @@
 import { CountryEntity } from '../../../modules/country/entities/country.entity';
 import { BaseEntity } from '../../../commons/entities/base.entity';
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+} from 'typeorm';
+import { validateDate } from '../../../commons/utils/validate-date.utils';
 
 @Entity('objective')
 export class ObjectiveEntity extends BaseEntity {
@@ -8,7 +17,7 @@ export class ObjectiveEntity extends BaseEntity {
   goalPlace: string;
 
   @Column({ name: 'goal_date' })
-  goalDate: string;
+  goalDate: Date;
 
   @Column({ name: 'country_id', type: 'uuid' })
   countryId: string;
@@ -18,4 +27,16 @@ export class ObjectiveEntity extends BaseEntity {
   })
   @JoinColumn({ name: 'country_id', referencedColumnName: 'id' })
   country: CountryEntity;
+
+  @BeforeInsert()
+  beforeInsert() {
+    this.goalPlace = this.goalPlace.toLowerCase();
+    this.goalDate = validateDate(this.goalDate);
+  }
+
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.goalPlace = this.goalPlace.toLowerCase();
+    this.goalDate = validateDate(this.goalDate);
+  }
 }

@@ -1,3 +1,14 @@
-import { CreateObjectiveDto } from './create-objective.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsString } from 'class-validator';
 
-export class UpdateObjectiveDto extends CreateObjectiveDto {}
+export class UpdateObjectiveDto {
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  goalPlace?: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  goalDate: string;
+}
