@@ -1,0 +1,49 @@
+version: '3.9'
+services:
+  backend:
+    build: ./
+    container_name: app_backend
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    working_dir: /backend
+    # command e volumes habilitam a atualização do codigo para os containers durante o desenvolvimento, sem precisar ficar fazendo down e up dos containers
+    volumes: 
+      - ./src:/backend/src
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - API_PORT=3001
+      - MYSQL_HOST=app_db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DB_NAME=CLUB_PETRO
+      - EVAL_ALWAYS_RESTORE_DEV_DB=true
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      timeout: 10s
+      retries: 5
+    networks:
+      - app-network
+  db:
+    image: mysql:8.0
+    container_name: app_db
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "app_db"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: 'bridge'
