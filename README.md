@@ -82,7 +82,7 @@ cd coverage/lcov-report/index.html
 $ npm install
 ```
 
-## After Installation (Optional)
+## After Installation
 
 ```bash
 Create .env by copying .env.example
