@@ -58,6 +58,19 @@ Os dados a ser considerados são:
 Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
 
 ## Description
+Ao entrar no endpoint você pode visualizar todos os endpoints,
+```bash
+http://localhost:3000/api/api-docs
+```
+- GET - /api/country Busca todos os países 
+- POST - /api/country Cria um país
+- DELETE - /api/country Remove o país e todos seus dependentes 
+
+- GET - /api/objective Busca todos os objetivos com a meta e a data paginado
+- POST - /api/objective Cria o objetivo com a meta e a data
+- PATCH - /api/objective Atualiza o objetivo
+- DELETE - /api/objective Remove o objetivo
+
 Para visualizar o coverage ao rodar npm run test:cov, é só abrir o index.html com o seu browser.
 ```bash
 cd coverage/lcov-report/index.html
