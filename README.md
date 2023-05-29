@@ -1,25 +1,21 @@
-# Desafio de Backend
+# Desafio de Backend ClubPetro
 
-<img src="./img/logo-clubpetro.png" style="margin-left: 100px"
-     alt="Clubpetro" width="300">
+<img src="./img/logo-clubpetro.png" style="margin-left: 100px" alt="Clubpetro" width="300">
 
 - [Descrição](#descrição)
-  - [O Desafio](#o-desafio)
-  - [Requisitos Obrigatórios](#requisitos-obrigatórios)
-  - [Bônus](#bônus)
-- [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
+  - [Regras de Negócio](#regras-de-negócio)
+- [Diagrama EER](#Diagrama-EER:)
+- [Tecnologias utilizadas](#🔥-tecnologias-utilizadas)
+- [Instruções para Inicializar](#✨-instruções-para-inicializar)
+- [Rotas de API](#📭-rotas-da-API)
 
 ## Descrição
-
-Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
-
-#### O Desafio
 
 O desafio consiste em desenvolver uma API rest que permita o CRUD de lugares para se conhecer ao redor do mundo para alimentar o frontend que pode ser visto na imagem a seguir:
 
 <img src="./img/challenge.png" alt="Desafio" >
 
-Os dados a ser considerados são:
+Os dados a serem considerados são:
 
 - País: O país escolhido;
 - Local: O local dentro do país escolhido;
@@ -28,31 +24,59 @@ Os dados a ser considerados são:
 - Data de criação do registro;
 - Data de atualização do registro.
 
-#### Requisitos Obrigatórios
+#### Regras de Negócio:
 
-> Requisitos que serão avaliados no desafio.
-
-- A API deverá ser desenvolvida com Node.js e Express;
-- Apenas o Local e a Meta poderão ser editados;
 - O mesmo local em determinado país não poderá ser adicionado de forma duplicada;
+- Apenas o Local e a Meta poderão ser editados;
 - A listagem dos dados deverá ser ordenada de forma crescente pela meta;
-- O candidato deverá adicionar ao projeto uma explicação de como executar a aplicação.
 
-#### Bônus
+## Diagrama EER:
 
-> Requisitos que não são obrigatórios mas podem te deixar em vantagem com relação aos outros candidatos.
+Para solução desse desafio foi planejado a estrutura de dados para modelagem do banco de dados relacional abaixo: </br>
+<img src="./img/diagrama_EER.png" alt="Diagrama-EER" >
 
-- Utilização do framework [NestJS](https://nestjs.com/);
-- Typescript;
-- Testes automatizados;
-- [TypeORM](https://typeorm.io/#/);
-- [Docker](https://www.docker.com/);
-- Deploy para [Google Cloud Platform](https://cloud.google.com/) (ao criar conta é possível receber um bonus para teste).
+## 🔥 Tecnologias utilizadas:
 
-### Submissão e Prazo de entrega
+  **Back-end:** Node.js, TypeScript, Express, Orientação a Objetos e Testes com Mocha, Chai e Sinon </br>
+  **Banco de Dados:** SQL MySQL, Sequelize (ORM) </br>
 
-- O canditado deverá realizar um fork deste repositório e submeter o código no mesmo;
-- Em caso do deploy realizado, a url deverá ser adicionada no README;
-- O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
-- Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
-Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+## ✨ Instruções para Inicializar:
+
+  Clone o repositório: `git clone git@github.com:fa-biano/backend-challenge-club-petro.git`
+  
+  > Necessário ter o Docker e o docker-compose instalados localmente
+  Execute o comando no terminal `docker compose up -d` para subir os 2 containers da aplicaçào: app_backend e ap_db 
+
+  Após finalizar o processo de build do docker compose, todas as dependências estarão instaladas, banco de dados configurado e a API estará em execução e pronta para uso.
+
+  <details>
+    <summary><strong>Variáveis de Ambiente</strong></summary></br>
+    Não há necessidade de configurar um arquivo .env nesse projeto. </br>
+    No entanto, caso haja necessidade de fazer alguma alteração, crie um arquivo .env com as variáveis abaixo:
+
+    `API_PORT=3001`
+    `MYSQL_HOST=app_db`
+    `MYSQL_PORT=3306`
+    `MYSQL_USER=root`
+    `MYSQL_PASSWORD=password`
+    `MYSQL_DB_NAME=CLUB_PETRO`
+  </details>
+
+  #### ⚠️ Importante:
+  * O processo de build do docker compose pode demorar por volta de 1 minuto para finalizar </br>
+  * Ao finalizar o build é feito um health check nos containers antes deles iniciarem. Esse processo pode levar por volta de 30 segundos.
+
+  Utilize o Insomnia ou qualquer outro client de sua preferência para testar as rotas disponíveis.
+
+## 📭 Rotas da API:
+
+O Backend está rodando na porta `3001`. Seguem as rotas que podem ser acessadas:
+
+  `/countries`: </br>
+    - GET: lista todos os países cadastrados; </br>
+
+  `/places`: </br>
+    - GET: lista todos os lugares ordenados pela data de meta de viagem; </br>
+    - POST: adiciona novo lugar e meta de viagem; </br>
+    - PUT: atualiza o lugar e a meta conforme o id informado; </br>
+    - DELETE: exclui o lugar conforme o id informado; </br>
