@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
+import { CreateTableCountry1685288863751 } from './migrations/1685288863751-create-table-country';
+import { CreateTableObjective1685288884925 } from './migrations/1685288884925-create-table-objective';
 
 config();
 
@@ -14,5 +16,8 @@ export default new DataSource({
   password: configService.get('POSTGRES_PASSWORD'),
   database: configService.get('POSTGRES_DATABASE'),
   synchronize: false,
-  migrations: [`${__dirname}/migrations/*.{ts|js}`],
+  migrations: [
+    CreateTableCountry1685288863751,
+    CreateTableObjective1685288884925,
+  ],
 });
