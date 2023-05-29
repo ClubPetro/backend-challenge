@@ -4,7 +4,7 @@
 
 - [Descrição](#descrição)
   - [Regras de Negócio](#regras-de-negócio)
-- [Diagrama EER](#Diagrama-EER:)
+- [Diagrama EER](#Diagrama-EER)
 - [Tecnologias utilizadas](#🔥-tecnologias-utilizadas)
 - [Instruções para Inicializar](#✨-instruções-para-inicializar)
 - [Rotas de API](#📭-rotas-da-API)
@@ -45,7 +45,8 @@ Para solução desse desafio foi planejado a estrutura de dados para modelagem d
   Clone o repositório: `git clone git@github.com:fa-biano/backend-challenge-club-petro.git`
   
   > Necessário ter o Docker e o docker-compose instalados localmente
-  Execute o comando no terminal `docker compose up -d` para subir os 2 containers da aplicaçào: app_backend e ap_db 
+
+  Execute o comando no terminal `docker compose up -d` para subir os 2 containers da aplicação: app_backend e ap_db 
 
   Após finalizar o processo de build do docker compose, todas as dependências estarão instaladas, banco de dados configurado e a API estará em execução e pronta para uso.
 
@@ -63,7 +64,7 @@ Para solução desse desafio foi planejado a estrutura de dados para modelagem d
   </details>
 
   #### ⚠️ Importante:
-  * O processo de build do docker compose pode demorar por volta de 1 minuto para finalizar </br>
+  * O processo de build do docker compose pode demorar por volta de 1 minuto para finalizar. </br>
   * Ao finalizar o build é feito um health check nos containers antes deles iniciarem. Esse processo pode levar por volta de 30 segundos.
 
   Utilize o Insomnia ou qualquer outro client de sua preferência para testar as rotas disponíveis.
