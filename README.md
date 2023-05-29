@@ -37,7 +37,7 @@ Para solução desse desafio foi planejado a estrutura de dados para modelagem d
 
 ## Tecnologias utilizadas:
 
-  **Back-end:** Node.js, TypeScript, Express, Orientação a Objetos e Testes com Mocha, Chai e Sinon </br>
+  **Backend:** Node.js, TypeScript, Express, Orientação a Objetos e Testes com Mocha, Chai e Sinon </br>
   **Banco de Dados:** SQL MySQL, Sequelize (ORM) </br>
 
 ## Instruções para Inicializar:
